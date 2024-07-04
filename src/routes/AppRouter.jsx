@@ -7,6 +7,8 @@ import CartPage from '../pages/CartPage';
 import ProfilePage from '../pages/ProfilePage';
 import HomePage from '../pages/HomePage';
 import SelectPage from '../pages/SelectPage';
+import AboutPage from '../pages/AboutPage';
+import SupportPage from '../pages/SupportPage';
 
 const main = createBrowserRouter([
   {
@@ -18,7 +20,9 @@ const main = createBrowserRouter([
       { path: 'register', element: <RegisterForm /> },
       { path: 'profile', element: <ProfilePage /> },
       { path: 'select', element: <SelectPage /> },
-      { path: 'cart', element: <CartPage /> }
+      { path: 'cart', element: <CartPage /> },
+      { path: 'about', element: <AboutPage /> },
+      { path: 'support', element: <SupportPage /> }
     ]
   }
 ]);

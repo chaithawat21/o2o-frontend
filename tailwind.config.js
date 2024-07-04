@@ -17,7 +17,14 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        Prompt: ['Prompt', 'sans-serif']
+      },
       colors: {
+        GreenFooter: 'var(--GreenFooter)',
+        GreenLogin: 'var(--GreenLogin)',
+        GreenButton: 'var(--GreenButton)',
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -73,5 +80,9 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"),require('daisyui'),],
+  plugins: [
+    require("tailwindcss-animate"),
+    require('daisyui'),
+  ],
+
 }
