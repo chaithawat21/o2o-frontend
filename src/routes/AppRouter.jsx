@@ -6,6 +6,7 @@ import RegisterForm from '../pages/RegisterForm';
 import CartPage from '../pages/CartPage';
 import ProfilePage from '../pages/ProfilePage';
 import HomePage from '../pages/HomePage';
+import SelectPage from '../pages/SelectPage';
 
 const main = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const main = createBrowserRouter([
       { path: 'login', element: <LoginForm /> },
       { path: 'register', element: <RegisterForm /> },
       { path: 'profile', element: <ProfilePage /> },
+      { path: 'select', element: <SelectPage /> },
       { path: 'cart', element: <CartPage /> }
     ]
   }
