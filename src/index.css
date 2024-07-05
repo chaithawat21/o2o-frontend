@@ -8,6 +8,12 @@
   --GreenButton: rgb(64,185,129);
 }
 
+.icon:hover {
+  filter: brightness(0) saturate(100%) invert(66%) sepia(14%) saturate(1666%) hue-rotate(100deg) brightness(91%) contrast(88%);
+}
+.header-text {
+  -webkit-text-stroke: 2px white;
+}
 
 @tailwind base;
 @tailwind components;
