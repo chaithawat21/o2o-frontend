@@ -26,7 +26,7 @@ const main = createBrowserRouter([
       { path: 'cart', element: <CartPage /> },
       { path: 'about', element: <AboutPage /> },
       { path: 'support', element: <SupportPage /> },
-      { path: 'orderconfirm', element: <OrderConfirmed/> }
+      { path: 'orderconfirm', element: <OrderConfirmed/> },
       { path: 'loanDetail', element: <LoanDetailPage /> }
     ]
   }
