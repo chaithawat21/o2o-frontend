@@ -1,11 +1,8 @@
 import React from "react";
-import provinces from "../utils/provinces";
-import geographies from "../utils/geographies";
 import Searchbar from "../components/Searchbar";
 import CardLoanProfile from "../components/CardLoanProfile";
 import selectPageImg from "../assets/images/header/header03.png";
 import PaginationSelect from "../components/PaginationSelect";
-import FooterHome from '../components/FooterHome'
 
 function SelectPage() {
   return (

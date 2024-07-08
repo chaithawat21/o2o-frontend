@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -21,31 +21,7 @@ import {
 } from "@/components/ui/select";
 import provinces from "../utils/provinces";
 import geographies from "../utils/geographies";
-import { useState } from "react";
-
-
-// const frameworks = [
-//   {
-//     value: "next.js",
-//     label: "Next.js",
-//   },
-//   {
-//     value: "sveltekit",
-//     label: "SvelteKit",
-//   },
-//   {
-//     value: "nuxt.js",
-//     label: "Nuxt.js",
-//   },
-//   {
-//     value: "remix",
-//     label: "Remix",
-//   },
-//   {
-//     value: "astro",
-//     label: "Astro",
-//   },
-// ];
+import { Value } from "@radix-ui/react-select";
 
 export default function searchbar() {
   const [input, setInput] = useState({
@@ -53,54 +29,37 @@ export default function searchbar() {
     provinces : null,
     geographies : null
   });
-  
-  
-
-  const handleChange = (e) => {
+ 
+  const handleInputChange = (e) => {
+    console.log(e.target.value);
     setInput((prv) => ({...prv, [e.target.name]: e.target.value}))
 }
 
+
   return (
     <div className="flex gap-2 p-5 ">
-      <Command className="w-[500px] ">
+      <Command className="w-[500px]" onValueChange={(value)=> setInput((prv) => ({...prv, "search": value}))}>
         <CommandInput 
           placeholder="Type a command or search..." 
         />
-        <CommandList >
-          
+        <CommandList>
+          {input.search?
+          <>
           <CommandEmpty>ไม่พบผลการค้นหา</CommandEmpty>
           <CommandGroup heading="ผลการค้นหา">
-            <CommandItem>กรุงเทพ</CommandItem>
-            <CommandItem>ขอนแก่น</CommandItem>
-            <CommandItem>เชียงราย</CommandItem>
+            <CommandItem value=''>กรุงเทพ</CommandItem>
+            <CommandItem value=''>ขอนแก่น</CommandItem>
+            <CommandItem value=''>เชียงราย</CommandItem>
           </CommandGroup>
           <CommandSeparator />
+          </>:""}
         </CommandList>
       </Command>
-      <Select>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="จังหวัด" />
-        </SelectTrigger>
-        <SelectContent
-          name='provinces'
-          value={input.provinces}
-          onChange={handleChange}>
-          {provinces.map((items) => (
-            <SelectItem key={items.id} value={items.name_th}>
-              {items.name_th}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <Select>
+      <Select onValueChange={(value)=> setInput((prv) => ({...prv, "geographies": value}))}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="ภูมิภาค" />
-        </SelectTrigger>
-        <SelectContent
-          name='geographies'
-          value={input.geographies}
-          onChange={handleChange}
-          >
+        </SelectTrigger >
+        <SelectContent >
           {geographies.map((items) => (
             <SelectItem key={items.id} value={items.name}>
               {items.name}
@@ -108,7 +67,36 @@ export default function searchbar() {
           ))}
         </SelectContent>
       </Select>
-     {console.log(input)}
+      {!input.geographies?
+      <>
+      <Select onValueChange={(value)=> setInput((prv) => ({...prv, "provinces": value}))} disabled>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="จังหวัด"/>
+        </SelectTrigger>
+        <SelectContent>
+          {provinces.map((items) => (
+            <SelectItem key={items.id} value={items.name_th}>
+              {items.name_th}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      </>:
+      <>
+      <Select onValueChange={(e)=> setInput((prv) => ({...prv, "provinces": e}))}>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="จังหวัด"/>
+        </SelectTrigger>
+        <SelectContent>
+          {provinces.map((items) => (
+            <SelectItem key={items.id} value={items.name_th}>
+              {items.name_th}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      </>}
+     {console.log(Command)}
     </div>
   );
 }
