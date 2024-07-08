@@ -24,7 +24,7 @@ import { Progress } from "@/components/ui/progress"
 export default function CardLoanProfile() {
   return (
     <div>
-      <Card className="w-[318px]  ">
+      <Card className="w-[318px]">
         <CardHeader>
           <img src={img} className="w-[315px] h-[234px] bg-green-200"></img>
 
@@ -40,12 +40,12 @@ export default function CardLoanProfile() {
           <Badge variant="destructive">Badge</Badge>
           </div>
           <div className="py-2">
-            <h3>100,000 THB to go go power renger</h3>
+            <h3>100,000 THB to go </h3>
           <Progress value={20} />
           </div>
         </CardContent>
-        <CardFooter>
-          <Select>
+        <CardFooter className="flex justify-end">
+          {/* <Select>
             <SelectTrigger className="w-2/3">
               <SelectValue placeholder="500 THB" />
             </SelectTrigger>
@@ -54,9 +54,9 @@ export default function CardLoanProfile() {
               <SelectItem value="1000">1000 THB</SelectItem>
               <SelectItem value="1500">1500 THB</SelectItem>
             </SelectContent>
-          </Select>
-          <Button asChild className="w-1/3 bg-green-500">
-            <Link to="/support">Lend</Link>
+          </Select> */}
+          <Button asChild className="w-1/3 bg-green-500 ">
+            <Link to="/loanDetail">View Loan</Link>
           </Button>
         </CardFooter>
       </Card>
