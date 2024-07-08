@@ -16,7 +16,7 @@ function SelectPage() {
           src={selectPageImg}
           alt="header-image"
         />
-        <h1 className="absolute top-[10rem]  text-black text-center text-[5rem] font-[700] drop-shadow-[0_0px_1px_rgba(255,255,255,1)]">
+        <h1 className="header-text absolute top-[10rem]  text-black text-center text-[5rem] font-[700] drop-shadow-[0_0px_1px_rgba(255,255,255,1)]">
           เลือกสานฝันให้ทุกคน
         </h1>
       </div>

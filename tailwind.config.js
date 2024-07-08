@@ -18,6 +18,11 @@ module.exports = {
     },
     extend: {
       colors: {
+        GreenFooter: 'var(--GreenFooter)',
+        GreenLogin: 'var(--GreenLogin)',
+        GreenButton: 'var(--GreenButton)',
+
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -71,6 +76,10 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      screens: {
+        'sm': {'max':'375px'},
+        'md': {'max':'860px'}
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
