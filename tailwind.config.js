@@ -22,7 +22,6 @@ module.exports = {
         GreenLogin: 'var(--GreenLogin)',
         GreenButton: 'var(--GreenButton)',
 
-
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
