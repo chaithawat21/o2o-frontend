@@ -6,7 +6,9 @@ module.exports = {
     './components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
+    
   ],
+  
   prefix: "",
   theme: {
     container: {
@@ -18,6 +20,9 @@ module.exports = {
     },
     extend: {
       colors: {
+        GreenFooter: 'var(--GreenFooter)',
+        GreenLogin: 'var(--GreenLogin)',
+        GreenButton: 'var(--GreenButton)',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
