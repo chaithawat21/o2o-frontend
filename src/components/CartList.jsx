@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function CartList({index, title, amount, setAmount, handleDelete }) {
+export default function CartList({id, title, amount,story, setAmount, handleDelete }) {
   const hdlChange = (e) => {
     const newAmount = parseInt(e.target.value, 10);
     setAmount(newAmount);
   };
-
+  
   return (
     <div className="flex gap-1 w-[800px] min-w-[400px] border rounded-xl shadow-md p-5">
       <div className="avatar">
@@ -16,8 +16,7 @@ export default function CartList({index, title, amount, setAmount, handleDelete 
       <div className=" w-[100%] p-2">
         <h1>{title}</h1>
         <p className=" text-gray-400 font-mono">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
-          expedita{" "}
+          {story}
         </p>
       </div>
       <div className=" flex gap-3 items-center w-[200px] h-[100px] ">
@@ -27,12 +26,12 @@ export default function CartList({index, title, amount, setAmount, handleDelete 
           onChange={hdlChange}
           className=" border rounded-sm p-1 max-w-xs text-xs"
         >
-          <option value={0}>THB 0</option>
+          <option disabled value={amount}>THB {amount}</option>
           <option value={250}>THB 250</option>
           <option value={500}>THB 500</option>
           <option value={1000}>THB 1000</option>
         </select>
-        <a onClick={() => handleDelete(index)}>
+        <a onClick={() => handleDelete(id)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

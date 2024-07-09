@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CartOrderConfirm({title,amount}) {
+export default function CartOrderConfirm({title,amount,story}) {
   return (
     <div className="flex w-[800px] min-w-[400px] p-1">
       <div className="avatar">
@@ -11,8 +11,7 @@ export default function CartOrderConfirm({title,amount}) {
       <div className=" w-[100%] p-2">
         <h1>{title}</h1>
         <p className=" text-gray-400 font-mono">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
-          expedita{" "}
+          {story}
         </p>
       </div>
       <div className=" flex gap-3 justify-end items-center w-[200px] h-[100px] ">
