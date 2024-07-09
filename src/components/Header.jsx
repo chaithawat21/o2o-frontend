@@ -1,78 +1,128 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
 import basketIcon from "../assets/images/icon/basket.svg";
 import logoIcon from "../assets/images/logo/logo-coin.png";
+import userIcon from "../assets/images/icon/user-icon.svg"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const genericHamburgerLine = `h-1 w-7 my-1 rounded-full bg-green-500 transition ease transform duration-300`;
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useContext(AuthContext);
+
+  const getUser = localStorage.getItem("token");
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   const handleMenuItemClick = () => {
     setIsOpen(false);
   };
+
   const isActive = (path) => location.pathname === path;
+
   return (
     <header className="header flex flex-row justify-between items-center px-[4rem] py-[1rem] border-b-[1px]">
       <img className="w-[2rem]" src={logoIcon} alt="logo" />
       <nav>
         <ul className="flex flex-row gap-[2rem] md:hidden">
-        <Link to="" onClick={handleMenuItemClick}>
-                <li
-                  className={`hover:text-GreenLogin ${
-                    isActive("/") ? "text-GreenLogin" : ""
-                  }`}
-                >
-                  Home
-                </li>
-              </Link>
-              <Link to="/Register" onClick={handleMenuItemClick}>
-                <li
-                  className={`hover:text-GreenLogin ${
-                    isActive("/Register") ? "text-GreenLogin" : ""
-                  }`}
-                >
-                  Register
-                </li>
-              </Link>
-              <Link to="/profile" onClick={handleMenuItemClick}>
-                <li
-                  className={`hover:text-GreenLogin ${
-                    isActive("/profile") ? "text-GreenLogin" : ""
-                  }`}
-                >
-                  Profile
-                </li>
-              </Link>
-              <Link to="/select" onClick={handleMenuItemClick}>
-                <li
-                  className={`hover:text-GreenLogin ${
-                    isActive("/select") ? "text-GreenLogin" : ""
-                  }`}
-                >
-                  Select
-                </li>
-              </Link>
-              <Link to="/about" onClick={handleMenuItemClick}>
-                <li
-                  className={`hover:text-GreenLogin ${
-                    isActive("/about") ? "text-GreenLogin" : ""
-                  }`}
-                >
-                  About
-                </li>
-              </Link>
+          <Link to="" onClick={handleMenuItemClick}>
+            <li
+              className={`hover:text-GreenLogin ${
+                isActive("/") ? "text-GreenLogin" : ""
+              }`}
+            >
+              Home
+            </li>
+          </Link>
+          <Link to="/Register" onClick={handleMenuItemClick}>
+            <li
+              className={`hover:text-GreenLogin ${
+                isActive("/Register") ? "text-GreenLogin" : ""
+              }`}
+            >
+              Register
+            </li>
+          </Link>
+          <Link to="/profile" onClick={handleMenuItemClick}>
+            <li
+              className={`hover:text-GreenLogin ${
+                isActive("/profile") ? "text-GreenLogin" : ""
+              }`}
+            >
+              Profile
+            </li>
+          </Link>
+          <Link to="/select" onClick={handleMenuItemClick}>
+            <li
+              className={`hover:text-GreenLogin ${
+                isActive("/select") ? "text-GreenLogin" : ""
+              }`}
+            >
+              Select
+            </li>
+          </Link>
+          <Link to="/about" onClick={handleMenuItemClick}>
+            <li
+              className={`hover:text-GreenLogin ${
+                isActive("/about") ? "text-GreenLogin" : ""
+              }`}
+            >
+              About
+            </li>
+          </Link>
         </ul>
       </nav>
       <div className="flex flex-row gap-[1rem] items-center">
         <Link to="/cart">
-          <img className="icon w-[1.5rem] " src={basketIcon} alt="basket" />
+          <img className="icon w-[1.5rem]" src={basketIcon} alt="basket" />
         </Link>
-        <Link to="/login">
-          <button className="border-[2px] border-GreenButton text-GreenLogin px-[1rem] py-[.5rem] rounded-[20px] hover:opacity-50 ">
-            LOG IN
-          </button>
-        </Link>
+
+        
+        {getUser ? (
+          <DropdownMenu>
+          <DropdownMenuTrigger className="relative right-0 mt-2 w-10 h-10 bg-white border border-gray-200 rounded-full mx-[1rem] my-[.3rem] shadow-lg flex justify-center items-center">
+            <img 
+            src={userIcon} 
+            alt="Profile" 
+            className="border border-gray-200 w-full h-full rounded-full object-cover"/>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onClick={()=>{
+                navigate("/profile")
+              }}
+            >Profile</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={()=>{
+                handleLogout()
+                navigate("/")
+              }}
+            >Logout</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        ) : (
+          <Link to="/login">
+            <button className="border-[2px] border-GreenButton text-GreenLogin px-[1rem] py-[.5rem] rounded-[20px] hover:opacity-50">
+              LOG IN
+            </button>
+          </Link>
+        )}
+
         <Link to="/support">
           <button className="px-[1rem] py-[.5rem] rounded-[20px] bg-GreenButton text-white hover:opacity-50">
             SUPPORT
@@ -80,7 +130,7 @@ function Header() {
         </Link>
         <div className="relative">
           <button
-            className="hidden flex-col h-12 w-12   rounded justify-center items-center group md:flex"
+            className="hidden flex-col h-12 w-12 rounded justify-center items-center group md:flex"
             onClick={() => setIsOpen(!isOpen)}
           >
             <div
@@ -110,9 +160,9 @@ function Header() {
             }`}
           >
             <ul
-              className={` flex-col items-start gap-[2rem] ${
+              className={`flex-col items-start gap-[2rem] ${
                 isOpen ? "md:flex" : "hidden"
-              } pt-[1.5rem] pl-[4rem] h-screen `}
+              } pt-[1.5rem] pl-[4rem] h-screen`}
             >
               <Link to="" onClick={handleMenuItemClick}>
                 <li

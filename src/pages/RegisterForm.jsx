@@ -51,11 +51,11 @@ function RegisterForm() {
       if (response.status === 201) {
         notify("Registered successfully");
         setTimeout(() => {
-          navigate("/");
+          navigate("/login");
         }, 2000);
       }
     } catch (err) {
-      if (err.response && err.response.status === 409) {
+      if (err.response.status === 409) {
         notifyErr("Email already in use. Please use a different email.");
       } else {
         notifyErr("Registration failed. Please try again.");
