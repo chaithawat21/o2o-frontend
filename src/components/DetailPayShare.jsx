@@ -34,32 +34,6 @@ function DetailPayShare() {
         </Button>
       </div>
       <hr/>
-      <div className="flex flex-col gap-2 py-2">
-      <h1 className="text-2xl">More about this loan</h1>
-        <p>
-          This loan is made directly to the small business through the Kiva
-          Labs: Social Enterprise (LSE) program, which aims to raise capital for
-          social enterprises in a new and more efficient way. Social enterprises
-          have the potential to strengthen their communities and reduce poverty
-          by expanding formal employment, scaling innovative social solutions
-          and driving sustainable economic growth. The LSE program enables Kiva
-          to reach more social enterprises and lower operational costs by
-          facilitating lending directly, without a Field Partner.  For more
-          details, please
-        </p>
-        <h1 className="text-2xl">More about this loan</h1>
-        <p>
-          This loan is made directly to the small business through the Kiva
-          Labs: Social Enterprise (LSE) program, which aims to raise capital for
-          social enterprises in a new and more efficient way. Social enterprises
-          have the potential to strengthen their communities and reduce poverty
-          by expanding formal employment, scaling innovative social solutions
-          and driving sustainable economic growth. The LSE program enables Kiva
-          to reach more social enterprises and lower operational costs by
-          facilitating lending directly, without a Field Partner.  For more
-          details, please
-        </p>
-      </div>
     </div>
   );
 }

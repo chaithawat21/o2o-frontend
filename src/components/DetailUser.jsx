@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 import profileImg from "../assets/images/avatar/avatar01.png";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 export default function DetailUser() {
   return (
     <div className="flex flex-col w-[500px] gap-5 my-5">
-      <Card className="w-full">
+      <Card className="w-full bg-green-100 border-none">
         <CardHeader className="flex flex-row gap-5">
           <Avatar className='w-20 h-20'>
             <AvatarImage src={profileImg} alt="@shadcn" />
