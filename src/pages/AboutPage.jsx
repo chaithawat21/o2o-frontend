@@ -40,7 +40,7 @@ function AboutPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8888/about/contact', formData);
+      const response = await axios.post('http://localhost:8888/contact', formData);
       console.log(response.data);
       notifySuccess();
     } catch (error) {
@@ -81,7 +81,7 @@ function AboutPage() {
       <p className="indent-5 px-[5rem] pt-[1rem]">
         โดยการปล่อยกู้เพียง 25 บาท บน O2O
         คุณสามารถเป็นส่วนหนึ่งของการแก้ปัญหาและสร้างความแตกต่างในชีวิตของผู้อื่นได้อย่างแท้จริง
-        100% ของทุกดอลลาร์ที่คุณปล่อยกู้บน O2O จะไปที่การระดมทุนเพื่อการปล่อยกู้
+        100% ของทุกบาทที่คุณปล่อยกู้บน O2O จะไปที่การระดมทุนเพื่อการปล่อยกู้
       </p>
       <p className="indent-5 px-[5rem] pt-[1rem]">
         ในประเทศไทย
@@ -154,7 +154,7 @@ function AboutPage() {
             <div>
               <button
                 type="submit"
-                className="w-full bg-GreenFooter text-white py-2 px-4 rounded-md hover:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 "
+                className="w-full bg-GreenFooter text-white py-2 px-4 rounded-md hover:opacity-50 focus:outline-none focus:ring-green-200 focus:ring-2 focus:ring-offset-2 "
               >
                 Submit
               </button>
