@@ -3,6 +3,7 @@ import Searchbar from "../components/Searchbar";
 import CardLoanProfile from "../components/CardLoanProfile";
 import selectPageImg from "../assets/images/header/header03.png";
 import PaginationSelect from "../components/PaginationSelect";
+import CatagoryBar from "../components/CatagoryBar";
 
 function SelectPage() {
   return (
@@ -18,10 +19,13 @@ function SelectPage() {
         </h1>
       </div>
       <div className="flex flex-col relative bg-yellow-50">
-        <div className="flex justify-center absolute z-10  w-full">
+        <div>
+          <CatagoryBar/>
+        </div>
+        <div className="flex justify-center absolute z-10  w-full top-20">
           <Searchbar/>
         </div>
-        <div className="flex flex-wrap gap-4 justify-center py-24">
+        <div className="flex flex-wrap gap-4 justify-center py-36">
           <CardLoanProfile />
           <CardLoanProfile />
           <CardLoanProfile />
