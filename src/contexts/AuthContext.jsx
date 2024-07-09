@@ -30,11 +30,14 @@ function AuthContextProvider({ children }) {
   }, []);
 
   const logout = () => {
-    localStorage.removeItem('token')
-    setUser(null)
-  }
+    localStorage.removeItem("token");
+    setUser(null);
+  };
+  
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, setLoading, logout }}>
+    <AuthContext.Provider
+      value={{ user, setUser, loading, setLoading, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

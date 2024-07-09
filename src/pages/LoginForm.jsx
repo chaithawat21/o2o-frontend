@@ -6,7 +6,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
+
   const navigate = useNavigate()
+  const { user ,setUser } = useAuth();
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+
   const notifyErr = (message) => {
     toast.error(message, {
       position: "top-center",
@@ -33,15 +40,11 @@ function LoginForm() {
     });
   };
 
-  const { user, setUser } = useAuth();
-  const [input, setInput] = useState({
-    email: "",
-    password: "",
-  });
-
+  
   const handleChange = (e) => {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,7 +69,7 @@ function LoginForm() {
         navigate("/");
       }, 2000);
     } catch (err) {
-      if (err.response.status === 400 || err.response.status === 500) {
+      if (err.response.status === 400,500) {
         notifyErr("Invalid email or password");
       }
     }
