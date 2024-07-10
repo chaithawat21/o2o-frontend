@@ -31,7 +31,7 @@ export default function CartList({id, title, amount,story, setAmount, handleDele
           <option value={500}>THB 500</option>
           <option value={1000}>THB 1000</option>
         </select>
-        <a onClick={() => handleDelete(id)}>
+        <a href="#" onClick={() => handleDelete(id)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
