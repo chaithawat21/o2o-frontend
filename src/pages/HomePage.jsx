@@ -7,6 +7,10 @@ import romanticImg from "../assets/images/illustration/illustration07-romantic.s
 import familyIcon from "../assets/images/illustration/illustration05-family.svg";
 import peopleIcon from "../assets/images/illustration/illustration03-people.svg";
 import growIcon from "../assets/images/illustration/illustration04-growing.svg";
+import ChatBot from "../components/ChatBot";
+
+
+
 
 
 function HomePage() {
@@ -212,6 +216,7 @@ function HomePage() {
           </div>
         </div>
       </div>
+      <ChatBot />
       <FooterHome />
     </>
   );
