@@ -5,7 +5,9 @@ import selectPageImg from "../assets/images/header/header03.png";
 import PaginationSelect from "../components/PaginationSelect";
 import CatagoryBar from "../components/CatagoryBar";
 
+
 function SelectPage() {
+ 
   return (
     <>
       <div className="relative flex flex-col items-center">
@@ -18,23 +20,15 @@ function SelectPage() {
           เลือกสานฝันให้ทุกคน
         </h1>
       </div>
-      <div className="flex flex-col relative bg-yellow-50">
+      <div className="flex flex-col relative ">
         <div>
-          <CatagoryBar/>
+          <CatagoryBar />
         </div>
-        <div className="flex justify-center absolute z-10  w-full top-20">
-          <Searchbar/>
+        <div className="flex justify-center absolute z-10  w-full top-28">
+          <Searchbar />
         </div>
-        <div className="flex flex-wrap gap-4 justify-center py-36">
           <CardLoanProfile />
-          <CardLoanProfile />
-          <CardLoanProfile />
-          <CardLoanProfile />
-          <CardLoanProfile />
-          <CardLoanProfile />
-          <CardLoanProfile />
-          <CardLoanProfile />
-        </div>
+      
         <div className="p-8">
           <PaginationSelect />
         </div>
