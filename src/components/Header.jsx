@@ -46,15 +46,19 @@ function Header() {
               Home
             </li>
           </Link>
-          <Link to="/Register" onClick={handleMenuItemClick}>
-            <li
-              className={`hover:text-GreenLogin ${
-                isActive("/Register") ? "text-GreenLogin" : ""
-              }`}
-            >
-              Register
-            </li>
-          </Link>
+
+          {!getUser && (
+            <Link to="/Register" onClick={handleMenuItemClick}>
+              <li
+                className={`hover:text-GreenLogin ${
+                  isActive("/Register") ? "text-GreenLogin" : ""
+                }`}
+              >
+                Register
+              </li>
+            </Link>
+          )}
+          
           <Link to="/profile" onClick={handleMenuItemClick}>
             <li
               className={`hover:text-GreenLogin ${

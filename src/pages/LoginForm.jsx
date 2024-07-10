@@ -16,7 +16,7 @@ function LoginForm() {
 
   const notifyErr = (message) => {
     toast.error(message, {
-      position: "top-center",
+      position: "bottom-right",
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -29,7 +29,7 @@ function LoginForm() {
 
   const notify = () => {
     toast.success("Login successful", {
-      position: "top-center",
+      position: "bottom-right",
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -78,7 +78,10 @@ function LoginForm() {
   return (
     <div className="flex flex-row h-[45rem] items-start gap-2.5 bg-GreenFooter relative">
       <div className="bg-GreenLogin h-[45rem] w-full p-[1rem]">
-        <p className="text-white text-[1.5rem] mt-[50px] pl-10">
+        <p className="text-white text-[1.25rem] mt-[100px] pl-10">
+          Welcome back
+        </p>
+        <p className="text-white text-[1.5rem] mt-[25px] pl-10">
           Login to your account
         </p>
       </div>
@@ -115,7 +118,7 @@ function LoginForm() {
             Submit
           </button>
         </form>
-        <ToastContainer />
+        <ToastContainer style={{marginBottom: "175px"}}/>
       </div>
     </div>
   );
