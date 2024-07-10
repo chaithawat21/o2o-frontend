@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Command,
-  CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
 import {
   Select,
@@ -17,114 +15,80 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import provinces from "../utils/provinces";
-import geographies from "../utils/geographies";
+import { useEffect } from "react";
+import { useSearchData } from "../utils/serviceAPI/searchServices";
 
 export default function searchbar() {
-  const [open, setOpen] = React.useState(false);
-  const [input, setInput] = useState({
-    search: null,
-    geographies: null,
-    provinces: null,
-  });
-
-  const handleInputChange = (e) => {
-    console.log(e.target.value);
-    setInput((prv) => ({ ...prv, [e.target.name]: e.target.value }));
-  };
-  const fillterProvince = provinces.filter(
-    (province) => province.geography_id === 2
-  );
-
-  console.log(input.geographies);
-  console.log("fillterProvince = ", fillterProvince);
-
-  const searchItems = [
-    {
-      value: "thailand",
-    },
-    {
-      value: "google",
-    },
-    {
-      value: "ples",
-    },
-  ];
+  const searchInfo = useSearchData((state) => state.searchInfo);
+  const inputCheck = useSearchData((state) => state.inputCheck);
+  const fillterP = useSearchData((state) => state.fillterProvince);
+  const fetchSearchData = useSearchData((state) => state.fetchSearchData);
+  const fetchLoanData = useSearchData((state)=> state.fetchLoanData)
+  const checkValue = useSearchData((state) => state.checkValue);
+  const hdlChenge = useSearchData((state) => state.hdlChange);
+  
+  console.log(searchInfo);
+  useEffect(() => {
+    fetchSearchData()
+    fetchLoanData()
+  }, []);
 
   return (
     <div className="flex gap-2 p-5">
-      <Command className="w-[500px]">
-        <CommandInput />
-        <CommandList className="">
-          <CommandEmpty>not Result</CommandEmpty>
-          <CommandGroup heading="Result">
-            {searchItems.map((searchItem) => (
-              <CommandItem
-                key={searchItem.id}
-                value={searchItem.value}
-                onSelect={(value) => {
-                  setInput((prv) => ({ ...prv, search: value }));
-                }}
-              >
-                {searchItem.value}
-              </CommandItem>
+      <Command>
+        <CommandInput placeholder="Type a command or search..." onValueChange={((value)=>checkValue(value))}/>
+        <CommandList>
+        {inputCheck && <><CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Catagoly">
+            {searchInfo?.categories?.map((items)=>(
+              <CommandItem key={items.id} value={items.categorie_name}>{items.categorie_name}</CommandItem>
             ))}
           </CommandGroup>
-          <CommandSeparator />
+          <CommandGroup heading="Regions">
+            {searchInfo?.regions?.map((items)=>(
+              <CommandItem key={items.id} value={items.region_name}>{items.region_name}</CommandItem>
+            ))}
+          </CommandGroup>
+          <CommandGroup heading="provinces">
+            {searchInfo?.provinces?.map((items)=>(
+              <CommandItem key={items.id} value={items.province_name}>{items.province_name}</CommandItem>
+            ))}
+          </CommandGroup>
+          <CommandSeparator /></>}
         </CommandList>
       </Command>
       <Select
-         onValueChange={(value) => setInput((prv) => ({ ...prv, "geographies": value }))}>
+        onValueChange={(value) =>{
+          hdlChenge(value,searchInfo.provinces)
+        } }
+      >
         <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="ภูมิภาค"/>
+          <SelectValue placeholder="ภูมิภาค" />
         </SelectTrigger>
         <SelectContent>
-          {geographies.map((items) => (
-            <SelectItem key={items.id} value={items.name}>
-              {items.name}
+          {searchInfo?.regions?.map((items) => (
+            <SelectItem key={items?.id} value={items?.id}>
+              {items?.region_name}
+            </SelectItem>
+          ))} 
+        </SelectContent>
+      </Select>
+      <Select
+        // onValueChange={(value) =>
+        //   setInput((prv) => ({ ...prv, provinces: value }))
+        // }
+      >
+        <SelectTrigger className="w-[300px]">
+          <SelectValue placeholder="จังหวัด" />
+        </SelectTrigger>
+        <SelectContent>
+          {fillterP.map((items) => (
+            <SelectItem key={items?.id} value={items?.province_name}>
+              {items?.province_name}
             </SelectItem>
           ))}
         </SelectContent>
       </Select>
-      {!input.geographies ? (
-        <>
-          <Select
-            onValueChange={(value) =>
-              setInput((prv) => ({ ...prv, "provinces": value }))
-            }
-            disabled
-          >
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="จังหวัด" />
-            </SelectTrigger>
-            <SelectContent>
-              {provinces.map((items) => (
-                <SelectItem key={items.id} value={items.name_th}>
-                  {items.name_th}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </>
-      ) : (
-        <>
-          <Select
-            onValueChange={(value) => setInput((prv) => ({ ...prv, "provinces": value }))}
-          >
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="จังหวัด" />
-            </SelectTrigger>
-            <SelectContent>
-              {provinces.map((items) => (
-                <SelectItem key={items.id} value={items.name_th}>
-                  {items.name_th}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </>
-      )}
-      {console.log(input)}
     </div>
   );
 }

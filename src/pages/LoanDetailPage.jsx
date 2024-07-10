@@ -16,7 +16,7 @@ export default function LoanDetailPage() {
           เติบโตในการลงทุน
         </h1>
         <div className="flex flex-row justify-center gap-10">
-          <DetailUser />
+          <DetailUser/>
           <DetailPayShare />
         </div>
       </div>
