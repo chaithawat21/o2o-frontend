@@ -8,7 +8,7 @@ export default function OrderConfirmed() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const lend = JSON.parse(queryParams.get("lend"));
-  console.log(lend);
+  // console.log(lend);
 
   const chacklend =
     lend.length === 0 ? (
@@ -25,13 +25,17 @@ export default function OrderConfirmed() {
     );
 
   const totalAmount = lend.reduce((sum, item) => sum + item.amount, 0);
+
   const checkout = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8888/create-checkout-session"
+        "http://localhost:8888/create-checkout-session",{
+          totalAmount
+        }
       );
       window.location.href = response.data.url; // Redirect to Stripe Checkout page
+      console.log(response)
     } catch (err) {
       console.log(err);
     }
