@@ -58,7 +58,7 @@ function HomePage() {
           alt="header-image"
         />
         <h1 className="header-text absolute top-[10rem]  text-black text-center text-[4rem] font-[700]">
-          สนับสนุนทุกโอกาศ
+          สนับสนุนทุกโอกาส
           <br />
           ให้กลายเป็นจริง
         </h1>
