@@ -3,6 +3,7 @@ import aboutHeader from "../assets/images/header/header04.jpg";
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import FooterHome from "../components/FooterHome";
 
 function AboutPage() {
   const notifyError = () => {toast.error('Failed to send email', {
@@ -63,14 +64,14 @@ function AboutPage() {
           เกี่ยวกับเรา
         </h1>
       </div>
-      <p className="indent-5 px-[5rem] pt-[2rem]">
+      <p className="indent-5 px-[5rem] pt-[2rem] text-[1.25rem]">
         กว่า 1.7
         พันล้านคนทั่วโลกไม่มีบัญชีธนาคารและไม่สามารถเข้าถึงบริการทางการเงินที่จำเป็นได้
         O2O เป็นองค์กรไม่แสวงหาผลกำไรระดับนานาชาติ ก่อตั้งขึ้นในปี 2024
         ที่ประเทศไทย
         โดยมีพันธกิจในการขยายการเข้าถึงทางการเงินเพื่อช่วยให้ชุมชนที่ด้อยโอกาสเจริญเติบโต
       </p>
-      <p className="indent-5 px-[5rem] pt-[1rem]">
+      <p className="indent-5 px-[5rem] pt-[1rem] text-[1.25rem]">
         เราทำสิ่งนี้โดยการระดมทุนจากฝูงชนเพื่อปล่อยกู้และปลดล็อกเงินทุนสำหรับผู้ด้อยโอกาส
         ปรับปรุงคุณภาพและต้นทุนของบริการทางการเงิน
         และแก้ไขอุปสรรคที่อยู่เบื้องหลังการเข้าถึงทางการเงินทั่วโลก ผ่านงานของ
@@ -78,12 +79,12 @@ function AboutPage() {
         เกษตรกรสามารถลงทุนในอุปกรณ์ได้
         และครอบครัวสามารถจ่ายค่ารักษาพยาบาลที่จำเป็นได้
       </p>
-      <p className="indent-5 px-[5rem] pt-[1rem]">
+      <p className="indent-5 px-[5rem] pt-[1rem] text-[1.25rem]">
         โดยการปล่อยกู้เพียง 25 บาท บน O2O
         คุณสามารถเป็นส่วนหนึ่งของการแก้ปัญหาและสร้างความแตกต่างในชีวิตของผู้อื่นได้อย่างแท้จริง
         100% ของทุกบาทที่คุณปล่อยกู้บน O2O จะไปที่การระดมทุนเพื่อการปล่อยกู้
       </p>
-      <p className="indent-5 px-[5rem] pt-[1rem]">
+      <p className="indent-5 px-[5rem] pt-[1rem] text-[1.25rem]">
         ในประเทศไทย
         มีชุมชนและกลุ่มคนหลายกลุ่มที่ยังไม่สามารถเข้าถึงบริการทางการเงินที่มีคุณภาพได้
         O2O
@@ -93,7 +94,7 @@ function AboutPage() {
         นักเรียนสามารถใช้เงินกู้เพื่อจ่ายค่าเล่าเรียนและดำเนินการศึกษาต่อไปได้
         นอกจากนี้ยังมีเกษตรกรที่สามารถใช้เงินกู้เพื่อปรับปรุงการเกษตรและเพิ่มผลผลิตได้อีกด้วย
       </p>
-      <p className="px-[5rem] pt-[1rem] pb-[2rem]">
+      <p className="px-[5rem] pt-[1rem] pb-[2rem] text-[1.25rem]">
         การสนับสนุนจาก O2O
         ทำให้ผู้คนในประเทศไทยมีโอกาสที่จะพัฒนาชีวิตและชุมชนของตนเองอย่างยั่งยืน
       </p>
@@ -163,6 +164,7 @@ function AboutPage() {
           </form>
         </div>
       </div>
+      <FooterHome />
     </>
   );
 }

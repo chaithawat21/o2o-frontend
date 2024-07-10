@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import supportHeader from "../assets/images/header/header05.png";
+import FooterHome from "../components/FooterHome";
 
 function SupportPage() {
   const [value, setValue] = useState(25);
@@ -31,7 +32,7 @@ function SupportPage() {
       </div>
       <div className="flex flex-col justify-center items-center m-[4rem] ">
         <form className=" w-[30rem] flex flex-col gap-[2rem] " onSubmit={handleSubmit}>
-          <p className="indent-10">
+          <p className="text-[1.5rem] indent-10">
             เราต้องการความช่วยเหลือจากคุณในการขยายการเข้าถึงทางการเงิน
             บริจาควันวันนี้
             บริจาคของคุณช่วยเราในการครอบคลุมค่าใช้จ่ายในการขยายการเข้าถึงสินเชื่อที่สามารถเปลี่ยนแปลงชีวิตได้และเชื่อถึงมากขึ้นให้สามารถเข้าถึงได้มากขึ้นทั่วโลก
@@ -51,6 +52,7 @@ function SupportPage() {
           </div>
         </form>
       </div>
+      <FooterHome />
     </div>
   );
 }
