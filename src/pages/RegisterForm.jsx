@@ -41,20 +41,21 @@ function RegisterForm() {
     confirmPassword: "",
   });
 
-  const [firstnameError, setFirstnameError] = useState("")
-  const [lastnameError, setLastnameError] = useState("")
-  const [emailError , setEmailError] = useState("")
-  const [passwordError, setPasswordError] = useState("")
-  const [confirmPasswordError, setConfirmPasswordError] = useState("")
+  const [firstnameError, setFirstnameError] = useState("");
+  const [lastnameError, setLastnameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const handleChange = (e) => {
-    setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    const { name, value } = e.target;
+    setInput((prev) => ({ ...prev, [name]: value.replace(/\s/g, "") }));
   };
 
   const validateFirstname = (firstname) => {
     const nameRegex = /^[A-Za-z]+$/;
     if (!nameRegex.test(firstname)) {
-      setFirstnameError("Firstname must contain only English letters.")
+      setFirstnameError("Firstname must contain only English letters and no spaces.");
       return false;
     }
     setFirstnameError("");
@@ -62,51 +63,62 @@ function RegisterForm() {
   };
 
   const validateLastname = (lastname) => {
-    const nameRegex = /^[A-Za-z]+$/
+    const nameRegex = /^[A-Za-z]+$/;
     if (!nameRegex.test(lastname)) {
-      setLastnameError("Lastname must contain only English letters.")
-      return false
+      setLastnameError("Lastname must contain only English letters and no spaces.");
+      return false;
     }
-    setLastnameError("")
-    return true
+    setLastnameError("");
+    return true;
+  };
+
+  const validateEmail = (email) => {
+    if (/\s/.test(email)) {
+      setEmailError("Email must not contain spaces.");
+      return false;
+    }
+    setEmailError("");
+    return true;
   };
 
   const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]{8,}$/
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]{8,}$/;
     if (!passwordRegex.test(password)) {
-      setPasswordError("Password must be at least 8 characters and include uppercase letter and number.")
-      return false
+      setPasswordError("Password must be at least 8 characters and include uppercase letter and number, and no spaces.");
+      return false;
     }
-    setPasswordError("")
-    return true
+    setPasswordError("");
+    return true;
   };
 
   const validateConfirmPassword = (password, confirmPassword) => {
     if (password !== confirmPassword) {
-      setConfirmPasswordError("Passwords do not match.")
-      return false
+      setConfirmPasswordError("Passwords do not match.");
+      return false;
     }
-    setConfirmPasswordError("")
-    return true
+    setConfirmPasswordError("");
+    return true;
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    const isFirstnameValid = validateFirstname(input.firstname)
-    const isLastnameValid = validateLastname(input.lastname)
-    const isPasswordValid = validatePassword(input.password)
-    const isConfirmPasswordValid = validateConfirmPassword(input.password, input.confirmPassword)
+    e.preventDefault();
+    const isFirstnameValid = validateFirstname(input.firstname);
+    const isLastnameValid = validateLastname(input.lastname);
+    const isEmailValid = validateEmail(input.email);
+    const isPasswordValid = validatePassword(input.password);
+    const isConfirmPasswordValid = validateConfirmPassword(input.password, input.confirmPassword);
 
-    if (!isFirstnameValid || !isLastnameValid || !isPasswordValid || !isConfirmPasswordValid) {
-      return
+    if (!isFirstnameValid || !isLastnameValid || !isEmailValid || !isPasswordValid || !isConfirmPasswordValid) {
+      return;
     }
+
     try {
       const response = await axios.post("http://localhost:8888/auth/register", {
         firstname: input.firstname,
         lastname: input.lastname,
         email: input.email,
         password: input.password,
-      })
+      });
       if (response.status === 201) {
         notify("Registered successfully");
         setTimeout(() => {
@@ -115,12 +127,12 @@ function RegisterForm() {
       }
     } catch (err) {
       if (err.response.status === 409) {
-        setEmailError("Email already in use. Please use a different email.")
+        setEmailError("Email already in use. Please use a different email.");
       } else {
-        notifyErr("Registration failed. Please try again.")
+        notifyErr("Registration failed. Please try again.");
       }
     }
-  }
+  };
 
   return (
     <div className="flex flex-row h-[45rem] items-start gap-2.5 bg-collection-1-background-login relative">
