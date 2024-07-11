@@ -157,7 +157,7 @@ function ChatBot() {
           </p>
         </div>
         {!getUser ?  <>
-        <div className="chat-body h-[20rem] bg-white shadow-inner shadow-gray-400 overflow-auto flex flex-col">
+        <div className="chat-body h-[20rem] bg-white border-[1px] border-gray-200 overflow-auto flex flex-col">
         <div className="chat-logs self-start px-[1rem] pt-[.5rem] w-[12rem] bg-green-100 m-[.5rem] rounded-[10px]">
           <p>คุณสนใจข้อมูลด้านไหน กดที่ตัวเลือกได้เลย</p>
           <ul className="text-GreenFooter  cursor-pointer list-disc pl-[.5rem]">
