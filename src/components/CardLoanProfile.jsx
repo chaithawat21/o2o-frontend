@@ -18,7 +18,7 @@ import { useSearchData } from "../utils/serviceAPI/searchServices";
 export default function CardLoanProfile() {
   const loanData = useSearchData((state) => state.loanData);
   
-
+  console.log(loanData);
   return (
     <div className="flex flex-wrap gap-4 justify-center py-32">
       {loanData.map((items) => (
@@ -40,7 +40,7 @@ export default function CardLoanProfile() {
           </CardContent>
           <CardFooter className="flex justify-end">
             <Button asChild className="w-1/3 bg-green-500 ">
-              <Link to="/loanDetail">View Loan</Link>
+              <Link to="/loanDetail" >View Loan</Link>
             </Button>
           </CardFooter>
         </Card>

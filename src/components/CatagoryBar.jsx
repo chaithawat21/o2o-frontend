@@ -1,21 +1,37 @@
 import React from "react";
 import { useSearchData } from "../utils/serviceAPI/searchServices";
+import * as Img from "../assets/images/categories/images";
 
 function CatagoryBar() {
   const searchInfo = useSearchData((state) => state.searchInfo);
+  const selectValue = useSearchData((state) => state.selectValue);
+  const categories = useSearchData((state) => state.categorieData);
+
+  console.log(categories);
 
   if (!searchInfo || !searchInfo.categories) {
     return <div>Loading...</div>;
-  } 
-  console.log(searchInfo.categories); 
+  }
+
+
+  const formatImg = (name) => {
+    const formattedName = name.includes("_") ? name : name.replace(/ /g, "_");
+    return Img[formattedName] || ""; 
+  };
 
   return (
     <div className="flex justify-center gap-7 my-4">
       {searchInfo.categories.map((items) => (
-          <div key={items.id} className="flex flex-col items-center">
-            <div className="w-12 h-12 bg-slate-300"></div>
-            <div className="text-xl cursor-pointer">{items.categorie_name}</div>
+        <div key={items.id} className="flex flex-col items-center">
+          <div className="w-14 h-14 bg-green-700 flex justify-center items-center rounded-full">
+            <img
+              src={formatImg(items.categorie_name)}
+              alt=""
+              className="w-9 h-9"
+            />
           </div>
+          <div className="text-xl cursor-pointer" onClick={()=>selectValue(`${items.categorie_name}`, "categories")}>{items.categorie_name}</div>
+        </div>
       ))}
     </div>
   );

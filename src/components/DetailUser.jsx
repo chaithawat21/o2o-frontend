@@ -24,10 +24,8 @@ export default function DetailUser() {
   }, []);
   
 
-  console.log(loan);
   return (
     <div className="flex flex-col w-[500px] gap-5 my-5">
-      
           <Card className="w-full bg-green-100 border-none">
             <CardHeader className="flex flex-row gap-5">
               <Avatar className="w-20 h-20">

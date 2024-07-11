@@ -4,9 +4,17 @@ import CardLoanProfile from "../components/CardLoanProfile";
 import selectPageImg from "../assets/images/header/header03.png";
 import PaginationSelect from "../components/PaginationSelect";
 import CatagoryBar from "../components/CatagoryBar";
-
+import { useEffect } from "react";
+import { useSearchData } from "../utils/serviceAPI/searchServices";
 
 function SelectPage() {
+  const fetchSearchData = useSearchData((state) => state.fetchSearchData);
+  const fetchLoanData = useSearchData((state)=> state.fetchLoanData)
+
+  useEffect(() => {
+    fetchSearchData()
+    fetchLoanData()
+  }, []);
  
   return (
     <>
