@@ -27,7 +27,7 @@ function CartPage() {
         <CartList
           key={index}
           id={item.id}
-          title={item?.loan?.categories?.categorie_name}
+          title={item?.loan?.purpose}
           story={item?.loan?.story}
           amount={item?.amount}
           setAmount={(newAmount) =>

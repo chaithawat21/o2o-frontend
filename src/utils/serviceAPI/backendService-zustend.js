@@ -49,7 +49,17 @@ const dataUser = (set, get) => ({
         });
         console.log(rs)
         set(stete => ({ ...stete, loader: !loader }))
-    }
+    },
+    checkout: async (success) => {
+        const body = { success }
+        try {
+          await axios.put("http://localhost:8888/lend/checkout", body, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          });
+        } catch (err) {
+          console.log(err.message);
+        }
+      }
 })
 
 const useUser = create(dataUser)
