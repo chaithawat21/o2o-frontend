@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import CartOrderConfirm from "../components/CartOrderConfirm";
 import axios from "axios";
 
 export default function OrderConfirmed() {
+  // const navigate = new Navigate()
   const [message, setMessage] = useState("");
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const lend = JSON.parse(queryParams.get("lend"));
-  // console.log(lend);
-
+  // console.log(lend)
   const chacklend =
     lend.length === 0 ? (
       <p>No orders</p>
@@ -17,7 +17,7 @@ export default function OrderConfirmed() {
       lend.map((item, index) => (
         <CartOrderConfirm
           key={index}
-          title={item?.loan?.categorie}
+          title={item?.loan?.purpose}
           story={item?.loan?.story}
           amount={item?.amount}
         />
@@ -30,12 +30,12 @@ export default function OrderConfirmed() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8888/create-checkout-session",{
-          totalAmount
+        "http://localhost:8888/create-checkout-session",
+        {
+          totalAmount,
         }
       );
-      window.location.href = response.data.url; // Redirect to Stripe Checkout page
-      console.log(response)
+      window.location.href = response.data.url
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +44,6 @@ export default function OrderConfirmed() {
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
-
     if (query.get("success")) {
       setMessage("Order placed! You will receive an email confirmation.");
     }
@@ -59,7 +58,11 @@ export default function OrderConfirmed() {
   return message ? (
     <Message message={message} />
   ) : (
-    <ProductDisplay checkout={checkout} chacklend={chacklend} totalAmount={totalAmount} />
+    <ProductDisplay
+      checkout={checkout}
+      chacklend={chacklend}
+      totalAmount={totalAmount}
+    />
   );
 }
 
@@ -69,7 +72,7 @@ const Message = ({ message }) => (
   </section>
 );
 
-const ProductDisplay = ({ checkout,chacklend,totalAmount }) => (
+const ProductDisplay = ({ checkout, chacklend, totalAmount }) => (
   <section>
     <div className="flex justify-center p-10">
       <div className="flex gap-2 items-center flex-col w-[70%]">

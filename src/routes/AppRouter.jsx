@@ -11,6 +11,7 @@ import AboutPage from '../pages/AboutPage';
 import SupportPage from '../pages/SupportPage';
 import OrderConfirmed from '../pages/OrderConfirmed';
 import LoanDetailPage from '../pages/LoanDetailPage';
+import Checkout from '../pages/Checkout';
 
 
 const main = createBrowserRouter([
@@ -27,8 +28,8 @@ const main = createBrowserRouter([
       { path: 'about', element: <AboutPage /> },
       { path: 'support', element: <SupportPage /> },
       { path: 'orderconfirm', element: <OrderConfirmed/> },
-      { path: 'loanDetail', element: <LoanDetailPage /> }
-    ]
+      { path: 'loanDetail', element: <LoanDetailPage /> },
+      { path: 'success', element: <Checkout /> }    ]
   }
 ]);
 
