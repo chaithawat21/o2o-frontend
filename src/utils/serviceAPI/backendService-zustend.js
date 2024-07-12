@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect } from "react";
 import { create } from "zustand";
 
 const dataUser = (set, get) => ({
@@ -6,6 +7,8 @@ const dataUser = (set, get) => ({
     loader: false,
     user: [],
     lendUser: [],
+    history: [],
+
 
     fectDataUser: async () => {
         try {
@@ -42,7 +45,7 @@ const dataUser = (set, get) => ({
         set(stete => ({ ...stete, loader: !loader }))
     },
 
-    handleDelete: async (id,loader) => {
+    handleDelete: async (id, loader) => {
         // console.log(id,loader)
         const rs = await axios.delete(`http://localhost:8888/lend/${id}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -53,13 +56,28 @@ const dataUser = (set, get) => ({
     checkout: async (success) => {
         const body = { success }
         try {
-          await axios.put("http://localhost:8888/lend/checkout", body, {
-            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-          });
+            const rs = await axios.put("http://localhost:8888/lend/checkout", body, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+            });
+            //   console.log(rs)
+            set(stete => ({ ...stete, history: rs.data }))
         } catch (err) {
-          console.log(err.message);
+            console.log(err.message);
         }
-      }
+    },
+    updateTotalAmount: async (history) => {
+        const body = { history }
+        // console.log(body)
+
+        try {
+            const rs = await axios.put("http://localhost:8888/lend/updatetotalamount", body, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+            });
+        } catch (err) {
+            console.log(err.message);
+        }
+
+    }
 })
 
 const useUser = create(dataUser)
