@@ -3,7 +3,9 @@ import imgHeader from "../assets/images/header/header02.png";
 import DetailUser from "../components/DetailUser";
 import DetailPayShare from "../components/DetailPayShare";
 
+
 export default function LoanDetailPage() {
+
   return (
     <>
       <div className="relative flex flex-col items-center">

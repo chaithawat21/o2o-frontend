@@ -1,6 +1,7 @@
 import React from "react";
 import Searchbar from "../components/Searchbar";
 import CardLoanProfile from "../components/CardLoanProfile";
+import CardLoanProfile_fillter from "../components/CardLoanProfile_fillter";
 import selectPageImg from "../assets/images/header/header03.png";
 import PaginationSelect from "../components/PaginationSelect";
 import CatagoryBar from "../components/CatagoryBar";
@@ -8,6 +9,7 @@ import { useEffect } from "react";
 import { useSearchData } from "../utils/serviceAPI/searchServices";
 
 function SelectPage() {
+  const loanData = useSearchData((state) => state.loanData);
   const fetchSearchData = useSearchData((state) => state.fetchSearchData);
   const fetchLoanData = useSearchData((state)=> state.fetchLoanData)
 
@@ -36,6 +38,7 @@ function SelectPage() {
           <Searchbar />
         </div>
           <CardLoanProfile />
+          {/* <CardLoanProfile_fillter/> */}
       
         <div className="p-8">
           <PaginationSelect />

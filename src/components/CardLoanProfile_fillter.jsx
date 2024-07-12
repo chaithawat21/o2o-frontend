@@ -7,6 +7,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import {
   Select,
@@ -21,13 +22,12 @@ import { Progress } from "@/components/ui/progress";
 import { useSearchData } from "../utils/serviceAPI/searchServices";
 
 
-export default function CardLoanProfile() {
+export default function CardLoanProfile_Filter() {
   const loanData = useSearchData((state) => state.loanData);
   const loanFillter = useSearchData((state)=> state.loanFillter)
-  console.log(loanFillter);
   return (
     <div className="flex flex-wrap gap-4 justify-center py-32">
-      { loanData.map((items) => (
+      {loanData.map((items) => (
         <Card className="w-[318px]" key={items.id}>
           <CardHeader>
             <img src={img} className="w-[315px] h-[234px] bg-green-200"></img>
@@ -56,10 +56,8 @@ export default function CardLoanProfile() {
             </SelectContent>
           </Select>
             <Button asChild className="w-1/3 bg-green-500 ">
-            <Link to={{ pathname: "/loanDetail", state: { loans : items } }}>
-                View Loan
-              </Link> 
-              </Button>
+              <Link to="/loanDetail" >View Loan</Link>
+            </Button>
           </CardFooter>
         </Card>
       ))}

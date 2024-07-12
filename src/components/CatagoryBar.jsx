@@ -4,15 +4,13 @@ import * as Img from "../assets/images/categories/images";
 
 function CatagoryBar() {
   const searchInfo = useSearchData((state) => state.searchInfo);
-  const selectValue = useSearchData((state) => state.selectValue);
-  const categories = useSearchData((state) => state.categorieData);
+  const selectByFillter = useSearchData((state) => state.SelectByFillter);
+  // const categories = useSearchData((state) => state.categorieData);
 
-  console.log(categories);
 
   if (!searchInfo || !searchInfo.categories) {
     return <div>Loading...</div>;
   }
-
 
   const formatImg = (name) => {
     const formattedName = name.includes("_") ? name : name.replace(/ /g, "_");
@@ -30,7 +28,7 @@ function CatagoryBar() {
               className="w-9 h-9"
             />
           </div>
-          <div className="text-xl cursor-pointer" onClick={()=>selectValue(`${items.categorie_name}`, "categories")}>{items.categorie_name}</div>
+          <div className="text-xl cursor-pointer" onClick={()=>selectByFillter(`${items.id}`,"categorie")}>{items.categorie_name}</div>
         </div>
       ))}
     </div>

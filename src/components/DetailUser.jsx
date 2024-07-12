@@ -19,20 +19,20 @@ export default function DetailUser() {
   const loanData = useSearchData((state) => state.loanData);
   const loan = loanData[0]
   const fetchLoanData = useSearchData((state)=> state.fetchLoanData)
+
   useEffect(() => {
     fetchLoanData()
   }, []);
   
-
   return (
     <div className="flex flex-col w-[500px] gap-5 my-5">
           <Card className="w-full bg-green-100 border-none">
             <CardHeader className="flex flex-row gap-5">
               <Avatar className="w-20 h-20">
-                <AvatarImage src={profileImg} alt="@shadcn" />
+                <AvatarImage src={loan.borrower.ImgUrl ? loan.borrower.ImgUrl : profileImg } alt="@shadcn" />
               </Avatar>
               <div className="flex flex-col w-full gap-2">
-                <CardTitle>Kuli KeyGe</CardTitle>
+                <CardTitle>{loan.borrower.firstname}  {loan.borrower.lastname}</CardTitle>
                 <CardDescription>
                   <Progress value={20} />
                   <div className="flex justify-between">
