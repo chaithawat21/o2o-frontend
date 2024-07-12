@@ -52,9 +52,7 @@ function CartPage() {
             <div className="flex gap-4">
               <button className="btn btn-outline">Payment register</button>
               <Link
-                to={`/orderconfirm?lend=${encodeURIComponent(
-                  JSON.stringify(lend)
-                )}`}
+                to={`/orderconfirm?lend=${encodeURIComponent(JSON.stringify(lend) )}`}
               >
                 <button className="btn btn-accent">Continue</button>
               </Link>

@@ -67,6 +67,17 @@ function Header() {
               </li>
             </Link>
           )}
+              <Link to="" onClick={handleMenuItemClick}>
+            <li
+              className={`hover:text-GreenLogin ${
+                isActive("/borrow") ? "text-GreenLogin" : ""
+              }`}
+            >
+              Borrow
+            </li>
+          </Link>
+
+
           {getUser && (
             !isAdmin ? (
               <Link to="/profile" onClick={handleMenuItemClick}>
@@ -87,7 +98,10 @@ function Header() {
                 </li>
               </Link>
             )
-          )}
+
+          
+      
+
 
           <Link to="/select" onClick={handleMenuItemClick}>
             <li
