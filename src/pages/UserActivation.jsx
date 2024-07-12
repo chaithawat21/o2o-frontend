@@ -2,27 +2,25 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useUser } from "../utils/serviceAPI/backendService-zustend";
+import { Link } from "react-router-dom";
 
-export default function Checkout() {
+export default function UserActivation() {
+
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const success = JSON.parse(queryParams.get("success"));
-
-  const loader = useUser((stete) => stete.loader);
-  const history = useUser((stete) => stete.history);
-
-
-  const checkout = useUser((stete) => stete.checkout)
-  const updateTotalAmount = useUser((stete) => stete.updateTotalAmount)
-// console.log(history)
-{history ? updateTotalAmount(history.id) : null}
   useEffect(() => {
-  checkout(success);
-  }, [loader]);
-
+    const run = async () => {
+      try {
+        const urlParams = new URLSearchParams(location.search);
+        const hashValue = urlParams.get("hash");
+        await axios.put("http://localhost:8888/auth/activation",{hashValue:hashValue,verified:true})
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    run();
+  }, []);
   return (
-    <div className="flex flex-col justify-center items-center h-[80vh]">
+    <div className="flex flex-col gap-7 justify-center items-center h-[80vh]">
       <svg
         viewBox="0 0 1024 1024"
         xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +40,7 @@ export default function Checkout() {
           ></path>
         </g>
       </svg>
-      <h1 className=" text-4xl drop-shadow-xl">Success</h1>
+      <h1 className="text-xl">Your have been successfuly activated, You can login now?</h1>
     </div>
   );
 }

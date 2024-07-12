@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function LoginForm() {
 
@@ -58,6 +59,10 @@ function LoginForm() {
         "http://localhost:8888/auth/login",
         body
       );
+      console.log(response.data.msg)
+      if(response.data.msg){
+       return notifyErr(response.data.msg);
+      }
       localStorage.setItem("token", response.data);
 
       const response2 = await axios.get("http://localhost:8888/auth/me", {
