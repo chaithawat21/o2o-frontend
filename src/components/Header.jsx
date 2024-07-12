@@ -59,15 +59,28 @@ function Header() {
             </Link>
           )}
           
-          <Link to="/profile" onClick={handleMenuItemClick}>
+          <Link to="" onClick={handleMenuItemClick}>
             <li
               className={`hover:text-GreenLogin ${
-                isActive("/profile") ? "text-GreenLogin" : ""
+                isActive("/borrow") ? "text-GreenLogin" : ""
               }`}
             >
-              Profile
+              Borrow
             </li>
           </Link>
+
+          {getUser && (
+            <Link to="/profile" onClick={handleMenuItemClick}>
+              <li
+                className={`hover:text-GreenLogin ${
+                  isActive("/profile") ? "text-GreenLogin" : ""
+                }`}
+              >
+                Profile
+              </li>
+            </Link>
+          )}
+
           <Link to="/select" onClick={handleMenuItemClick}>
             <li
               className={`hover:text-GreenLogin ${
