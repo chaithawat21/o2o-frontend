@@ -82,7 +82,7 @@ function ChatBot() {
         socket.connect().emit("enter", { username, room });
       }
     } else {
-      alert("Incomplete input");
+      console.log("Incomplete input");
     }
   };
 
