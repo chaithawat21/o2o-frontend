@@ -15,10 +15,10 @@ export default function MsgSendBox(props) {
   };
   return (
     <div className="chat-input ">
-          <form className="bg-white p-[.5rem] rounded-[0_0_10px_10px] flex gap-[.5rem] "
+          <form className="bg-gray-50 p-[.5rem]  rounded-[0_0_10px_10px] flex gap-[.5rem] "
           onSubmit={hdlSubmit}>
             <input
-              className="bg-white outline-none px-[1rem] "
+              className="bg-gray-50 outline-none px-[1rem] flex-grow "
               type="text"
               placeholder="พิมพ์คำถามที่นี้..."
               name="message"

@@ -12,6 +12,7 @@ import SupportPage from '../pages/SupportPage';
 import OrderConfirmed from '../pages/OrderConfirmed';
 import LoanDetailPage from '../pages/LoanDetailPage';
 import Checkout from '../pages/Checkout';
+import AdminPage from '../pages/AdminPage';
 
 
 const main = createBrowserRouter([
@@ -29,6 +30,7 @@ const main = createBrowserRouter([
       { path: 'support', element: <SupportPage /> },
       { path: 'orderconfirm', element: <OrderConfirmed/> },
       { path: 'loanDetail', element: <LoanDetailPage /> },
+      { path: 'admin', element: <AdminPage/> },
       { path: 'success', element: <Checkout /> }    ]
   }
 ]);
