@@ -10,7 +10,7 @@ function ProfilePage() {
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:8888/auth/me", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       const userData = response.data?.user[0];
       setFormData({
@@ -18,28 +18,34 @@ function ProfilePage() {
         lastname: userData.lastname || "",
         email: userData.email || "",
         phone_number: userData.phone_number || "",
-        date_birth: userData.date_birth ? userData.date_birth.split('T')[0] : "",
-        address: userData.address || ""
+        date_birth: userData.date_birth
+          ? userData.date_birth.split("T")[0]
+          : "",
+        address: userData.address || "",
       });
     } catch (error) {
       console.log("Failed to load profile");
     }
   };
 
-  const handleSave = async(e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const token = await axios.post("http://localhost:8888/auth/updateMe", formData, {
-        headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
-      });
-      console.log(token)
+      const token = await axios.post(
+        "http://localhost:8888/auth/updateMe",
+        formData,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      console.log(token);
       localStorage.setItem("token", token.data);
       alert("Profile updated successfully!");
       setIsEditing(false);
       fetchData();
     } catch (error) {
       alert("Failed to update profile. Please try again.");
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -50,7 +56,7 @@ function ProfilePage() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -59,12 +65,22 @@ function ProfilePage() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center p-[4rem]">
+    <div className="flex gap-8 flex-col justify-center items-center pb-52">
+      <div className="flex w-[80%] z-0">
+        <img className="w-full" src="src/public/Picture.svg" alt="" />
+      </div>
+      <div className=" mt-[-240px] bg-white border-4 border-white w-[300px] h-[300px] rounded-full z-50">
+        <img src="src/public/ef81948b0203680941c2f5f698c0d66f.svg" alt="" />
+      </div>
       <div className="border-[2px] border-gray-300 rounded-[20px] w-[500px] p-[2rem]">
-        <h2 className="text-xl mb-4 text-center pb-5">Your Personal Information</h2>
+        <h2 className="text-xl mb-4 text-center pb-5">
+          Your Personal Information
+        </h2>
         <form className="flex flex-col gap-[2rem]" onSubmit={handleSave}>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Firstname</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Firstname
+            </label>
             <input
               type="text"
               name="firstname"
@@ -77,7 +93,9 @@ function ProfilePage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Lastname</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Lastname
+            </label>
             <input
               type="text"
               name="lastname"
@@ -90,7 +108,9 @@ function ProfilePage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
             <input
               type="email"
               name="email"
@@ -101,7 +121,9 @@ function ProfilePage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Mobile Phone</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Mobile Phone
+            </label>
             <input
               type="tel"
               name="phone_number"
@@ -114,7 +136,9 @@ function ProfilePage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Birth Date</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Birth Date
+            </label>
             <input
               type="date"
               name="date_birth"
@@ -125,7 +149,9 @@ function ProfilePage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Address</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Address
+            </label>
             <input
               type="text"
               name="address"
@@ -146,16 +172,15 @@ function ProfilePage() {
             </button>
           )}
           {!isEditing && (
-          <button
-            type="button"
-            onClick={handleEdit}
-            className="mt-4 px-4 py-2 bg-GreenFooter text-white rounded-md hover:bg-green-700 focus:outline-none"
-          >
-            Edit
-          </button>
-        )}
+            <button
+              type="button"
+              onClick={handleEdit}
+              className="mt-4 px-4 py-2 bg-GreenFooter text-white rounded-md hover:bg-green-700 focus:outline-none"
+            >
+              Edit
+            </button>
+          )}
         </form>
-        
       </div>
     </div>
   );
