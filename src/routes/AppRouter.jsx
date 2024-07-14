@@ -12,7 +12,9 @@ import SupportPage from '../pages/SupportPage';
 import OrderConfirmed from '../pages/OrderConfirmed';
 import LoanDetailPage from '../pages/LoanDetailPage';
 import Checkout from '../pages/Checkout';
-
+import AdminPage from '../pages/AdminPage';
+import ActivatedLayout from '../layouts/ActivatedLayout';
+import UserActivation from '../pages/UserActivation';
 
 const main = createBrowserRouter([
   {
@@ -27,15 +29,27 @@ const main = createBrowserRouter([
       { path: 'cart', element: <CartPage /> },
       { path: 'about', element: <AboutPage /> },
       { path: 'support', element: <SupportPage /> },
-      { path: 'orderconfirm', element: <OrderConfirmed/> },
+      { path: 'orderconfirm', element: <OrderConfirmed /> },
       { path: 'loanDetail', element: <LoanDetailPage /> },
-      { path: 'success', element: <Checkout /> }    ]
-  }
+      { path: 'admin', element: <AdminPage /> },
+      { path: 'success', element: <Checkout /> },
+      { path: 'activation', element: <UserActivation /> },
+    ],
+  },
+]);
+
+const activated = createBrowserRouter([
+  {
+    path: '/',
+    element: <ActivatedLayout />,
+    children: [{ path: 'activation', element: <UserActivation /> }],
+  },
 ]);
 
 function AppRouter() {
+  const pathname = window.location.pathname;
   return (
-    <RouterProvider router={main} />
+    <RouterProvider router={pathname === '/activation/' ? activated : main} />
   );
 }
 
