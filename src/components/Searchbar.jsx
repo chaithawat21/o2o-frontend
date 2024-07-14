@@ -18,20 +18,14 @@ import {
 import { useSearchData } from "../utils/serviceAPI/searchServices";
 
 export default function searchbar() {
-  const loanData = useSearchData((state)=>state.loanData)
+  const loanData = useSearchData((state) => state.loanData);
   const searchInfo = useSearchData((state) => state.searchInfo);
   const regionData = useSearchData((state) => state.regionData);
-  const provinceData = useSearchData((state) => state.provinceData);
   const inputCheck = useSearchData((state) => state.inputCheck);
   const fillterProvinceValue = useSearchData((state) => state.fillterProvinceValue);
   const checkValue = useSearchData((state) => state.checkValue);
   const FillterProvince = useSearchData((state) => state.FillterProvince);
-  const setFillter = useSearchData((state) => state.setFillter);
-  const fetchLoanData = useSearchData((state)=> state.fetchLoanData)
-  const selectByFillter = useSearchData((state)=>state.SelectByFillter)
-
-  console.log();
-  
+  const selectByFillter = useSearchData((state) => state.SelectByFillter);
 
   return (
     <div className="flex gap-2 p-5">
@@ -47,7 +41,7 @@ export default function searchbar() {
               <CommandGroup heading="Loan">
                 {loanData?.map((items) => (
                   <CommandItem key={items.id} value={items.id}>
-                    {items.borrower.firstname} {items.borrower.lastname} 
+                    {items.borrower.firstname} {items.borrower.lastname}
                   </CommandItem>
                 ))}
               </CommandGroup>
@@ -79,12 +73,12 @@ export default function searchbar() {
       </Command>
       <Select
         onValueChange={(value) => {
-          selectByFillter(value,'region')
+          selectByFillter(value, "region");
           FillterProvince(value, searchInfo.provinces);
         }}
       >
         <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="ภูมิภาค" />
+          <SelectValue placeholder="regions" />
         </SelectTrigger>
         <SelectContent>
           {searchInfo?.regions?.map((items) => (
@@ -94,35 +88,18 @@ export default function searchbar() {
           ))}
         </SelectContent>
       </Select>
-
-      {regionData.length === 0 ?<>
-        <Select onValueChange={(value) => selectByFillter(value, "province")} disabled >
-        <SelectTrigger className="w-[300px]">
-          <SelectValue placeholder="จังหวัด" />
-        </SelectTrigger>
-        <SelectContent>
-          {fillterProvinceValue.map((items) => (
-            <SelectItem key={items?.id} value={items?.province_name}>
-              {items?.province_name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      </>:<>
-      <Select onValueChange={(value) => selectByFillter(value,"province")}>
-        <SelectTrigger className="w-[300px]">
-          <SelectValue placeholder="จังหวัด" />
-        </SelectTrigger>
-        <SelectContent>
-          {fillterProvinceValue.map((items) => (
-            <SelectItem  key={items?.id} value={items?.id}>
-              {items?.province_name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      </> 
-      }
+          <Select onValueChange={(value) => selectByFillter(value, "province")}  disabled={regionData.length === 0}>
+            <SelectTrigger className="w-[300px]">
+              <SelectValue placeholder="ProvinceValue"/>
+            </SelectTrigger>
+            <SelectContent>
+              {fillterProvinceValue.map((items) => (
+                <SelectItem key={items?.id} value={items?.id}>
+                  {items?.province_name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
     </div>
   );
 }

@@ -23,24 +23,30 @@ import { useSearchData } from "../utils/serviceAPI/searchServices";
 
 export default function CardLoanProfile() {
   const loanData = useSearchData((state) => state.loanData);
-  const loanFillter = useSearchData((state)=> state.loanFillter)
-  console.log(loanFillter);
+  const fetchLoanDataById = useSearchData((state)=> state.fetchLoanDataById)
+  
   return (
     <div className="flex flex-wrap gap-4 justify-center py-32">
       { loanData.map((items) => (
         <Card className="w-[318px]" key={items.id}>
+          <Link to={"/loanDetail"} onClick={()=>fetchLoanDataById(items.id)}>
           <CardHeader>
             <img src={img} className="w-[315px] h-[234px] bg-green-200"></img>
+            <div className="">
+            <h1>{items.borrower.firstname} {items.borrower.lastname}</h1>
+            </div>
             <CardDescription>
               {items?.purpose}
             </CardDescription>
           </CardHeader>
+          </Link>
           <CardContent>
             <div className="flex gap-2">
               <Badge>{items?.categories.categorie_name}</Badge>
+              <Badge variant='secondary'>{items?.businessAddress.province_name}</Badge>
             </div>
             <div className="py-2">
-              <h3>{items?.total_amount} THB to go </h3>
+              <h3>{(items?.total_amount).toLocaleString()} THB to go </h3>
               <Progress value={Math.random(90)*100} />
             </div>
           </CardContent>
@@ -51,15 +57,13 @@ export default function CardLoanProfile() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="500">500 THB</SelectItem>
-              <SelectItem value="1000">1000 THB</SelectItem>
-              <SelectItem value="1500">1500 THB</SelectItem>
+              <SelectItem value="1000">1,000 THB</SelectItem>
+              <SelectItem value="1500">1,500 THB</SelectItem>
             </SelectContent>
           </Select>
-            <Button asChild className="w-1/3 bg-green-500 ">
-            <Link to={{ pathname: "/loanDetail", state: { loans : items } }}>
-                View Loan
-              </Link> 
-              </Button>
+            <Button className="w-1/3 bg-green-500 ">
+            Lend
+           </Button>
           </CardFooter>
         </Card>
       ))}
