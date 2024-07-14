@@ -1,10 +1,11 @@
 import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../utils/serviceAPI/backendService-zustend";
 
 export default function Checkout() {
+  const navigate = useNavigate()
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const success = JSON.parse(queryParams.get("success"));
@@ -19,6 +20,9 @@ export default function Checkout() {
 {history ? updateTotalAmount(history.id) : null}
   useEffect(() => {
   checkout(success);
+  setTimeout(() => {
+    navigate('/')
+  },5000)
   }, [loader]);
 
   return (

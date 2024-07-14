@@ -5,7 +5,6 @@ export default function CartList({id, title, amount,story, setAmount, handleDele
     const newAmount = parseInt(e.target.value, 10);
     setAmount(newAmount);
   };
-  
   return (
     <div className="flex gap-1 w-[800px] min-w-[400px] border rounded-xl shadow-md p-5">
       <div className="avatar">
@@ -21,12 +20,13 @@ export default function CartList({id, title, amount,story, setAmount, handleDele
       </div>
       <div className=" flex gap-3 items-center w-[200px] h-[100px] ">
         <select
-          value={amount}
+          value={amount ? amount : 0}
           name="amount"
           onChange={hdlChange}
           className=" border rounded-sm p-1 max-w-xs text-xs"
         >
-          <option disabled value={amount}>THB {amount}</option>
+         <option disabled value={amount}>THB {amount}</option>
+         <option value={0}>THB 0</option>
           <option value={250}>THB 250</option>
           <option value={500}>THB 500</option>
           <option value={1000}>THB 1000</option>

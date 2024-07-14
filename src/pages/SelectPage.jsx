@@ -1,4 +1,4 @@
-import React from "react";
+import React,{navigate} from "react";
 import Searchbar from "../components/Searchbar";
 import CardLoanProfile from "../components/CardLoanProfile";
 import selectPageImg from "../assets/images/header/header03.png";
@@ -38,7 +38,7 @@ function SelectPage() {
           <CardLoanProfile />
       
         <div className="p-8">
-          <PaginationSelect />
+          {/* <PaginationSelect /> */}
         </div>
       </div>
     </>
