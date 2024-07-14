@@ -20,9 +20,9 @@ function Footer() {
       </div>
         <div className='flex flex-col items-end gap-[1rem]'>
         <div className='flex flex-row gap-[1rem]'>
-          <img  className='w-[2.5rem] h-[2.5rem] cursor-pointer' src={facebookIcon} alt="facebook" />
-          <img className='w-[2.5rem] h-[2.5rem] cursor-pointer' src={instagamIcon} alt="instagram" />
-          <img className='w-[2.5rem] h-[2.5rem] cursor-pointer' src={xIcon} alt="x" />
+          <img  className='icon w-[2.5rem] h-[2.5rem] cursor-pointer' src={facebookIcon} alt="facebook" />
+          <img className='icon w-[2.5rem] h-[2.5rem] cursor-pointer' src={instagamIcon} alt="instagram" />
+          <img className='icon w-[2.5rem] h-[2.5rem] cursor-pointer' src={xIcon} alt="x" />
         </div>
         <p className=' text-[.8rem] text-end '>© 2024 O2O project. All rights reserved.</p>
         </div>

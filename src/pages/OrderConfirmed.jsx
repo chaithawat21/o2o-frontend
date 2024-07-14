@@ -74,21 +74,25 @@ const Message = ({ message }) => (
 
 const ProductDisplay = ({ checkout, chacklend, totalAmount }) => (
   <section>
-    <div className="flex justify-center p-10">
+    <div className="flex flex-col justify-center items-center">
+    <h1 className="text-center pt-[2rem] text-[2.5rem] font-[500]">Order Confirmed</h1>
+    <hr className="w-[800px] min-w-[400px] mt-[2rem]" />
+    </div>
+    <div className="flex justify-center  p-10">
       <div className="flex gap-2 items-center flex-col w-[70%]">
         {chacklend}
         <hr className="w-[800px] min-w-[400px]" />
-        <div className="flex justify-end w-[800px] min-w-[400px] p-2 border-b">
+        <div className="flex justify-end w-[800px] min-w-[400px] p-2 border-b pt-[2rem]">
           Total THB {totalAmount}
         </div>
-        <div className="flex items-center justify-between border-b mt-20 w-full p-5">
+        <div className="flex items-center justify-between mt-20 w-full p-5">
           <Link to="/cart">
-            <button className="btn btn-outline">Back to Basket</button>
+            <button className="btn btn-outline rounded-[20px] px-[2rem]">Back to Basket</button>
           </Link>
           <div className="flex flex-col items-end gap-4">
             <div className="flex gap-4">
               <form onSubmit={checkout}>
-                <button className="btn btn-accent" type="submit">
+                <button className="btn btn-accent bg-GreenButton text-white rounded-[20px] border-none hover:bg-GreenButton hover:opacity-50 px-[2rem]" type="submit">
                   Checkout
                 </button>
               </form>

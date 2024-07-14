@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import profileHeader from "../assets/images/header/header02.png"
+import avatarTest from "../assets/images/icon/user-icon.svg"
 
 function ProfilePage() {
   const [formData, setFormData] = useState([]);
@@ -66,12 +68,15 @@ function ProfilePage() {
 
   return (
     <div className="flex gap-8 flex-col justify-center items-center pb-52">
-      <div className="flex w-[80%] z-0">
-        <img className="w-full" src="src/public/Picture.svg" alt="" />
+       <div className="relative flex flex-col items-center w-full mb-[5rem]">
+        <img
+          className="object-cover object-center  w-full h-[20rem] relative "
+          src={profileHeader}
+          alt="header-image"
+        />
+        <img className="absolute bg-white w-[10rem] h-[10rem] top-[15rem] rounded-[50%] border-[3px] border-white shadow-2xl" src={avatarTest} alt="avatar" />
       </div>
-      <div className=" mt-[-240px] bg-white border-4 border-white w-[300px] h-[300px] rounded-full z-50">
-        <img src="src/public/ef81948b0203680941c2f5f698c0d66f.svg" alt="" />
-      </div>
+     
       <div className="border-[2px] border-gray-300 rounded-[20px] w-[500px] p-[2rem]">
         <h2 className="text-xl mb-4 text-center pb-5">
           Your Personal Information
@@ -175,7 +180,7 @@ function ProfilePage() {
             <button
               type="button"
               onClick={handleEdit}
-              className="mt-4 px-4 py-2 bg-GreenFooter text-white rounded-md hover:bg-green-700 focus:outline-none"
+              className="mt-4 px-4 py-2 bg-GreenFooter text-white rounded-[15px] hover:bg-green-700 focus:outline-none"
             >
               Edit
             </button>
