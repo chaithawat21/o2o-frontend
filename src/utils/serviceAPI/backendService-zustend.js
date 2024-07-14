@@ -8,8 +8,6 @@ const dataUser = (set, get) => ({
     user: [],
     lendUser: [],
     history: [],
-
-
     fectDataUser: async () => {
         try {
             const rs = await axios.get("http://localhost:8888/auth/me", {
@@ -34,6 +32,15 @@ const dataUser = (set, get) => ({
             console.log(err)
         }
     },
+    handleAddLend: async (items,loader) => {
+        // console.log(items)
+        set(stete => ({ ...stete, loader: !loader }))
+          const body = { id: items.id };
+          await axios.post("http://localhost:8888/lend", body, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          })
+
+      },
 
     handleAmountChange: async (id, newAmount, loader) => {
         const body = { id, newAmount }
