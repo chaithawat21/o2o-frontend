@@ -13,7 +13,7 @@ function CartPage() {
   const handleAmountChange = useUser((stete) => stete.handleAmountChange);
   const handleDelete = useUser((stete) => stete.handleDelete);
 
-  // console.log(lend)
+  // console.log(loader)
 
   useEffect(() => {
     fectLendById();
