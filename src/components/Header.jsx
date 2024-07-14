@@ -26,7 +26,6 @@ function Header() {
     logout();
     navigate("/login");
   };
-  console.log(getUser)
   useEffect(() => {
     if (user && user.length > 0) {
       const currentUser = user[0];

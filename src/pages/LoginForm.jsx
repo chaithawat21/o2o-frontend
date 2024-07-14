@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useAuth from "../hooks/useAuth";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -25,6 +25,7 @@ function LoginForm() {
       draggable: true,
       progress: undefined,
       theme: "light",
+      transition: Bounce,
     });
   };
 
@@ -38,6 +39,7 @@ function LoginForm() {
       draggable: true,
       progress: undefined,
       theme: "light",
+      transition: Bounce,
     });
   };
 
@@ -59,7 +61,6 @@ function LoginForm() {
         "http://localhost:8888/auth/login",
         body
       );
-      console.log(response.data.msg)
       if(response.data.msg){
        return notifyErr(response.data.msg);
       }

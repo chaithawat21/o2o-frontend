@@ -22,13 +22,11 @@ function ChatBot() {
 
   useEffect(() => {
     function onConnect() {
-      console.log("Connected", socket.id);
       setSocketId(socket.id);
       setIsConnected(true);
     }
 
     function onGetMessage(roomMsg) {
-      console.log("getMessage", roomMsg);
       setAllMsg(roomMsg);
     }
 
@@ -81,9 +79,7 @@ function ChatBot() {
         setRoom(room);
         socket.connect().emit("enter", { username, room });
       }
-    } else {
-      console.log("Incomplete input");
-    }
+    } 
   };
 
   const hdlLeave = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function RegisterForm() {
@@ -17,6 +17,7 @@ function RegisterForm() {
       draggable: true,
       progress: undefined,
       theme: "light",
+      transition: Bounce,
     });
   };
 
@@ -30,19 +31,22 @@ function RegisterForm() {
       draggable: true,
       progress: undefined,
       theme: "light",
+      transition: Bounce,
     });
   };
 
   const [input, setInput] = useState({
     firstname: "",
     lastname: "",
+    username: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    confirmPassword: ""
   });
 
   const [firstnameError, setFirstnameError] = useState("");
   const [lastnameError, setLastnameError] = useState("");
+  const [usernameError, setUsernameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
@@ -70,6 +74,15 @@ function RegisterForm() {
     }
     setLastnameError("");
     return true;
+  };
+
+  const validateUsername = async (username) => {
+    if (/\s/.test(username)) {
+      setUsernameError("Username must not contain spaces.");
+      return false;
+    }
+      setUsernameError("");
+      return true;
   };
 
   const validateEmail = (email) => {
@@ -104,11 +117,12 @@ function RegisterForm() {
     e.preventDefault();
     const isFirstnameValid = validateFirstname(input.firstname);
     const isLastnameValid = validateLastname(input.lastname);
+    const isUsernameValid = validateUsername(input.username);
     const isEmailValid = validateEmail(input.email);
     const isPasswordValid = validatePassword(input.password);
     const isConfirmPasswordValid = validateConfirmPassword(input.password, input.confirmPassword);
 
-    if (!isFirstnameValid || !isLastnameValid || !isEmailValid || !isPasswordValid || !isConfirmPasswordValid) {
+    if (!isFirstnameValid || !isLastnameValid || !isUsernameValid || !isEmailValid || !isPasswordValid || !isConfirmPasswordValid) {
       return;
     }
 
@@ -116,6 +130,7 @@ function RegisterForm() {
       const response = await axios.post("http://localhost:8888/auth/register", {
         firstname: input.firstname,
         lastname: input.lastname,
+        username: input.username,
         email: input.email,
         password: input.password,
       });
@@ -167,6 +182,19 @@ function RegisterForm() {
               required
             />
             {lastnameError && <p className="text-red-500 text-sm mt-1">{lastnameError}</p>}
+          </div>
+          <div className="flex flex-col">
+            <label>Username</label>
+            <input
+              className="rounded-[5px] px-[1rem] py-[.25rem] bg-gray-100"
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={input.username}
+              onChange={handleChange}
+              required
+            />
+            {usernameError && <p className="text-red-500 text-sm mt-1">{usernameError}</p>}
           </div>
           <div className="flex flex-col">
             <label>Email</label>

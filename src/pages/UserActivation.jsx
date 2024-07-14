@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import imageSuccess from "../assets/images/illustration/illustration01-register.png"
 
 export default function UserActivation() {
 
@@ -20,12 +21,12 @@ export default function UserActivation() {
     run();
   }, []);
   return (
-    <div className="flex flex-col gap-7 justify-center items-center h-[80vh]">
+    <div className="flex flex-col gap-7 justify-center items-center h-screen relative ">
       <svg
         viewBox="0 0 1024 1024"
         xmlns="http://www.w3.org/2000/svg"
         fill="#000000"
-        className=" w-[300px] drop-shadow-lg"
+        className=" w-[12.5rem] drop-shadow-lg absolute z-10 top-[2.5rem] "
       >
         <g id="SVGRepo_bgCarrier" strokeWidth=""></g>
         <g
@@ -40,7 +41,9 @@ export default function UserActivation() {
           ></path>
         </g>
       </svg>
-      <h1 className="text-xl">Your have been successfuly activated, You can login now?</h1>
+      
+      <h1 className="text-[1.5rem] absolute z-10 top-[15rem] text-center">Your register have been <br/>successfuly activated!</h1>
+      <img className="absolute bottom-0 z-0 object-contain object-bottom w-[50rem]" src={imageSuccess} alt="imageSuccess" />
     </div>
   );
 }
