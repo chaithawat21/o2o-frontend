@@ -137,15 +137,15 @@ function RegisterForm() {
   return (
     <div className="flex flex-row h-[45rem] items-start gap-2.5 bg-collection-1-background-login relative">
       <div className="bg-GreenLogin h-[45rem] w-full p-[1rem]">
-        <p className="text-white text-[1.5rem] mt-[150px] pl-10">Create a new account</p>
+        <p className="text-white text-[1.5rem] mt-[10rem] pl-10  md:w-[10rem] md:pl-5">Create<br/>New account</p>
       </div>
-      <div className="bg-white p-[1rem] w-[70%] h-[45rem] rounded-[0_0_0_75px] absolute z-10 right-0">
+      <div className="bg-white p-[1rem]  w-[70%] h-[45rem] rounded-[0_0_0_75px] absolute z-10 right-0 ">
         <h1 className="text-GreenLogin font-[700] text-[1.5rem] p-10">O2O</h1>
-        <form className="flex flex-col absolute left-[20%] gap-[2rem] w-[50rem]" onSubmit={handleSubmit}>
+        <form className="flex flex-col mx-[5rem] gap-[2rem]  flex-grow" onSubmit={handleSubmit}>
           <div className="flex flex-col">
             <label>First Name</label>
             <input
-              className="rounded-[5px] px-[1rem] py-[.25rem] bg-gray-100"
+              className="rounded-[5px] px-[1rem] py-[.25rem] bg-gray-100 "
               type="text"
               name="firstname"
               placeholder="Firstname"

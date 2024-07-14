@@ -83,17 +83,17 @@ function LoginForm() {
   return (
     <div className="flex flex-row h-[45rem] items-start gap-2.5 bg-GreenFooter relative">
       <div className="bg-GreenLogin h-[45rem] w-full p-[1rem]">
-        <p className="text-white text-[1.25rem] mt-[100px] pl-10">
-          Welcome back
+        <p className="text-white text-[1.25rem] mt-[10rem] pl-10 opacity-50 md:w-[10rem] md:pl-5">
+          Welcome back!
         </p>
-        <p className="text-white text-[1.5rem] mt-[25px] pl-10">
+        <p className="text-white text-[1.5rem] mt-[25px] pl-10 md:w-[10rem] md:pl-5">
           Login to your account
         </p>
       </div>
       <div className="bg-white p-[1rem] w-[70%] h-[45rem] rounded-[0_0_0_75px] absolute z-10 right-0">
         <h1 className="text-GreenLogin font-[700] text-[1.5rem] p-10">O2O</h1>
         <form
-          className="flex flex-col absolute left-[20%] gap-[2rem] w-[50rem]"
+          className="flex flex-col mx-[5rem] gap-[2rem] flex-grow "
           onSubmit={handleSubmit}
         >
           <div className="flex flex-col">
@@ -120,7 +120,7 @@ function LoginForm() {
             className="px-[3rem] py-[.5rem] self-start bg-GreenButton rounded-[15px] hover:opacity-50 text-white"
             type="submit"
           >
-            Submit
+            Log In
           </button>
         </form>
         <ToastContainer style={{marginBottom: "175px"}}/>
