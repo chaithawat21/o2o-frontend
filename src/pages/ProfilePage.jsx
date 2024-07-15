@@ -46,6 +46,7 @@ function ProfilePage() {
     phone_number: "",
     date_birth: "",
     address: "",
+    // ImgUrl: "",
   });
 
   const [isEditing, setIsEditing] = useState(false);
@@ -67,7 +68,12 @@ function ProfilePage() {
           ? userData.date_birth.split("T")[0]
           : "",
         address: userData.address || "",
+        // ImgUrl: userData.ImgUrl || "",
       });
+      if (userData.ImgUrl) {
+        setImageUrl(`http://localhost:8888${userData.ImgUrl} `); // Set full URL to image
+      }
+      // setImageUrl(userData.ImgUrl || avatarTest);
     } catch (error) {
       notifyErr("Failed to load profile. Please try again.");
     }
@@ -125,14 +131,17 @@ function ProfilePage() {
   };
 
   // Function to handle file upload
-   // Function to handle file upload
-   const handleUpload = async () => {
+  const handleUpload = async () => {
     if (file) {
       const formData = new FormData();
       formData.append('file', file);
 
       console.log('File to be uploaded:', file); // Log the file information
       console.log('FormData:', formData); 
+
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value.name}`); // To check the content inside FormData
+      }
 
       try {
         const response = await axios.put(
@@ -145,7 +154,10 @@ function ProfilePage() {
             },
           }
         );
-        console.log('Upload response:', response.data);
+  
+        if (response.data && response.data.result && response.data.result.ImgUrl) {
+          setImageUrl(`http://localhost:8888${response.data.result.ImgUrl}`); // Set full URL to image
+        }
         notify("File uploaded successfully!");
       } catch (error) {
         console.error('Error uploading file:', error);
@@ -159,7 +171,7 @@ function ProfilePage() {
   useEffect(() => {
     fetchData();
   }, []);
-
+console.log(imageUrl)
   return (
     <div className="flex gap-8 flex-col justify-center items-center pb-52">
       <div className="relative flex flex-col items-center w-full mb-[5rem]">
@@ -168,25 +180,19 @@ function ProfilePage() {
           src={profileHeader}
           alt="header-image"
         />
-        {/* <img
-          className="absolute bg-white w-[10rem] h-[10rem] top-[15rem] rounded-[50%] border-[3px] border-white shadow-2xl"
-          src={avatarTest}
-          alt="avatar"
-        /> */}
         <div className="absolute bg-white w-[10rem] h-[10rem] top-[15rem] rounded-[50%] border-[5px] border-white shadow-2xl">
   <input
     type="file"
     accept="image/*"
     onChange={handleFileChange}
-    style={{ display: 'none' }}
+    className="hidden"
     ref={fileInputRef} // Assign ref to file input
   />
   <img
     src={imageUrl}
     alt="avatar"
-    className="w-full h-full object-cover rounded-[50%] hover:bg-green-50"
+    className="w-full h-full object-cover text-center rounded-[50%] hover:bg-green-50 cursor-pointer"
     onClick={handleClickFileInput}
-    style={{ cursor: 'pointer' }}
   />
 </div>
 

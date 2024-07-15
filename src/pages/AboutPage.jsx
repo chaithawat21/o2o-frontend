@@ -61,47 +61,28 @@ function AboutPage() {
           alt="header-image"
         />
         <h1 className="header-text absolute top-[10rem]  text-black text-center text-[4rem] font-[700]">
-          เกี่ยวกับเรา
+          ABOUT US
         </h1>
       </div>
       <p className="indent-5 px-[5rem] pt-[2rem] text-[1.25rem]">
-        กว่า 1.7
-        พันล้านคนทั่วโลกไม่มีบัญชีธนาคารและไม่สามารถเข้าถึงบริการทางการเงินที่จำเป็นได้
-        O2O เป็นองค์กรไม่แสวงหาผลกำไรระดับนานาชาติ ก่อตั้งขึ้นในปี 2024
-        ที่ประเทศไทย
-        โดยมีพันธกิจในการขยายการเข้าถึงทางการเงินเพื่อช่วยให้ชุมชนที่ด้อยโอกาสเจริญเติบโต
-      </p>
-      <p className="indent-5 px-[5rem] pt-[1rem] text-[1.25rem]">
-        เราทำสิ่งนี้โดยการระดมทุนจากฝูงชนเพื่อปล่อยกู้และปลดล็อกเงินทุนสำหรับผู้ด้อยโอกาส
-        ปรับปรุงคุณภาพและต้นทุนของบริการทางการเงิน
-        และแก้ไขอุปสรรคที่อยู่เบื้องหลังการเข้าถึงทางการเงินทั่วโลก ผ่านงานของ
-        O2O นักเรียนสามารถจ่ายค่าเล่าเรียนได้ ผู้หญิงสามารถเริ่มธุรกิจได้
-        เกษตรกรสามารถลงทุนในอุปกรณ์ได้
-        และครอบครัวสามารถจ่ายค่ารักษาพยาบาลที่จำเป็นได้
-      </p>
-      <p className="indent-5 px-[5rem] pt-[1rem] text-[1.25rem]">
-        โดยการปล่อยกู้เพียง 25 บาท บน O2O
-        คุณสามารถเป็นส่วนหนึ่งของการแก้ปัญหาและสร้างความแตกต่างในชีวิตของผู้อื่นได้อย่างแท้จริง
-        100% ของทุกบาทที่คุณปล่อยกู้บน O2O จะไปที่การระดมทุนเพื่อการปล่อยกู้
-      </p>
-      <p className="indent-5 px-[5rem] pt-[1rem] text-[1.25rem]">
-        ในประเทศไทย
-        มีชุมชนและกลุ่มคนหลายกลุ่มที่ยังไม่สามารถเข้าถึงบริการทางการเงินที่มีคุณภาพได้
-        O2O
-        ได้ทำงานร่วมกับพันธมิตรในท้องถิ่นเพื่อให้ความช่วยเหลือทางการเงินผ่านการปล่อยกู้ขนาดเล็กแก่ผู้ที่ต้องการ
-        ตัวอย่างเช่น
-        ผู้ประกอบการในชนบทสามารถใช้เงินกู้เพื่อขยายธุรกิจและสร้างรายได้เสริมให้ครอบครัว
-        นักเรียนสามารถใช้เงินกู้เพื่อจ่ายค่าเล่าเรียนและดำเนินการศึกษาต่อไปได้
-        นอกจากนี้ยังมีเกษตรกรที่สามารถใช้เงินกู้เพื่อปรับปรุงการเกษตรและเพิ่มผลผลิตได้อีกด้วย
-      </p>
-      <p className="px-[5rem] pt-[1rem] pb-[2rem] text-[1.25rem]">
-        การสนับสนุนจาก O2O
-        ทำให้ผู้คนในประเทศไทยมีโอกาสที่จะพัฒนาชีวิตและชุมชนของตนเองอย่างยั่งยืน
-      </p>
+    Over 1.7 billion people worldwide do not have a bank account and cannot access essential financial services. O2O is an international non-profit organization established in 2024 in Thailand with a mission to expand financial access to help underserved communities thrive.
+</p>
+<p className="indent-5 px-[5rem] pt-[1rem] text-[1.25rem]">
+    We achieve this by crowdfunding to provide loans and unlock capital for the underprivileged, improving the quality and cost of financial services, and addressing barriers to financial access globally. Through the work of O2O, students can pay for their education, women can start businesses, farmers can invest in equipment, and families can cover essential medical expenses.
+</p>
+<p className="indent-5 px-[5rem] pt-[1rem] text-[1.25rem]">
+    By lending just 25 baht on O2O, you can be part of the solution and truly make a difference in the lives of others. 100% of every baht you lend on O2O goes directly to funding loans.
+</p>
+<p className="indent-5 px-[5rem] pt-[1rem] text-[1.25rem]">
+    In Thailand, there are many communities and groups of people who still cannot access quality financial services. O2O has worked with local partners to provide financial assistance through microloans to those in need. For example, rural entrepreneurs can use loans to expand their businesses and generate additional income for their families. Students can use loans to pay for tuition and continue their education. Additionally, farmers can use loans to improve agriculture and increase productivity.
+</p>
+<p className="px-[5rem] pt-[1rem] pb-[2rem] text-[1.25rem]">
+    The support from O2O gives people in Thailand the opportunity to sustainably improve their lives and communities.
+</p>
       <div className="flex flex-col justify-center items-center p-[2rem] ">
         <div className="border-[2px] border-GreenFooter rounded-[20px] w-[25rem] p-[2rem]  ">
           <h2 className="text-2xl font-bold mb-4 text-center text-GreenFooter">
-            ติดต่อเรา
+            Contact Us
           </h2>
           <form onSubmit={handleSubmit} className="flex flex-col gap-[1rem] ">
             <div>
