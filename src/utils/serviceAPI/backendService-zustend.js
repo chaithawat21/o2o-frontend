@@ -77,7 +77,7 @@ const dataUser = (set, get) => ({
         // console.log(body)
 
         try {
-            const rs = await axios.put("http://localhost:8888/lend/updatetotalamount", body, {
+            await axios.put("http://localhost:8888/lend/updatetotalamount", body, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
         } catch (err) {
@@ -87,5 +87,18 @@ const dataUser = (set, get) => ({
     }
 })
 
+const Donate = (set,get) => ({
+    donate: [],
+    getDonateById: async() => {
+       const rs = await axios.get("http://localhost:8888/donate",{
+        headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+       })
+       console.log(rs)
+       set(stete => ({...stete, donate: rs.data}))
+    }
+})
+
 const useUser = create(dataUser)
-export { useUser }
+const useDonate = create(Donate)
+
+export { useUser,useDonate }

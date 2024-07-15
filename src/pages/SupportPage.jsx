@@ -1,23 +1,53 @@
 import React, { useState } from "react";
 import supportHeader from "../assets/images/header/header05.png";
 import FooterHome from "../components/FooterHome";
+import axios from "axios";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 function SupportPage() {
   const [value, setValue] = useState(25);
-
+  // console.log(value)
   const incrementValue = (e) => {
     e.preventDefault(e);
     setValue((prevValue) => prevValue + 25);
   };
   const decrementValue = (e) => {
     e.preventDefault();
+
     if (value > 25) {
+
       setValue((prevValue) => prevValue - 25);
     }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+  const notifyErr = (message) => {
+    toast.error(message, {
+      position: "bottom-right",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+  };
+  const hdlAddDonate = async (value) => {
+    try {
+      // console.log(value)
+      const body = { value };
+      await axios.post("http://localhost:8888/donate", body, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+    } catch (err) {
+      return notifyErr(err.response.data.error);
+    }
+  };
+
 
   return (
     <div>
@@ -50,11 +80,14 @@ function SupportPage() {
             <br />
             Join us in making a difference and creating a brighter future for
             all.
+
           </p>
           <div className="flex flex-row items-center p-[1rem] bg-gray-100 rounded-[20px] ">
             <button
               onClick={decrementValue}
+
               className="text-[2rem] text-GreenButton pl-[2rem]  "
+
             >
               -
             </button>
@@ -63,13 +96,16 @@ function SupportPage() {
             </p>
             <button
               onClick={incrementValue}
+
               className="text-[2rem] text-GreenButton pr-[2rem] "
+
             >
               +
             </button>
           </div>
           <div>
             <button
+              onClick={() => hdlAddDonate(value)}
               type="submit"
               className="w-full text-[2rem] bg-GreenFooter text-white py-2 px-4 rounded-md hover:opacity-50 focus:outline-none focus:ring-2 focus:ring-green-200 focus:ring-offset-2 "
             >
@@ -78,6 +114,7 @@ function SupportPage() {
           </div>
         </form>
       </div>
+      <ToastContainer style={{ marginBottom: "175px" }} />
       <FooterHome />
     </div>
   );
