@@ -59,9 +59,9 @@ function HomePage() {
           alt="header-image"
         />
         <h1 className="header-text absolute top-[10rem]  text-black text-center text-[4rem] font-[700]">
-        Support every opportunity 
+        SUPPORT EVERY OPPORTUNITY 
           <br />
-          to become true
+          TO BECOME TRUE
         </h1>
       </div>
       <div className="middle-content flex flex-col items-center p-[2rem]">
