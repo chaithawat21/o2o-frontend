@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useProfile } from "../utils/serviceAPI/profileService";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +21,7 @@ function Header() {
   const navigate = useNavigate();
   const { user, logout } = useContext(AuthContext);
   const [isAdmin, setIsAdmin] = useState(false);
+  const { fetchData, clearImageUrl,imageUrl } = useProfile();
 
   const getUser = localStorage.getItem("token");
   const handleLogout = () => {
@@ -37,11 +39,22 @@ function Header() {
       }
     }
   }, [user]);
+
+  useEffect(() => {
+    if (getUser) {
+      fetchData(); // Fetch data if user is logged in
+    } else {
+      clearImageUrl(); // Clear imageUrl if no user is logged in
+    }
+  }, [getUser, fetchData, clearImageUrl]);
+
   const handleMenuItemClick = () => {
     setIsOpen(false);
   };
 
   const isActive = (path) => location.pathname === path;
+
+
 
   return (
     <header className="header flex flex-row justify-between items-center px-[4rem] py-[1rem] border-b-[1px]">
@@ -131,9 +144,9 @@ function Header() {
           <DropdownMenu>
             <DropdownMenuTrigger className="relative right-0 mt-2 w-10 h-10 bg-white border border-gray-200 rounded-full mx-[1rem] my-[.3rem] shadow-lg flex justify-center items-center">
               <img
-                src={userIcon}
+                src={imageUrl || userIcon}
                 alt="Profile"
-                className="border border-gray-200 w-full h-full rounded-full object-cover" />
+                className="border-[2px] border-white w-full h-full rounded-full object-cover" />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
