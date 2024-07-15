@@ -51,6 +51,7 @@ function HomePage() {
 
   return (
     <>
+    <div className="bg-texture">
       <div className="head-content relative flex flex-col items-center">
         <img
           className="object-cover object-center  w-full h-[30rem] relative "
@@ -58,9 +59,9 @@ function HomePage() {
           alt="header-image"
         />
         <h1 className="header-text absolute top-[10rem]  text-black text-center text-[4rem] font-[700]">
-          สนับสนุนทุกโอกาส
+        Support every opportunity 
           <br />
-          ให้กลายเป็นจริง
+          to become true
         </h1>
       </div>
       <div className="middle-content flex flex-col items-center p-[2rem]">
@@ -225,6 +226,7 @@ function HomePage() {
         </div>
       </div>
       <ChatBot />
+      </div>
       <FooterHome />
     </>
   );
