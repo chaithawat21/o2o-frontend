@@ -1,12 +1,19 @@
 import React from "react";
 
-export default function CartList({id, title, amount,story, setAmount, handleDelete }) {
+export default function CartList({
+  id,
+  title,
+  amount,
+  story,
+  setAmount,
+  handleDelete,
+}) {
   const hdlChange = (e) => {
     const newAmount = parseInt(e.target.value, 10);
     setAmount(newAmount);
   };
   return (
-    <div className="flex gap-1 w-[800px] min-w-[400px] border rounded-xl shadow-md p-5">
+    <div className="flex gap-1 w-[800px] min-w-[400px] border-b rounded-xl shadow-sm p-5">
       <div className="avatar">
         <div className="w-24 rounded-full">
           <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
@@ -14,9 +21,7 @@ export default function CartList({id, title, amount,story, setAmount, handleDele
       </div>
       <div className=" w-[100%] p-2">
         <h1>{title}</h1>
-        <p className=" text-gray-400 font-mono">
-          {story}
-        </p>
+        <p className=" text-gray-400 font-mono">{story}</p>
       </div>
       <div className=" flex gap-3 items-center w-[200px] h-[100px] ">
         <select
@@ -25,8 +30,13 @@ export default function CartList({id, title, amount,story, setAmount, handleDele
           onChange={hdlChange}
           className=" border rounded-sm p-1 max-w-xs text-xs"
         >
-         <option disabled value={amount}>THB {amount}</option>
-         <option value={0}>THB 0</option>
+          {amount ? (
+            <option disabled value={amount}>
+              THB {amount}
+            </option>
+          ) : (
+            <option value={0}>THB 0</option>
+          )}
           <option value={250}>THB 250</option>
           <option value={500}>THB 500</option>
           <option value={1000}>THB 1000</option>

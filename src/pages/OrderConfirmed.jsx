@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import CartOrderConfirm from "../components/CartOrderConfirm";
 import axios from "axios";
+import DonateList from "../components/DonateList";
 
 export default function OrderConfirmed() {
   // const navigate = new Navigate()
@@ -11,10 +12,10 @@ export default function OrderConfirmed() {
   const lend = JSON.parse(queryParams.get("lend"));
   // console.log(lend)
   const chacklend =
-    lend.length === 0 ? (
+    lend.lend.length === 0 ? (
       <p>No orders</p>
     ) : (
-      lend.map((item, index) => (
+      lend.lend.map((item, index) => (
         <CartOrderConfirm
           key={index}
           title={item?.loan?.purpose}
@@ -24,15 +25,17 @@ export default function OrderConfirmed() {
       ))
     );
 
-  const totalAmount = lend.reduce((sum, item) => sum + item.amount, 0);
-
+  const totalAmount = lend.lend.reduce((sum, item) => sum + item.amount, 0);
+  const totalDonateAmount = lend.donate.reduce((sum, item) => sum + item.amount, 0);
+  const Sum = totalAmount + totalDonateAmount
+ console.log(Sum)
   const checkout = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
         "http://localhost:8888/create-checkout-session",
         {
-          totalAmount,
+         Sum,
         }
       );
       window.location.href = response.data.url
@@ -61,7 +64,8 @@ export default function OrderConfirmed() {
     <ProductDisplay
       checkout={checkout}
       chacklend={chacklend}
-      totalAmount={totalAmount}
+      Sum={Sum}
+      lend={lend}
     />
   );
 }
@@ -72,7 +76,7 @@ const Message = ({ message }) => (
   </section>
 );
 
-const ProductDisplay = ({ checkout, chacklend, totalAmount }) => (
+const ProductDisplay = ({ checkout, chacklend, Sum,lend }) => (
   <section>
     <div className="flex flex-col justify-center items-center">
     <h1 className="text-center pt-[2rem] text-[2.5rem] font-[500]">Order Confirmed</h1>
@@ -81,9 +85,10 @@ const ProductDisplay = ({ checkout, chacklend, totalAmount }) => (
     <div className="flex justify-center  p-10">
       <div className="flex gap-2 items-center flex-col w-[70%]">
         {chacklend}
+        {lend.donate.map((item,index) => (<DonateList key={index} amount={item.amount}/>))}
         <hr className="w-[800px] min-w-[400px]" />
         <div className="flex justify-end w-[800px] min-w-[400px] p-2 border-b pt-[2rem]">
-          Total THB {totalAmount}
+          Total THB {Sum}
         </div>
         <div className="flex items-center justify-between mt-20 w-full p-5">
           <Link to="/cart">
