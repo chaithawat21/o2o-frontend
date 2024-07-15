@@ -21,17 +21,26 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useSearchData } from "../utils/serviceAPI/searchServices";
 import storyImg from "../assets/images/illustration/illustration01-register.png";
+import { useUser } from "../utils/serviceAPI/backendService-zustend";
 
-export default function DetailUser() {
-  const LoanDataById = useSearchData((state) => state.LoanDataById);
+export default function DetailUser({loanItem}) {
+  const lend = useUser((state) => state.lendUser);
+  const loader = useUser((state) => state.loader);
+  const fectLendById = useUser((stete) => stete.fectLendById);
+  const handleAddLend = useUser((stete) => stete.handleAddLend);
 
-  if (LoanDataById === 0) {
+  useEffect(() => {
+    fectLendById();
+  }, [loader]);
+
+  console.log(loanItem);
+  if (loanItem === 0) {
     return <div>Loading...</div>; // หรือข้อความอื่นที่คุณต้องการแสดงระหว่างการ Redirect
   }
 
   return (
     <div className="flex flex-row justify-center gap-10">
-      {LoanDataById.length === 0 ? (
+      {loanItem.length === 0 ? (
         <div className="flex h-[388px] items-center justify-center">
         <Button asChild className="w-[200px] bg-green-500">
           <Link to="/select">Go to select page</Link>
@@ -45,8 +54,8 @@ export default function DetailUser() {
                 <Avatar className="w-20 h-20">
                   <AvatarImage
                     src={
-                      LoanDataById?.borrower?.ImgUrl
-                        ? LoanDataById?.borrower?.ImgUrl
+                      loanItem?.borrower?.ImgUrl
+                        ? loanItem?.borrower?.ImgUrl
                         : profileImg
                     }
                     alt="@shadcn"
@@ -54,15 +63,15 @@ export default function DetailUser() {
                 </Avatar>
                 <div className="flex flex-col w-full gap-2">
                   <CardTitle>
-                    {LoanDataById?.borrower?.firstname}{" "}
-                    {LoanDataById?.borrower?.lastname}
+                    {loanItem?.borrower?.firstname}{" "}
+                    {loanItem?.borrower?.lastname}
                   </CardTitle>
                   <CardDescription>
                     <Progress value={20} />
                     <div className="flex justify-between">
                       <h2>{13} day</h2>
                       <h2>
-                        THB {(LoanDataById?.total_amount).toLocaleString()} togo
+                        THB {(loanItem?.total_amount).toLocaleString()} togo
                       </h2>
                     </div>
                     <div className="flex justify-between">
@@ -73,14 +82,14 @@ export default function DetailUser() {
                 </div>
               </CardHeader>
               <CardContent>
-                <p>{LoanDataById?.purpose}</p>
+                <p>{loanItem?.purpose}</p>
               </CardContent>
               <CardFooter className="flex gap-2">
                 <div className="border border-gray-950 p-1 rounded-3xl">
-                  {LoanDataById.categories?.categorie_name}
+                  {loanItem.categories?.categorie_name}
                 </div>
                 <div className="border border-gray-400 p-1 rounded-3xl">
-                  {LoanDataById.businessAddress?.province_name}
+                  {loanItem.businessAddress?.province_name}
                 </div>
               </CardFooter>
             </Card>
@@ -95,18 +104,12 @@ export default function DetailUser() {
               </h1>
               <div className="flex flex-col gap-3 mt-5">
                 <h1 className="text-xl">Story</h1>
-                <div>{LoanDataById?.story}</div>
-                <div>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Doloribus aut perferendis, fugiat eos a adipisci, doloremque
-                  recusandae nisi esse qui architecto laboriosam cumque
-                  voluptatibus quaerat voluptas. Earum ducimus consequuntur
-                  dolorem!
-                </div>
+                <div>{loanItem?.story}</div>
+          
               </div>
             </div>
             <div className="flex flex-col gap-5">
-              <h1 className="text-2xl">{LoanDataById.businessAddress?.province_name}</h1>
+              <h1 className="text-2xl">{loanItem.businessAddress?.province_name}</h1>
               {/* <div className="flex flex-row justify-between">
                 <div>
                   <h1 className="text-2xl">THB 54,800</h1>
@@ -127,7 +130,7 @@ export default function DetailUser() {
               <h1>Help fund this loan</h1>
               <div className="flex flex-row py-3">
                 <Select>
-                  <SelectTrigger className="w-1/3">
+                  <SelectTrigger className="w-1/2">
                     <SelectValue placeholder="500 THB" />
                   </SelectTrigger>
                   <SelectContent>
@@ -136,9 +139,18 @@ export default function DetailUser() {
                     <SelectItem value="1500">1,500 THB</SelectItem>
                   </SelectContent>
                 </Select>
-                <Button asChild className="w-3/5 bg-green-500">
-                  <Link to="/support">Lend</Link>
-                </Button>
+                {lend.some((el) => el.loan_id === loanItem.id) ? (
+              <button disabled className="border p-2 rounded-lg">
+                Lended
+              </button>
+            ) : (
+              <Button
+                className="w-1/3 bg-green-500 "
+                onClick={() => handleAddLend(items, loader)}
+              >
+                Lend
+              </Button>
+            )}
               </div>
             </div>
             <hr />
