@@ -100,7 +100,7 @@ function ChatBot() {
     <div>
       {isAdmin ? (
         <div className="flex flex-row items-baseline gap-[3rem] ">
-          <div className="flex flex-col gap-2  py-[4rem] h-screen bg-gray-200 ">
+          <div className="flex flex-col gap-2  py-[4rem] h-screen  bg-gray-200 ">
           
             <table className="min-w-full divide-y  divide-gray-50  ">
               <thead className="bg-gray-50 ">
@@ -176,7 +176,7 @@ function ChatBot() {
             animate={{ opacity: isOpen ? 0 : 1, y: isOpen ? 50 : 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="chat-header bg-GreenButton brightness-105 text-center p-[.5rem] rounded-[10px_10px_0_0] relative">
+            <div className="chat-header bg-GreenButton brightness-105 w-[25rem] text-center p-[.5rem] rounded-[10px_10px_0_0] relative">
               <p className="font-[600] text-white tracking-wider">
                 O2O ASSISTANT
               </p>
@@ -193,9 +193,9 @@ function ChatBot() {
                 <div className="chat-input ">
                   <form className="bg-white p-[.5rem] rounded-[0_0_10px_10px] flex gap-[.5rem] ">
                     <input
-                      className="bg-white outline-none px-[1rem] "
+                      className="bg-white outline-none px-[1rem] flex-grow "
                       type="text"
-                      placeholder="โปรดลงทะเบียนก่อนใช้งาน"
+                      placeholder="Please register before using"
                       disabled
                     />
                     <button
@@ -203,7 +203,7 @@ function ChatBot() {
                       className="chat-submit bg-GreenButton px-[.75rem] py-[.25rem] rounded-[10px] text-white hover:opacity-50 "
                       disabled
                     >
-                      ถาม
+                      send
                     </button>
                   </form>
                 </div>

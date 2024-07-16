@@ -4,6 +4,11 @@ import AuthContext from "../contexts/AuthContext";
 import basketIcon from "../assets/images/icon/basket.svg";
 import logoIcon from "../assets/images/logo/logo-coin.png";
 import userIcon from "../assets/images/icon/user-icon.svg"
+import { ArrowRightIcon } from "@radix-ui/react-icons";
+ 
+import { cn } from "@/lib/utils";
+import AnimatedShinyText from "@/components/magicui/animated-shiny-text";
+import AnimatedGradientText from "@/components/magicui/animated-gradient-text";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -57,7 +62,8 @@ function Header() {
 
 
   return (
-    <header className="header flex flex-row justify-between items-center px-[4rem] py-[1rem] border-b-[1px]">
+    <header className="header flex flex-row justify-between items-center px-[4rem] py-[1rem] border-b-[1px] ">
+
       <img className="w-[2rem]" src={logoIcon} alt="logo" />
       <nav>
         <ul className="flex flex-row gap-[2rem] md:hidden">
@@ -174,9 +180,22 @@ function Header() {
         )}
 
         <Link to="/support">
-          <button className="px-[1rem] py-[.5rem] rounded-[20px] bg-GreenButton text-white hover:opacity-50">
-            SUPPORT
-          </button>
+
+          <AnimatedGradientText>
+
+        <button
+          className={cn(
+            `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40]  bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent px-[1rem] py-[.4rem] text-[1rem]`,
+          )}
+        >
+          SUPPORT
+        </button>
+        
+      </AnimatedGradientText>
+          {/* <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-2000 hover:dark:text-neutral-400">
+          <span>SUPPORT</span>
+        </AnimatedShinyText> */}
+
         </Link>
         <div className="relative">
           <button

@@ -9,6 +9,8 @@ const SearchData = (set, get) => ({
   loanData: [],
   regionData: [],
   LoanDataById: [],
+  amountAllId : [],
+
 
   fetchSearchData: async () => {
     try {
@@ -37,6 +39,10 @@ const SearchData = (set, get) => ({
       set((state) => ({ ...state, loading: true }));
       const getLoanData = await axios.get("http://localhost:8888/loan/getloan");
       set((state) => ({ ...state, loanData: getLoanData.data }));
+
+      const amountAllId = await axios.get("http://localhost:8888/search/getAmountAllId");
+      set((state)=>({...state, amountAllId: amountAllId.data}))
+
     } catch (err) {
       console.log(err.message);
     } finally {
@@ -51,6 +57,11 @@ const SearchData = (set, get) => ({
         `http://localhost:8888/loan/getLoanById/${id}`
       );
       set((state) => ({ ...state, LoanDataById: getLoanDataById.data }));
+
+      const amountAllId = await axios.get("http://localhost:8888/search/getAmountAllId");
+      set((state)=>({...state, amountAllId: amountAllId.data}))
+
+
     } catch (err) {
       console.log(err.message);
     } finally {
@@ -66,6 +77,10 @@ const SearchData = (set, get) => ({
           `http://localhost:8888/search/region/${data}`
         );
         set((state) => ({ ...state, loanData: getByRegion.data }));
+
+        const amountAllId = await axios.get("http://localhost:8888/search/getAmountAllId");
+        set((state)=>({...state, amountAllId: amountAllId.data}))
+
       } catch (err) {
         console.log(err.message);
       }
@@ -76,6 +91,9 @@ const SearchData = (set, get) => ({
           `http://localhost:8888/search/province/${data}`
         );
         set((state) => ({ ...state, loanData: getByProvince.data }));
+
+        const amountAllId = await axios.get("http://localhost:8888/search/getAmountAllId");
+        set((state)=>({...state, amountAllId: amountAllId.data}))
       } catch (err) {
         console.log(err.message);
       }
@@ -87,6 +105,9 @@ const SearchData = (set, get) => ({
           `http://localhost:8888/search/categorie/${data}`
         );
         set((state) => ({ ...state, loanData: getCategorie.data }));
+
+        const amountAllId = await axios.get("http://localhost:8888/search/getAmountAllId");
+        set((state)=>({...state, amountAllId: amountAllId.data}))
       } catch (err) {
         console.log(err.message);
       }
@@ -98,6 +119,9 @@ const SearchData = (set, get) => ({
           `http://localhost:8888/search/loan/${data}`
         );
         set((state) => ({ ...state, loanData: getloan.data }));
+
+        const amountAllId = await axios.get("http://localhost:8888/search/getAmountAllId");
+        set((state)=>({...state, amountAllId: amountAllId.data}))
       } catch (err) {
         console.log(err.message);
       }

@@ -20,7 +20,7 @@ export default function MsgSendBox(props) {
             <input
               className="bg-gray-50 outline-none px-[1rem] flex-grow "
               type="text"
-              placeholder="พิมพ์คำถามที่นี้..."
+              placeholder="Please type your question here."
               name="message"
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -29,7 +29,7 @@ export default function MsgSendBox(props) {
               type="submit"
               className="chat-submit bg-GreenButton px-[.75rem] py-[.25rem] rounded-[10px] text-white hover:opacity-50 "
             >
-              ถาม
+              send
             </button>
           </form>
         </div>

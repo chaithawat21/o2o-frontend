@@ -3,6 +3,8 @@ import supportHeader from "../assets/images/header/header05.png";
 import FooterHome from "../components/FooterHome";
 import axios from "axios";
 import { ToastContainer, toast, Bounce } from "react-toastify";
+import WordPullUp from "@/components/magicui/word-pull-up";
+import SparklesText from "@/components/magicui/sparkles-text";
 
 function SupportPage() {
   const [value, setValue] = useState(25);
@@ -50,16 +52,16 @@ function SupportPage() {
 
 
   return (
-    <div>
+    <div className="bg-texture">
       <div className="relative flex flex-col justify-center items-center">
         <img
           className="bg-gray-200 object-cover object-top "
           src={supportHeader}
           alt="support"
         />
-        <h1 className="header-text absolute  text-black text-center text-[4rem] font-[700]">
-          SUPPORT US
-        </h1>
+        <WordPullUp className="header-text absolute  text-black text-center text-[4rem] font-[700]"
+          words="SUPPORT  US"
+        />
       </div>
       <div className="flex flex-col justify-center items-center m-[4rem] ">
         <form
@@ -82,7 +84,8 @@ function SupportPage() {
             all.
 
           </p>
-          <div className="flex flex-row items-center p-[1rem] bg-gray-100 rounded-[20px] ">
+          <div className="flex flex-row items-center gap-[2rem]">
+          <div className="flex flex-row items-center p-[1rem] bg-gray-100 rounded-[20px] flex-grow">
             <button
               onClick={decrementValue}
 
@@ -107,10 +110,11 @@ function SupportPage() {
             <button
               onClick={() => hdlAddDonate(value)}
               type="submit"
-              className="w-full text-[2rem] bg-GreenFooter text-white py-2 px-4 rounded-md hover:opacity-50 focus:outline-none focus:ring-2 focus:ring-green-200 focus:ring-offset-2 "
+              className="w-full text-[2rem] bg-GreenFooter text-white py-[1rem] px-[5rem] rounded-[20px] hover:opacity-50 focus:outline-none focus:ring-2 focus:ring-green-200 focus:ring-offset-2 "
             >
               Donate
             </button>
+            </div>
           </div>
         </form>
       </div>
