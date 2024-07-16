@@ -4,7 +4,7 @@ import FooterHome from "../components/FooterHome";
 import axios from "axios";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import WordPullUp from "@/components/magicui/word-pull-up";
-import SparklesText from "@/components/magicui/sparkles-text";
+import SparklesDiv from "@/components/magicui/sparkles-div";
 
 function SupportPage() {
   const [value, setValue] = useState(25);
@@ -53,6 +53,7 @@ function SupportPage() {
 
   return (
     <div className="bg-texture">
+      <SparklesDiv >
       <div className="relative flex flex-col justify-center items-center">
         <img
           className="bg-gray-200 object-cover object-top "
@@ -63,6 +64,7 @@ function SupportPage() {
           words="SUPPORT  US"
         />
       </div>
+      </SparklesDiv>
       <div className="flex flex-col justify-center items-center m-[4rem] ">
         <form
           className=" w-[50rem] flex flex-col gap-[2rem] "
