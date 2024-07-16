@@ -171,9 +171,9 @@ function ProfilePage() {
   useEffect(() => {
     fetchData();
   }, []);
-console.log(imageUrl)
+
   return (
-    <div className="flex gap-8 flex-col justify-center items-center pb-52">
+    <div className="bg-texture flex gap-8 flex-col justify-center items-center pb-52">
       <div className="relative flex flex-col items-center w-full mb-[5rem]">
         <img
           className="object-cover object-center  w-full h-[20rem] relative "
@@ -191,7 +191,7 @@ console.log(imageUrl)
   <img
     src={imageUrl}
     alt="avatar"
-    className="w-full h-full object-cover text-center rounded-[50%] hover:bg-green-50 cursor-pointer"
+    className="w-full h-full object-cover text-center  rounded-[50%] hover:opacity-25 cursor-pointer"
     onClick={handleClickFileInput}
   />
 </div>
@@ -200,8 +200,8 @@ console.log(imageUrl)
         
       </div>
 
-      <div className="border-[2px] border-gray-300 rounded-[20px] w-[500px] p-[2rem]">
-        <h2 className="text-xl mb-4 text-center pb-5">
+      <div className="border-[2px] border-GreenFooter rounded-[20px] w-[500px] p-[2rem]">
+        <h2 className="text-xl mb-4 text-center pb-5 text-GreenButton">
           Your Personal Information
         </h2>
         <form className="flex flex-col gap-[2rem]" onSubmit={handleSave}>

@@ -14,57 +14,108 @@ function MsgAuto() {
       return (
         <div key={index} className={chatLog}>
           <p>
-            การสมัครสมาชิกเป็นขั้นตอนที่สำคัญในการเข้าร่วมเป็นสมาชิกของO2O
-            Project ซึ่งจะช่วยให้คุณสามารถเข้าถึงบริการและข้อมูลพิเศษต่างๆ
-            ที่ไม่ได้เปิดเผยต่อสาธารณะทั่วไป
-            การสมัครสมาชิกต้องกรอกข้อมูลส่วนตัวของคุณ
+            Membership registration is a crucial step to join the O2O Project as
+            a member, enabling you to access exclusive services and information
+            not publicly disclosed. Signing up requires filling out your
+            personal information.
           </p>
-          <p><strong>ขั้นตอนการสมัครสมาชิก</strong></p>
-          <p>1. คลิกที่ปุ่ม <a className="text-GreenFooter hover:font-[700]" href="/register">Register</a> ปุ่มนี้จะนำคุณไปยังหน้าแบบฟอร์มการสมัคร</p>
-          <p>2. กรอกข้อมูลส่วนตัวในแบบฟอร์มการสมัครสมาชิก</p>
-          <p>3. ตรวจสอบข้อมูลที่กรอกให้แน่ใจว่าถูกต้อง</p>
-          <p>4. คลิกที่ปุ่ม "Submit"เพื่อส่งแบบฟอร์มการสมัครสมาชิก</p>
-          <p>5. ยืนยันอีเมล คุณอาจได้รับอีเมลยืนยันการสมัครสมาชิกจากระบบ ให้คลิกที่ลิงก์ในอีเมลนั้นเพื่อยืนยันตัวตนของคุณ</p>
+
+          <p>
+            <strong>Membership Registration Steps</strong>
+          </p>
+          <p>
+            1. Click the{" "}
+            <a class="text-GreenFooter hover:font-[500]" href="/register">
+              Register
+            </a>{" "}
+            button to go to the registration form page.
+          </p>
+          <p>2. Fill out your personal information in the registration form.</p>
+          <p>3. Verify the information you entered to ensure accuracy.</p>
+          <p>4. Click the "Submit" button to submit the registration form.</p>
+          <p>
+            5. Confirm your email. You may receive a membership confirmation
+            email from the system. Click the link in the email to verify your
+            identity.
+          </p>
           <br />
-          <p>หลังจากสมัครสมาชิกเสร็จสิ้น คุณสามารถเข้าสู่ระบบด้วยอีเมลและรหัสผ่านที่ได้ลงทะเบียนไว้ เพื่อเริ่มต้นใช้งานบริการต่างๆ ของเว็บไซต์ได้ทันที</p>
+          <p>
+            After completing the registration, you can log in using the email
+            and password you registered with to start using various services on
+            the website immediately.
+          </p>
         </div>
       );
     } else if (value === 2) {
       return (
         <div key={index} className={chatLog}>
-          <p>รายละเอียดเกี่ยวกับการให้ยืม...</p>
+          <p>Details about lending...</p>
         </div>
       );
     } else if (value === 3) {
       return (
         <div key={index} className={chatLog}>
-          <p>รายละเอียดเกี่ยวกับการขอกู้...</p>
+          <p>Details regarding loan requests...</p>
         </div>
       );
     } else if (value === 4) {
       return (
         <div key={index} className={chatLog}>
-            <p>เราได้ดำเนินการโครงการนี้โดยการระดมทุนจากฝูงชนเพื่อช่วยเหลือและปลดล็อกเงินทุนสำหรับผู้ด้อยโอกาส โดยมุ่งเน้นที่การปรับปรุงคุณภาพและลดต้นทุนของบริการทางการเงิน เพื่อแก้ไขอุปสรรคที่เป็นข้อบกพร่องในการเข้าถึงทางการเงินทั่วโลก ผ่านการพัฒนาแพลตฟอร์ม O2O ที่ช่วยให้นักเรียนสามารถจ่ายค่าเล่าเรียนได้ง่ายขึ้น ผู้หญิงสามารถเริ่มต้นธุรกิจได้ และเกษตรกรสามารถลงทุนในอุปกรณ์ได้ นอกจากนี้ยังช่วยเสริมสร้างความสามารถให้ครอบครัวสามารถจ่ายค่ารักษาพยาบาลที่จำเป็นได้โดยมีความสะดวกสบาย</p>
-          <p>คลิกที่ปุ่ม <a className="text-GreenFooter hover:font-[700]" href="/support">Support</a>  เพื่อสนับสนุนโครงการเราได้</p>
+          <p>
+  We have undertaken this project by crowdsourcing funds to assist and unlock capital for disadvantaged individuals. Our focus is on improving the quality and reducing the cost of financial services to address barriers to global financial access. Through the development of the O2O platform, students can more easily pay tuition fees, women can start businesses, and farmers can invest in equipment. Additionally, it helps strengthen families' ability to afford necessary healthcare expenses conveniently.
+</p>
+<p>
+  Click the{" "}
+  <a class="text-GreenFooter hover:font-[500]" href="/support">
+    Support
+  </a>{" "}
+  button to support our project.
+</p>
         </div>
       );
     } else if (value === 5) {
       return (
         <div key={index} className={chatLog}>
-          <p><strong>การจ่ายเงินด้วยบัตรเครดิต.</strong></p>
-          <p>1. เลือกสินค้าหรือบริการที่ต้องการซื้อบนเว็บไซต์มีระบบชำระเงินผ่าน Stripe.</p>
-          <p>2. กรอกข้อมูลบัตรเครดิต เช่น หมายเลขบัตร, วันหมดอายุ, และรหัส CVV สำหรับการทำธุรกรรม.</p>
-          <p>3. Stripe จะทำการตรวจสอบข้อมูลการชำระเงินเพื่อความปลอดภัย รวมถึงการตรวจสอบยอดเงินในบัญชีของลูกค้า.</p>
-          <p>4. ยืนยันการชำระเงิน: ลูกค้ายืนยันการชำระเงินโดยกดปุ่ม "ชำระเงิน" หรือ "ยืนยัน" บนหน้าจอ.</p>
-          <p>5. Stripe จะทำการอนุมัติการชำระเงินโดยเร็ว และแจ้งผลการทำรายการกลับมายังลูกค้าและผู้ขาย.</p>
-          <p><strong>การจ่ายเงินด้วย QR Code.</strong></p>
-          <p>1. เลือกสินค้าหรือบริการที่ต้องการซื้อบนเว็บไซต์มีระบบชำระเงินผ่าน Stripe.</p>
-          <p>2. กรอกจำนวนเงินที่ต้องการจ่ายหลังจากสแกน QR Code.</p>
-          <p>3. วิธีการชำระเงินที่ต้องการใช้ เช่น บัตรเครดิต, บัตรเดบิต, หรือการโอนเงินผ่านบัญชีธนาคาร.</p>
-          <p>4. ยืนยันการชำระเงินและรอการยืนยันการทำธุรกรรมจาก Stripe</p>
-          <p>5. Stripe จะทำการอนุมัติการชำระเงินและแจ้งผลการทำรายการกลับมายังลูกค้าและผู้ขาย.</p>
-          <br />
-          <p>การชำระเงินผ่าน Stripe ด้วยการใช้บัตรเครดิตและ QR Code เป็นวิธีการที่มีความสะดวกสบายและปลอดภัยสำหรับการทำธุรกรรมทางการเงินออนไลน์</p>
+          <p>
+          <strong>Credit Card Payment</strong>
+          </p>
+          <p>
+  1. Select the product or service you wish to purchase on the website that has Stripe payment system.
+</p>
+<p>
+  2. Enter credit card information such as card number, expiration date, and CVV for the transaction.
+</p>
+<p>
+  3. Stripe will verify the payment information for security purposes, including checking the customer's account balance.
+</p>
+<p>
+  4. Confirm the payment: Customers confirm the payment by clicking the "Pay" or "Confirm" button on the screen.
+</p>
+<p>
+  5. Stripe will quickly approve the payment and notify the results of the transaction to both the customer and the seller.
+</p>
+
+<strong>QR Code Payment</strong>
+<p>
+  1. Select the product or service you wish to purchase on the website that has Stripe payment system.
+</p>
+<p>
+  2. Enter the amount to pay after scanning the QR Code.
+</p>
+<p>
+  3. Choose the preferred payment method, such as credit card, debit card, or bank account transfer.
+</p>
+<p>
+  4. Confirm the payment and wait for transaction confirmation from Stripe.
+</p>
+<p>
+  5. Stripe will approve the payment and notify the results of the transaction to both the customer and the seller.
+</p>
+
+<br />
+<p>
+  Payment via Stripe using credit card and QR Code is a convenient and secure method for online financial transactions.
+</p>
         </div>
       );
     } else {
@@ -75,23 +126,26 @@ function MsgAuto() {
   return (
     <div className="chat-body h-[20rem] bg-white border-[1px] border-gray-200 overflow-auto flex flex-col">
       <div className={chatLog}>
-        <a href=""></a>
-        <p>คุณสนใจข้อมูลด้านไหน<br/>กดที่ตัวเลือกได้เลย</p>
+        <p>
+          What kind of information are you interested in?
+          <br />
+          Feel free to click on the option.
+        </p>
         <ul className="text-GreenFooter cursor-pointer list-disc pl-[.5rem]">
-          <li className="hover:font-[700]" onClick={() => handleClick(1)}>
-            การสมัครสมาชิก
+          <li className="hover:font-[500]" onClick={() => handleClick(1)}>
+            Membership registration
           </li>
-          <li className="hover:font-[700]" onClick={() => handleClick(2)}>
-            ข้อมูลการให้ยืม
+          <li className="hover:font-[500]" onClick={() => handleClick(2)}>
+            Lending information
           </li>
-          <li className="hover:font-[700]" onClick={() => handleClick(3)}>
-            ข้อมูลการขอกู้
+          <li className="hover:font-[500]" onClick={() => handleClick(3)}>
+            Loan information
           </li>
-          <li className="hover:font-[700]" onClick={() => handleClick(4)}>
-            การสนับสนุนโครงการ
+          <li className="hover:font-[500]" onClick={() => handleClick(4)}>
+            Support Us
           </li>
-          <li className="hover:font-[700]" onClick={() => handleClick(5)}>
-            วิธีการจ่ายเงิน
+          <li className="hover:font-[500]" onClick={() => handleClick(5)}>
+            How to make payments
           </li>
         </ul>
       </div>

@@ -6,6 +6,7 @@ import PaginationSelect from "../components/PaginationSelect";
 import CatagoryBar from "../components/CatagoryBar";
 import { useEffect } from "react";
 import { useSearchData } from "../utils/serviceAPI/searchServices";
+import WordPullUp from "@/components/magicui/word-pull-up";
 
 function SelectPage() {
   const fetchSearchData = useSearchData((state) => state.fetchSearchData);
@@ -26,9 +27,9 @@ function SelectPage() {
           src={selectPageImg}
           alt="header-image"
         />
-        <h1 className="header-text absolute top-[4rem]  text-black text-center text-[5rem] font-[700] drop-shadow-[0_0px_1px_rgba(255,255,255,1)]">
-          เลือกสานฝันให้ทุกคน
-        </h1>
+        <WordPullUp className="header-text absolute top-[1rem] max-w-[60rem] text-black text-center text-[3rem] font-[700] leading-none drop-shadow-[0_0px_1px_rgba(255,255,255,1)]"
+        words="CHOOSE  TO  MAKE  EVERYONE'S DREAMS  COME  TRUE"
+        />
       </div>
       <div className="flex flex-col relative ">
         <div>

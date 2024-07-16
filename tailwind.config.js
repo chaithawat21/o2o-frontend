@@ -2,13 +2,11 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
-    
+    "./pages/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+    "./app/**/*.{js,jsx}",
+    "./src/**/*.{js,jsx}",
   ],
-  
   prefix: "",
   theme: {
     container: {
@@ -20,9 +18,10 @@ module.exports = {
     },
     extend: {
       colors: {
-        GreenFooter: 'var(--GreenFooter)',
-        GreenLogin: 'var(--GreenLogin)',
-        GreenButton: 'var(--GreenButton)',
+        GreenFooter: "var(--GreenFooter)",
+        GreenLogin: "var(--GreenLogin)",
+        GreenButton: "var(--GreenButton)",
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -77,18 +76,45 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       screens: {
-        'sm': {'max':'375px'},
-        'md': {'max':'860px'}
-      }
+        sm: { max: "375px" },
+        md: { max: "860px" },
+      },
+
+      animation: {
+        shimmer: "shimmer 8s infinite",
+        gradient: "gradient 8s linear infinite",
+        marquee: "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+      },
+      keyframes: {
+        gradient: {
+          to: {
+            backgroundPosition: "var(--bg-size) 0",
+          },
+        },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
+        shimmer: {
+          "0%, 90%, 100%": {
+            "background-position": "calc(-100% - var(--shimmer-width)) 0",
+          },
+          "30%, 60%": {
+            "background-position": "calc(100% + var(--shimmer-width)) 0",
+          },
+        },
+      },
     },
   },
-  plugins: [require("tailwindcss-animate"),
-    require('daisyui')
-  ],
+  plugins: [require("tailwindcss-animate"), require("daisyui")],
   daisyui: {
     themes: [
-      'light', // Set light theme as the default theme
+      "light", // Set light theme as the default theme
     ],
   },
-  
-}
+};
