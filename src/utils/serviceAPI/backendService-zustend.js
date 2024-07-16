@@ -8,6 +8,8 @@ const dataUser = (set, get) => ({
     user: [],
     lendUser: [],
     history: [],
+    setLoader: (value) => set({ loader: value }),
+    setLoaing: (value) => set({ loading: value }),
     fectDataUser: async () => {
         try {
             const rs = await axios.get("http://localhost:8888/auth/me", {
@@ -26,21 +28,22 @@ const dataUser = (set, get) => ({
             const rs = await axios.get("http://localhost:8888/lend", {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
+            // console.log(rs.data)
             set(state => ({ ...state, lendUser: rs.data }))
             set(stete => ({ ...stete, loading: true }))
         } catch (err) {
             console.log(err)
         }
     },
-    handleAddLend: async (items,loader) => {
-        // console.log(items)
-        set(stete => ({ ...stete, loader: !loader }))
-          const body = { id: items.id };
-          await axios.post("http://localhost:8888/lend", body, {
+    handleAddLend: async (items) => {
+        // console.log(loader)
+        // set(stete => ({ ...stete, loader: !loader }))
+        const body = { id: items.id };
+        await axios.post("http://localhost:8888/lend", body, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-          })
+        })
 
-      },
+    },
 
     handleAmountChange: async (id, newAmount, loader) => {
         const body = { id, newAmount }
@@ -87,18 +90,18 @@ const dataUser = (set, get) => ({
     }
 })
 
-const Donate = (set,get) => ({
+const Donate = (set, get) => ({
     donate: [],
-    getDonateById: async() => {
-       const rs = await axios.get("http://localhost:8888/donate",{
-        headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
-       })
-       console.log(rs)
-       set(stete => ({...stete, donate: rs.data}))
+    getDonateById: async () => {
+        const rs = await axios.get("http://localhost:8888/donate", {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        })
+        // console.log(rs)
+        set(stete => ({ ...stete, donate: rs.data }))
     }
 })
 
 const useUser = create(dataUser)
 const useDonate = create(Donate)
 
-export { useUser,useDonate }
+export { useUser, useDonate }
