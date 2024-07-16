@@ -13,8 +13,8 @@ function ProfilePage() {
 
   const notify = (message) => {
     toast.success(message, {
-      position: "bottom-right",
-      autoClose: 1000,
+      position: "top-center",
+      autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -26,7 +26,7 @@ function ProfilePage() {
   };
   const notifyErr = (message) => {
     toast.error(message, {
-      position: "bottom-right",
+      position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -322,7 +322,7 @@ function ProfilePage() {
           )}
         </form>
       </div>
-      <ToastContainer />
+      <ToastContainer style={{marginTop: "50px"}}/>
     </div>
   );
 }

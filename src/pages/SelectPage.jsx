@@ -11,6 +11,7 @@ import WordPullUp from "@/components/magicui/word-pull-up";
 function SelectPage() {
   const fetchSearchData = useSearchData((state) => state.fetchSearchData);
   const fetchLoanData = useSearchData((state)=> state.fetchLoanData)
+  
 
 
   useEffect(() => {
@@ -38,10 +39,9 @@ function SelectPage() {
           <Searchbar />
         </div>
           <CardLoanProfile />
-      
-        <div className="p-8">
+        {/* <div className="p-8"> */}
           {/* <PaginationSelect /> */}
-        </div>
+        {/* </div> */}
       </div>
     </>
   );

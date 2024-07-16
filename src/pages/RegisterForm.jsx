@@ -252,7 +252,7 @@ function RegisterForm() {
             className="px-[3rem] py-[.5rem] self-start bg-GreenButton rounded-[15px] hover:opacity-50 text-white"
             type="submit"
           >
-            Submit
+            Create account
           </button>
         </form>
       </div>
