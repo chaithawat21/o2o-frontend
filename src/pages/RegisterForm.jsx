@@ -3,9 +3,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
 
 function RegisterForm() {
   const navigate = useNavigate();
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  
 
   const notifyErr = (message) => {
     toast.error(message, {
@@ -57,8 +60,7 @@ function RegisterForm() {
   };
 
   const validateFirstname = (firstname) => {
-    const nameRegex = /^[A-Za-z]+$/;
-    if (!nameRegex.test(firstname)) {
+    if (!/^[A-Za-z]+$/.test(firstname)) {
       setFirstnameError("Firstname must contain only English letters and no spaces.");
       return false;
     }
@@ -67,8 +69,7 @@ function RegisterForm() {
   };
 
   const validateLastname = (lastname) => {
-    const nameRegex = /^[A-Za-z]+$/;
-    if (!nameRegex.test(lastname)) {
+    if (!/^[A-Za-z]+$/.test(lastname)) {
       setLastnameError("Lastname must contain only English letters and no spaces.");
       return false;
     }
@@ -77,8 +78,8 @@ function RegisterForm() {
   };
 
   const validateUsername = async (username) => {
-    if (/\s/.test(username)) {
-      setUsernameError("Username must not contain spaces.");
+    if (!/^[A-Za-z]+$/.test(username)) {
+      setUsernameError("Username must contain only English letters and no spaces.");
       return false;
     }
       setUsernameError("");
@@ -95,8 +96,7 @@ function RegisterForm() {
   };
 
   const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]{8,}$/;
-    if (!passwordRegex.test(password)) {
+    if (!/^(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]{8,}$/.test(password)) {
       setPasswordError("Password must be at least 8 characters and include uppercase letter and number, and no spaces.");
       return false;
     }
@@ -149,14 +149,27 @@ function RegisterForm() {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0, x: "100vw" },
+    visible: { opacity: 1, x: 0, transition: { duration: 1 } },
+    exit: { opacity: 0, x: "-100vw", transition: { duration: 1 } }
+  };
+
   return (
-    <div className="flex flex-row h-[45rem] items-start gap-2.5 bg-collection-1-background-login relative">
+    <motion.div
+      variants={containerVariants }
+      initial="hidden"
+      animate={formSubmitted ? "exit" : "visible"}
+      onAnimationComplete={() => formSubmitted && navigate("/login")}
+    >
+
+    <div className="flex flex-row h-[45rem] items-start gap-2.5 relative">
       <div className="bg-GreenLogin h-[45rem] w-full p-[1rem]">
         <p className="text-white text-[1.5rem] mt-[10rem] pl-10  md:w-[10rem] md:pl-5">Create<br/>New account</p>
       </div>
       <div className="bg-white p-[1rem]  w-[70%] h-[45rem] rounded-[0_0_0_75px] absolute z-10 right-0 ">
-        <h1 className="text-GreenLogin font-[700] text-[1.5rem] p-10">O2O</h1>
-        <form className="flex flex-col mx-[5rem] gap-[2rem]  flex-grow" onSubmit={handleSubmit}>
+        <h1 className="text-GreenLogin font-[700] text-[1.5rem] p-[1rem] ml-9">O2O</h1>
+        <form className="flex flex-col mx-[10rem] gap-[1rem]  flex-grow" onSubmit={handleSubmit}>
           <div className="flex flex-col">
             <label>First Name</label>
             <input
@@ -239,12 +252,13 @@ function RegisterForm() {
             className="px-[3rem] py-[.5rem] self-start bg-GreenButton rounded-[15px] hover:opacity-50 text-white"
             type="submit"
           >
-            Submit
+            Create account
           </button>
         </form>
       </div>
       <ToastContainer style={{marginBottom: "150px"}}/>
     </div>
+    </motion.div>
   );
 }
 
