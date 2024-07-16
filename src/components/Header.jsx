@@ -62,14 +62,14 @@ function Header() {
 
 
   return (
-    <header className="header flex flex-row justify-between items-center px-[4rem] py-[1rem] border-b-[1px] ">
+    <header className="header flex flex-row justify-between items-center px-[4rem] py-[0rem] border-b-[1px] bg-white ">
 
       <img className="w-[2rem]" src={logoIcon} alt="logo" />
       <nav>
-        <ul className="flex flex-row gap-[2rem] md:hidden">
+        <ul className="flex flex-row items-center gap-[2rem]  md:hidden">
           <Link to="" onClick={handleMenuItemClick}>
             <li
-              className={`hover:text-GreenLogin ${isActive("/") ? "text-GreenLogin" : ""
+              className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${isActive("/") ? "text-GreenLogin  border-GreenLogin  " : ""
                 }`}
             >
               Home
@@ -79,7 +79,7 @@ function Header() {
           {!getUser && (
             <Link to="/Register" onClick={handleMenuItemClick}>
               <li
-                className={`hover:text-GreenLogin ${isActive("/Register") ? "text-GreenLogin" : ""
+                className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${isActive("/Register") ? "text-GreenLogin border-GreenLogin" : ""
                   }`}
               >
                 Register
@@ -88,8 +88,8 @@ function Header() {
           )}
               <Link to="" onClick={handleMenuItemClick}>
             <li
-              className={`hover:text-GreenLogin ${
-                isActive("/borrow") ? "text-GreenLogin" : ""
+              className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${
+                isActive("/borrow") ? "text-GreenLogin border-GreenLogin" : ""
               }`}
             >
               Borrow
@@ -101,7 +101,7 @@ function Header() {
             !isAdmin ? (
               <Link to="/profile" onClick={handleMenuItemClick}>
                 <li
-                  className={`hover:text-GreenLogin ${isActive("/profile") ? "text-GreenLogin" : ""
+                  className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${isActive("/profile") ? "text-GreenLogin border-GreenLogin" : ""
                     }`}
                 >
                   Profile
@@ -110,7 +110,7 @@ function Header() {
             ) : (
               <Link to="/admin" onClick={handleMenuItemClick}>
                 <li
-                  className={`hover:text-GreenLogin ${isActive("/admin") ? "text-GreenLogin" : ""
+                  className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${isActive("/admin") ? "text-GreenLogin border-GreenLogin" : ""
                     }`}
                 >
                   Administration
@@ -124,7 +124,7 @@ function Header() {
 
           <Link to="/select" onClick={handleMenuItemClick}>
             <li
-              className={`hover:text-GreenLogin ${isActive("/select") ? "text-GreenLogin" : ""
+              className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${isActive("/select") ? "text-GreenLogin border-GreenLogin" : ""
                 }`}
             >
               Select
@@ -132,7 +132,7 @@ function Header() {
           </Link>
           <Link to="/about" onClick={handleMenuItemClick}>
             <li
-              className={`hover:text-GreenLogin ${isActive("/about") ? "text-GreenLogin" : ""
+              className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${isActive("/about") ? "text-GreenLogin border-GreenLogin" : ""
                 }`}
             >
               About
@@ -221,16 +221,16 @@ function Header() {
           </button>
 
           <nav
-            className={`absolute z-50 right-[-4rem] w-[15rem] backdrop-blur-[50px] mt-[1rem] transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"
+            className={`absolute z-50 right-[-4rem] w-[15rem] backdrop-blur-[50px] mt-[0.2rem] transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"
               }`}
           >
             <ul
               className={`flex-col items-start gap-[2rem] ${isOpen ? "md:flex" : "hidden"
-                } pt-[1.5rem] pl-[4rem] h-screen`}
+                } pt-[1.5rem] pl-[4rem] h-screen text-[1.5rem]`}
             >
               <Link to="" onClick={handleMenuItemClick}>
                 <li
-                  className={`hover:text-white ${isActive("/") ? "text-green-500" : ""
+                  className={`hover:text-GreenLogin ${isActive("/") ? "text-green-500" : ""
                     }`}
                 >
                   Home
@@ -269,7 +269,7 @@ function Header() {
           )}
               <Link to="/select" onClick={handleMenuItemClick}>
                 <li
-                  className={`hover:text-white ${isActive("/select") ? "text-green-500" : ""
+                  className={`hover:text-GreenLogin ${isActive("/select") ? "text-green-500" : ""
                     }`}
                 >
                   Select
@@ -277,7 +277,7 @@ function Header() {
               </Link>
               <Link to="/about" onClick={handleMenuItemClick}>
                 <li
-                  className={`hover:text-white ${isActive("/about") ? "text-green-500" : ""
+                  className={`hover:text-GreenLogin ${isActive("/about") ? "text-green-500" : ""
                     }`}
                 >
                   About
