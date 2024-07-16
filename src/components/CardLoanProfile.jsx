@@ -28,6 +28,8 @@ export default function CardLoanProfile() {
   const loader = useUser((state) => state.loader);
   const fectLendById = useUser((stete) => stete.fectLendById);
   const handleAddLend = useUser((stete) => stete.handleAddLend);
+  const setLoader = useUser((stete) => stete.setLoader);
+
   const amountAllId = useSearchData((state) => state.amountAllId);
 
   const [visibleItems, setVisibleItems] = useState(5);
@@ -35,10 +37,18 @@ export default function CardLoanProfile() {
 
   console.log(amountAllId);
 
-  useEffect(() => {
-    fectLendById();
-  }, [loader]);
+    useEffect(() => {
+      fectLendById();
+    }, [loader]);
 
+
+ const hdlClick = (items,loader) => {
+  // console.log(items)
+
+  handleAddLend(items)
+  setLoader(!loader)
+ }
+ 
   const loadMoreItems = () => {
     const countItemInload = 5;
     setIsLoadingMore(true);
@@ -163,5 +173,6 @@ export default function CardLoanProfile() {
         )}
       </div>
     </>
+
   );
 }

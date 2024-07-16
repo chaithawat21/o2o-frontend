@@ -1,8 +1,17 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 export default function DonateList({amount}) {
   return (
-    <div className="flex justify-between gap-5 mt-16 w-[800px] min-w-[400px] ">
+    <motion.div 
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{
+      duration: 3,
+      delay: 1.5,
+      ease: [0, 0.71, 0.2, 1.01],
+    }}
+    className="flex justify-between gap-5 mt-16 w-[800px] min-w-[400px] ">
         <div className="w-[130px]">
           <img src="src/public/leaf_heart.565342d.svg.svg" />
         </div>
@@ -33,6 +42,6 @@ export default function DonateList({amount}) {
           <option value={1000}>THB 1000</option>
         </select>
       </div>
-    </div>
+    </motion.div>
   );
 }

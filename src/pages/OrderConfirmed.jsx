@@ -3,6 +3,8 @@ import { Link, Navigate, useLocation } from "react-router-dom";
 import CartOrderConfirm from "../components/CartOrderConfirm";
 import axios from "axios";
 import DonateList from "../components/DonateList";
+import { useUser } from "../utils/serviceAPI/backendService-zustend";
+
 
 export default function OrderConfirmed() {
   // const navigate = new Navigate()
@@ -10,6 +12,11 @@ export default function OrderConfirmed() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const lend = JSON.parse(queryParams.get("lend"));
+  
+const setLoading = useUser((state) => state.setLoaing)
+const Loading = useUser((state) => state.loading)
+
+
   // console.log(lend)
   const chacklend =
     lend.lend.length === 0 ? (
@@ -77,7 +84,7 @@ const Message = ({ message }) => (
 );
 
 const ProductDisplay = ({ checkout, chacklend, Sum,lend }) => (
-  <section>
+    <section>
     <div className="flex flex-col justify-center items-center">
     <h1 className="text-center pt-[2rem] text-[2.5rem] font-[500]">Order Confirmed</h1>
     <hr className="w-[800px] min-w-[400px] mt-[2rem]" />

@@ -1,4 +1,5 @@
 import React from "react";
+import { motion,useSpring } from "framer-motion";
 
 export default function CartList({
   id,
@@ -12,14 +13,45 @@ export default function CartList({
     const newAmount = parseInt(e.target.value, 10);
     setAmount(newAmount);
   };
+
+  const images = [
+    "src/public/lend/img5.svg",
+    "src/public/lend/img6.svg",
+    "src/public/lend/img7.svg",
+    "src/public/lend/img8.svg",
+    "src/public/lend/img9.svg",
+    'src/public/lend/img10.svg'
+  ];
+
+  function getRandom(Array) {
+    const randomIndex = Math.floor(Math.random() * Array.length);
+    return Array[randomIndex];
+  }
+
+  const randomImage = getRandom(images);
+  // console.log(randomImage);
   return (
-    <div className="flex gap-1 w-[800px] min-w-[400px] border-b rounded-xl shadow-sm p-5">
+    <motion.div 
+    initial={{ opacity: 0, scale: 0 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{
+      duration: 4,
+      delay: 0.5,
+      ease: [0, 0.71, 0.2, 1.01],
+      scale: {
+        type: "spring",
+        damping: 9,
+        stiffness: 100,
+        restDelta: 0.001
+      }
+    }}
+     className="flex gap-1 w-[800px] min-w-[400px] border-b rounded-xl shadow-sm p-5">
       <div className="avatar">
         <div className="w-24 rounded-full">
-          <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          <img src={randomImage} />
         </div>
       </div>
-      <div className=" w-[100%] p-2">
+      <div className=" w-[100%] max-h-[100px] overflow-hidden p-2">
         <h1>{title}</h1>
         <p className=" text-gray-400 font-mono">{story}</p>
       </div>
@@ -37,9 +69,15 @@ export default function CartList({
           ) : (
             <option value={0}>THB 0</option>
           )}
+          <option value={50}>THB 50</option>
+          <option value={100}>THB 100</option>
+          <option value={150}>THB 150</option>
+          <option value={200}>THB 200</option>
           <option value={250}>THB 250</option>
+          <option value={300}>THB 300</option>
           <option value={500}>THB 500</option>
           <option value={1000}>THB 1000</option>
+
         </select>
         <a href="#" onClick={() => handleDelete(id)}>
           <svg
@@ -58,6 +96,6 @@ export default function CartList({
           </svg>
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 }
