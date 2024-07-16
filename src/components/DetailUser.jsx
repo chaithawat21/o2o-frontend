@@ -22,29 +22,30 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSearchData } from "../utils/serviceAPI/searchServices";
 import storyImg from "../assets/images/illustration/illustration01-register.png";
 import { useUser } from "../utils/serviceAPI/backendService-zustend";
+import * as Avata from "../assets/images/avatar/imgAva";
 
-export default function DetailUser({loanItem}) {
+export default function DetailUser({ loanItem }) {
   const lend = useUser((state) => state.lendUser);
   const loader = useUser((state) => state.loader);
   const fectLendById = useUser((stete) => stete.fectLendById);
   const handleAddLend = useUser((stete) => stete.handleAddLend);
+  const amountAllId = useSearchData((state) => state.amountAllId);
 
   useEffect(() => {
     fectLendById();
   }, [loader]);
 
-  console.log(loanItem);
   if (loanItem === 0) {
-    return <div>Loading...</div>; // หรือข้อความอื่นที่คุณต้องการแสดงระหว่างการ Redirect
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="flex flex-row justify-center gap-10">
       {loanItem.length === 0 ? (
         <div className="flex h-[388px] items-center justify-center">
-        <Button asChild className="w-[200px] bg-green-500">
-          <Link to="/select">Go to select page</Link>
-        </Button>
+          <Button asChild className="w-[200px] bg-green-500">
+            <Link to="/select">Go to select page</Link>
+          </Button>
         </div>
       ) : (
         <>
@@ -53,11 +54,8 @@ export default function DetailUser({loanItem}) {
               <CardHeader className="flex flex-row gap-5">
                 <Avatar className="w-20 h-20">
                   <AvatarImage
-                    src={
-                      loanItem?.borrower?.ImgUrl
-                        ? loanItem?.borrower?.ImgUrl
-                        : profileImg
-                    }
+                    src={Avata[`avatar${loanItem?.borrower?.id}`]}
+                    className="w-full"
                     alt="@shadcn"
                   />
                 </Avatar>
@@ -66,19 +64,57 @@ export default function DetailUser({loanItem}) {
                     {loanItem?.borrower?.firstname}{" "}
                     {loanItem?.borrower?.lastname}
                   </CardTitle>
-                  <CardDescription>
-                    <Progress value={20} />
-                    <div className="flex justify-between">
-                      <h2>{13} day</h2>
-                      <h2>
-                        THB {(loanItem?.total_amount).toLocaleString()} togo
-                      </h2>
-                    </div>
-                    <div className="flex justify-between">
-                      <div>REMAINING</div>
-                      <div>{20}% FUNDED</div>
-                    </div>
-                  </CardDescription>
+
+                  {amountAllId.some((el) => el.loan_id === loanItem.id) ? (
+                    amountAllId.map((el) =>
+                      el.loan_id === loanItem.id ? (
+                        <CardDescription>
+                          <Progress
+                            value={(
+                              (el._sum.amount / loanItem?.total_amount) *
+                              100
+                            ).toFixed(2)}
+                          />
+                          <div className="flex justify-between">
+                            <h2>{13} day</h2>
+                            <h2>
+                              THB{" "}
+                              {(
+                                loanItem?.total_amount - el._sum.amount
+                              ).toLocaleString()}{" "}
+                              togo
+                            </h2>
+                          </div>
+                          <div className="flex justify-between">
+                            <div>REMAINING</div>
+                            <div>
+                              {(
+                                (el._sum.amount / loanItem?.total_amount) *
+                                100
+                              ).toFixed(2)}
+                              % FUNDED
+                            </div>
+                          </div>
+                        </CardDescription>
+                      ) : null
+                    )
+                  ) : (
+                    <>
+                      <CardDescription>
+                        <Progress value={0} />
+                        <div className="flex justify-between">
+                          <h2>{13} day</h2>
+                          <h2>
+                            THB {(loanItem?.total_amount).toLocaleString()} togo
+                          </h2>
+                        </div>
+                        <div className="flex justify-between">
+                          <div>REMAINING</div>
+                          <div>{0}% FUNDED</div>
+                        </div>
+                      </CardDescription>
+                    </>
+                  )}
                 </div>
               </CardHeader>
               <CardContent>
@@ -105,11 +141,12 @@ export default function DetailUser({loanItem}) {
               <div className="flex flex-col gap-3 mt-5">
                 <h1 className="text-xl">Story</h1>
                 <div>{loanItem?.story}</div>
-          
               </div>
             </div>
             <div className="flex flex-col gap-5">
-              <h1 className="text-2xl">{loanItem.businessAddress?.province_name}</h1>
+              <h1 className="text-2xl">
+                {loanItem.businessAddress?.province_name}
+              </h1>
               {/* <div className="flex flex-row justify-between">
                 <div>
                   <h1 className="text-2xl">THB 54,800</h1>
@@ -140,17 +177,17 @@ export default function DetailUser({loanItem}) {
                   </SelectContent>
                 </Select>
                 {lend.some((el) => el.loan_id === loanItem.id) ? (
-              <button disabled className="border p-2 rounded-lg">
-                Lended
-              </button>
-            ) : (
-              <Button
-                className="w-1/3 bg-green-500 "
-                onClick={() => handleAddLend(items, loader)}
-              >
-                Lend
-              </Button>
-            )}
+                  <button disabled className="border p-2 rounded-lg">
+                    Lended
+                  </button>
+                ) : (
+                  <Button
+                    className="w-1/3 bg-green-500 "
+                    onClick={() => handleAddLend(items, loader)}
+                  >
+                    Lend
+                  </Button>
+                )}
               </div>
             </div>
             <hr />
