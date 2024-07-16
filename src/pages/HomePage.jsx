@@ -50,7 +50,14 @@ function HomePage() {
   };
 
   return (
-    <>
+    <AnimatePresence>
+    <motion.div
+    key="page-content"
+    initial={{ y: "100%" }}
+    animate={{ y: "0%" }}
+    exit={{ y: "-100%" }}
+    transition={{ duration: 0.7 }}
+    >
     <div className="bg-texture">
       <div className="head-content relative flex flex-col items-center">
         <img
@@ -228,7 +235,8 @@ function HomePage() {
       <ChatBot />
       </div>
       <FooterHome />
-    </>
+    </motion.div>
+    </AnimatePresence>
   );
 }
 
