@@ -16,13 +16,14 @@ import {
 } from "@/components/ui/select";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
-import profileImg from "../assets/images/avatar/avatar01.png";
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSearchData } from "../utils/serviceAPI/searchServices";
-import storyImg from "../assets/images/illustration/illustration01-register.png";
+import storyImg from "../assets/images/loandetailImg/art.jpg";
 import { useUser } from "../utils/serviceAPI/backendService-zustend";
 import * as Avata from "../assets/images/avatar/imgAva";
+import { motion } from "framer-motion";
+
 
 export default function DetailUser({ loanItem }) {
   const lend = useUser((state) => state.lendUser);
@@ -49,105 +50,119 @@ export default function DetailUser({ loanItem }) {
         </div>
       ) : (
         <>
-          <div className="flex flex-col w-[500px] gap-5 my-5">
-            <Card className="w-full bg-green-100 border-none">
-              <CardHeader className="flex flex-row gap-5">
-                <Avatar className="w-20 h-20">
-                  <AvatarImage
-                    src={Avata[`avatar${loanItem?.borrower?.id}`]}
-                    className="w-full"
-                    alt="@shadcn"
-                  />
-                </Avatar>
-                <div className="flex flex-col w-full gap-2">
-                  <CardTitle>
-                    {loanItem?.borrower?.firstname}{" "}
-                    {loanItem?.borrower?.lastname}
-                  </CardTitle>
+          <motion.div
+            className="box"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.3,
+              ease: [0, 0.71, 0.2, 1.01],
+            }}
+          >
+            <div className="flex flex-col w-[500px] gap-5 my-5">
+              <Card className="w-full bg-green-100 border-none">
+                <CardHeader className="flex flex-row gap-5">
+                  <Avatar className="w-20 h-20">
+                    <AvatarImage
+                      src={
+                        loanItem?.borrower?.ImgUrl
+                          ? `http://localhost:8888${loanItem?.borrower?.ImgUrl}`
+                          : `${Avata[`avatar${loanItem?.borrower?.id}`]}`
+                      }
+                      className="w-full object-contain"
+                      alt="@shadcn"
+                    />
+                  </Avatar>
+                  <div className="flex flex-col w-full gap-2">
+                    <CardTitle className='mb-2'>
+                      {loanItem?.borrower?.firstname}{" "}
+                      {loanItem?.borrower?.lastname}
+                    </CardTitle>
 
-                  {amountAllId.some((el) => el.loan_id === loanItem.id) ? (
-                    amountAllId.map((el) =>
-                      el.loan_id === loanItem.id ? (
+                    {amountAllId.some((el) => el.loan_id === loanItem.id) ? (
+                      amountAllId.map((el) =>
+                        el.loan_id === loanItem.id ? (
+                          <CardDescription>
+                            <Progress
+                              value={(
+                                (el._sum.amount / loanItem?.total_amount) *
+                                100
+                              ).toFixed(2)}
+                            />
+                            <div className="flex justify-between">
+                              <h2>{13}day</h2>
+                              <h2>
+                                THB{" "}
+                                {(
+                                  loanItem?.total_amount - el._sum.amount
+                                ).toLocaleString()}{" "}
+                                togo
+                              </h2>
+                            </div>
+                            <div className="flex justify-between">
+                              <div>REMAINING</div>
+                              <div>
+                                {(
+                                  (el._sum.amount / loanItem?.total_amount) *
+                                  100
+                                ).toFixed(2)}
+                                % FUNDED
+                              </div>
+                            </div>
+                          </CardDescription>
+                        ) : null
+                      )
+                    ) : (
+                      <>
                         <CardDescription>
-                          <Progress
-                            value={(
-                              (el._sum.amount / loanItem?.total_amount) *
-                              100
-                            ).toFixed(2)}
-                          />
-                          <div className="flex justify-between">
+                          <Progress value={0} />
+                          <div className="flex justify-between mt-2">
                             <h2>{13} day</h2>
                             <h2>
-                              THB{" "}
-                              {(
-                                loanItem?.total_amount - el._sum.amount
-                              ).toLocaleString()}{" "}
+                              THB {(loanItem?.total_amount).toLocaleString()}{" "}
                               togo
                             </h2>
                           </div>
                           <div className="flex justify-between">
                             <div>REMAINING</div>
-                            <div>
-                              {(
-                                (el._sum.amount / loanItem?.total_amount) *
-                                100
-                              ).toFixed(2)}
-                              % FUNDED
-                            </div>
+                            <div>{0}% FUNDED</div>
                           </div>
                         </CardDescription>
-                      ) : null
-                    )
-                  ) : (
-                    <>
-                      <CardDescription>
-                        <Progress value={0} />
-                        <div className="flex justify-between">
-                          <h2>{13} day</h2>
-                          <h2>
-                            THB {(loanItem?.total_amount).toLocaleString()} togo
-                          </h2>
-                        </div>
-                        <div className="flex justify-between">
-                          <div>REMAINING</div>
-                          <div>{0}% FUNDED</div>
-                        </div>
-                      </CardDescription>
-                    </>
-                  )}
+                      </>
+                    )}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p>{loanItem?.purpose}</p>
+                </CardContent>
+                <CardFooter className="flex gap-2">
+                  <div className="border border-gray-950 py-1 px-2 rounded-3xl">
+                    {loanItem.categories?.categorie_name}
+                  </div>
+                  <div className="border border-gray-400 p-1 px-2 rounded-3xl">
+                    {loanItem.businessAddress?.province_name}
+                  </div>
+                </CardFooter>
+              </Card>
+              <div>
+                <div className="flex flex-col w-full items-center justify-center">
+                  <img
+                    src={storyImg}
+                    alt="storyImg"
+                    className="object-contain rounded-tl-3xl rounded-br-3xl"
+                  />
                 </div>
-              </CardHeader>
-              <CardContent>
-                <p>{loanItem?.purpose}</p>
-              </CardContent>
-              <CardFooter className="flex gap-2">
-                <div className="border border-gray-950 p-1 rounded-3xl">
-                  {loanItem.categories?.categorie_name}
+                <div className="flex flex-col gap-3 mt-5">
+                  <h1 className="text-2xl">Story</h1>
+                  <p className="indent-16">{loanItem?.story}</p>
                 </div>
-                <div className="border border-gray-400 p-1 rounded-3xl">
-                  {loanItem.businessAddress?.province_name}
-                </div>
-              </CardFooter>
-            </Card>
-            <div>
-              {/* <img src="" alt="" /> */}
-              <h1 className="flex flex-col w-full h-[250px] items-center justify-center text-[100px]">
-                <img
-                  src={storyImg}
-                  alt=""
-                  className="object-contain w-full h-full"
-                />
-              </h1>
-              <div className="flex flex-col gap-3 mt-5">
-                <h1 className="text-xl">Story</h1>
-                <div>{loanItem?.story}</div>
               </div>
-            </div>
-            <div className="flex flex-col gap-5">
-              <h1 className="text-2xl">
-                {loanItem.businessAddress?.province_name}
-              </h1>
-              {/* <div className="flex flex-row justify-between">
+              <div className="flex flex-col gap-5">
+                <h1 className="text-2xl">
+                  {loanItem.businessAddress?.province_name}
+                </h1>
+                {/* <div className="flex flex-row justify-between">
                 <div>
                   <h1 className="text-2xl">THB 54,800</h1>
                   <h3>Average annual income (THB)</h3>
@@ -157,11 +172,12 @@ export default function DetailUser({ loanItem }) {
                   <h3>Loans currently fundraising</h3>
                 </div>
               </div> */}
-              <Button asChild className="w-fit bg-green-500">
-                <Link to="/select">Find more borrowers</Link>
-              </Button>
+                <Button asChild className="w-fit bg-green-500">
+                  <Link to="/select">Find more borrowers</Link>
+                </Button>
+              </div>
             </div>
-          </div>
+          </motion.div>
           <div className="w-[400px] py-5 pt-10">
             <div className="pb-5">
               <h1>Help fund this loan</h1>
