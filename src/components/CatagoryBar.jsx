@@ -19,6 +19,7 @@ function CatagoryBar() {
   return (
     <div className="flex justify-center gap-[3rem] my-4">
       {searchInfo.categories.map((items) => (
+
         <div key={items.id} className="flex flex-col items-center ">
           <div className="w-[4rem] h-[4rem] bg-green-700 flex justify-center items-center rounded-full mb-2">
             <img
