@@ -19,7 +19,7 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useSearchData } from "../utils/serviceAPI/searchServices";
-import storyImg from "../assets/images/loandetailImg/art.jpg";
+import storyImg from "../assets/images/loandetailImg/framing.jpg";
 import { useUser } from "../utils/serviceAPI/backendService-zustend";
 import * as Avata from "../assets/images/avatar/imgAva";
 import { motion } from "framer-motion";
