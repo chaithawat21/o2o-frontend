@@ -1,14 +1,20 @@
 import React from "react";
-import { motion,useSpring } from "framer-motion";
+import { motion, useSpring } from "framer-motion";
+import { Link } from "react-router-dom";
+import * as Avata from "../assets/images/avatar/imgAva";
+
 
 export default function CartList({
   id,
   title,
+  img,
   amount,
   story,
   setAmount,
   handleDelete,
+  borrower
 }) {
+  // console.log(img)
   const hdlChange = (e) => {
     const newAmount = parseInt(e.target.value, 10);
     setAmount(newAmount);
@@ -20,7 +26,7 @@ export default function CartList({
     "src/public/lend/img7.svg",
     "src/public/lend/img8.svg",
     "src/public/lend/img9.svg",
-    'src/public/lend/img10.svg'
+    "src/public/lend/img10.svg",
   ];
 
   function getRandom(Array) {
@@ -31,24 +37,18 @@ export default function CartList({
   const randomImage = getRandom(images);
   // console.log(randomImage);
   return (
-    <motion.div 
-    initial={{ opacity: 0, scale: 0 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{
-      duration: 4,
-      delay: 0.5,
-      ease: [0, 0.71, 0.2, 1.01],
-      scale: {
-        type: "spring",
-        damping: 9,
-        stiffness: 100,
-        restDelta: 0.001
-      }
-    }}
-     className="flex gap-1 w-[800px] min-w-[400px] border-b rounded-xl shadow-sm p-5">
+    <motion.div
+      initial={{ marginTop: 20, opacity: 0 }}
+      animate={{ marginTop: 0, opacity: 1 }}
+      transition={{
+        duration: 0.5,
+        delay: 0.5,
+      }}
+      className="flex gap-1 w-[800px] min-w-[400px] border-b rounded-xl shadow-sm p-5"
+    >
       <div className="avatar">
         <div className="w-24 rounded-full">
-          <img src={randomImage} />
+          <img src={img ? `http://localhost:8888${img}` : `${Avata[`avatar${borrower}`]}`} />
         </div>
       </div>
       <div className=" w-[100%] max-h-[100px] overflow-hidden p-2">
@@ -77,7 +77,6 @@ export default function CartList({
           <option value={300}>THB 300</option>
           <option value={500}>THB 500</option>
           <option value={1000}>THB 1000</option>
-
         </select>
         <a href="#" onClick={() => handleDelete(id)}>
           <svg

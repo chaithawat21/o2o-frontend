@@ -35,7 +35,22 @@ export default function CardLoanProfile() {
   const [visibleItems, setVisibleItems] = useState(5);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  console.log(amountAllId);
+  // console.log(loanData);
+  const images = [
+    "src/public/lend/img5.svg",
+    "src/public/lend/img6.svg",
+    "src/public/lend/img7.svg",
+    "src/public/lend/img8.svg",
+    "src/public/lend/img9.svg",
+    "src/public/lend/img10.svg",
+  ];
+
+  function getRandom(Array) {
+    const randomIndex = Math.floor(Math.random() * Array.length);
+    return Array[randomIndex];
+  }
+
+  const randomImage = getRandom(images);
 
     useEffect(() => {
       fectLendById();
@@ -85,11 +100,12 @@ export default function CardLoanProfile() {
                       <img
                         // src={Avata[`avatar${items?.borrower?.id}`]}
                         className="bg-green-200 rounded-t-lg h-[250px] bg-no-repeat bg-bottom"
-                        style={{
-                          backgroundImage: `url(${
-                            Avata[`avatar${items?.borrower?.id}`]
-                          })`,
-                        }}
+                        // style={{
+                        //   backgroundImage: `url(${
+                        //     Avata[`avatar${items?.borrower?.id}`]
+                        //   })`,
+                        // }}
+                        src={items?.borrower?.ImgUrl ? `http://localhost:8888${items?.borrower?.ImgUrl}` : `${Avata[`avatar${items?.borrower?.id}`]}`}
                       />
                     </CardHeader>
                   </Link>
@@ -149,7 +165,7 @@ export default function CardLoanProfile() {
                     ) : (
                       <Button
                         className="w-1/3 bg-green-500"
-                        onClick={() => handleAddLend(items, loader)}
+                        onClick={() => hdlClick(items, loader)}
                       >
                         Lend
                       </Button>

@@ -12,8 +12,8 @@ export { default as avatar11 } from "./a11.png";
 export { default as avatar12 } from "./a12.png";
 export { default as avatar13 } from "./a13.png";
 export { default as avatar14 } from "./a14.png";
-export { default as avatar16 } from "./a15.png";
-export { default as avatar17 } from "./a16.png";
-export { default as avatar18 } from "./a17.png";
+export { default as avatar15 } from "./a15.png";
+export { default as avatar16 } from "./a16.png";
+export { default as avatar17 } from "./a17.png";
 
 
