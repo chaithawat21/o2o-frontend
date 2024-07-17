@@ -3,7 +3,6 @@ import CartList from "../components/CartList";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useUser, useDonate } from "../utils/serviceAPI/backendService-zustend";
-import axios from "axios";
 import DonateList from "../components/DonateList";
 
 function CartPage() {
@@ -16,7 +15,7 @@ function CartPage() {
   const handleDelete = useUser((stete) => stete.handleDelete);
   const getDonateById = useDonate((stete) => stete.getDonateById);
 
-  // console.log(donate);
+  // console.log(lend);
 
   useEffect(() => {
     fectLendById();
@@ -31,6 +30,8 @@ function CartPage() {
         <CartList
           key={index}
           id={item.id}
+          borrower={item?.loan?.borrower?.id}
+          img={item?.loan?.borrower?.ImgUrl}
           title={item?.loan?.purpose}
           story={item?.loan?.story}
           amount={item?.amount}
