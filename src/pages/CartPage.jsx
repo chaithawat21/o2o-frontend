@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CartList from "../components/CartList";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -11,6 +11,7 @@ function CartPage() {
   const donate = useDonate((stete) => stete.donate);
 
   const fectLendById = useUser((stete) => stete.fectLendById);
+  const setLoader = useUser((stete) => stete.setLoader);
   const handleAmountChange = useUser((stete) => stete.handleAmountChange);
   const handleDelete = useUser((stete) => stete.handleDelete);
   const getDonateById = useDonate((stete) => stete.getDonateById);
@@ -19,7 +20,7 @@ function CartPage() {
 
   useEffect(() => {
     fectLendById();
-    getDonateById();
+    // getDonateById();
   }, [loader]);
 
   const chackloan =
@@ -48,16 +49,22 @@ function CartPage() {
 
   return (
     <>
-      <h1 className="text-center pt-[2rem] text-[2.5rem] font-[500]">
+      <h1 className="text-center pt-[2rem] text-[2rem] font-[500]">
         Your Basket
       </h1>
 
       <div className="flex justify-center p-10">
-        <div className="flex gap-2 items-center flex-col w-[70%] border-t-[1px]  pt-[1rem]">
-          {chackloan}
-          {donate.map((item,index) => (<DonateList key={index} amount={item.amount}/>))}
+        <div className="flex gap-2 items-center flex-col w-[70%] border-t-[1px] pt-[1rem]">
+          <div className="flex gap-1 items-center flex-col h-[400px] overflow-auto">
+            {chackloan}
+          </div>
+          {donate.map((item, index) => (
+            <DonateList key={index} amount={item.amount} />
+          ))}
           <div className="flex flex-col  justify-between border-t-[1px]  mt-2 w-full py-[2rem]">
-            <p className="text-end py-[1rem]">Total THB {totalLendAmount + totalDonateAmount} </p>
+            <p className="text-end py-[1rem]">
+              Total THB {totalLendAmount + totalDonateAmount}{" "}
+            </p>
             <div className="flex flex-row justify-between  gap-4 border-t-[1px] pt-[1rem]">
               <Link to="/select">
                 <button className="btn btn-accent bg-GreenButton text-white rounded-[20px] border-none hover:bg-GreenButton hover:opacity-50 px-[2rem]">
@@ -70,7 +77,7 @@ function CartPage() {
                 </button>
                 <Link
                   to={`/orderconfirm?lend=${encodeURIComponent(
-                    JSON.stringify({lend: lend, donate: donate})
+                    JSON.stringify({ lend: lend, donate: donate })
                   )}`}
                 >
                   <button className="btn btn-accent bg-GreenButton text-white rounded-[20px] border-none hover:bg-GreenButton hover:opacity-50 px-[2rem]">

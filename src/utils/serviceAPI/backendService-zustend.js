@@ -24,13 +24,11 @@ const dataUser = (set, get) => ({
 
     fectLendById: async () => {
         try {
-            set(stete => ({ ...stete, loading: true }))
             const rs = await axios.get("http://localhost:8888/lend", {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             // console.log(rs.data)
             set(state => ({ ...state, lendUser: rs.data }))
-            set(stete => ({ ...stete, loading: true }))
         } catch (err) {
             console.log(err)
         }
@@ -57,10 +55,12 @@ const dataUser = (set, get) => ({
 
     handleDelete: async (id, loader) => {
         // console.log(id,loader)
+
         const rs = await axios.delete(`http://localhost:8888/lend/${id}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
-        console.log(rs)
+        // console.log(rs)
+
         set(stete => ({ ...stete, loader: !loader }))
     },
     checkout: async (success) => {
