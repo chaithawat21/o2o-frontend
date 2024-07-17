@@ -1,8 +1,7 @@
-import React from "react";
-import { motion, useSpring } from "framer-motion";
+import React, { useState } from "react";
+import { motion, spring, useSpring } from "framer-motion";
 import { Link } from "react-router-dom";
 import * as Avata from "../assets/images/avatar/imgAva";
-
 
 export default function CartList({
   id,
@@ -12,43 +11,54 @@ export default function CartList({
   story,
   setAmount,
   handleDelete,
-  borrower
+  borrower,
 }) {
   // console.log(img)
+  const [loader, setLoader] = useState(null);
   const hdlChange = (e) => {
     const newAmount = parseInt(e.target.value, 10);
     setAmount(newAmount);
   };
 
-  const images = [
-    "src/public/lend/img5.svg",
-    "src/public/lend/img6.svg",
-    "src/public/lend/img7.svg",
-    "src/public/lend/img8.svg",
-    "src/public/lend/img9.svg",
-    "src/public/lend/img10.svg",
-  ];
+  const hdlDelete = (id) => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+      setTimeout(() => {
+        handleDelete(id);
+      }, 10);
+    }, 20);
+  };
+  // console.log("1", loader, title);
 
-  function getRandom(Array) {
-    const randomIndex = Math.floor(Math.random() * Array.length);
-    return Array[randomIndex];
-  }
-
-  const randomImage = getRandom(images);
-  // console.log(randomImage);
   return (
     <motion.div
-      initial={{ marginTop: 20, opacity: 0 }}
-      animate={{ marginTop: 0, opacity: 1 }}
-      transition={{
-        duration: 0.5,
-        delay: 0.5,
+      initial={{ marginTop: 100, opacity: 0 }}
+      animate={loader ? "closed" : "open"}
+      variants={{
+        open: {
+          marginTop: 0,
+          opacity: 1,
+          transition: {
+            type: "spring",
+            stiffness: 400,
+            damping: 20,
+            delay: 0.3,
+          },
+        },
+        closed: { marginTop: -100, opacity: 0, transition: { duration: 0.05 } },
       }}
       className="flex gap-1 w-[800px] min-w-[400px] border-b rounded-xl shadow-sm p-5"
     >
       <div className="avatar">
         <div className="w-24 rounded-full">
-          <img src={img ? `http://localhost:8888${img}` : `${Avata[`avatar${borrower}`]}`} />
+          <img
+            src={
+              img
+                ? `http://localhost:8888${img}`
+                : `${Avata[`avatar${borrower}`]}`
+            }
+          />
         </div>
       </div>
       <div className=" w-[100%] max-h-[100px] overflow-hidden p-2">
@@ -78,7 +88,7 @@ export default function CartList({
           <option value={500}>THB 500</option>
           <option value={1000}>THB 1000</option>
         </select>
-        <a href="#" onClick={() => handleDelete(id)}>
+        <a href="#" onClick={() => hdlDelete(id)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
