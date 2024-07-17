@@ -1,6 +1,6 @@
 import React from 'react'
 import header from '../assets/images/header/header02.png'
-import farming from '../assets/images/illustration/framing.jpg'
+import farming from '../assets/images/loandetailImg/framing.jpg'
 import avatar01 from '../assets/images/avatar/avatar01.png'
 import { Link } from 'react-router-dom'
 
