@@ -123,7 +123,7 @@ export default function SearchBar() {
         disabled={regionData.length === 0}
       >
         <SelectTrigger className="w-[300px]">
-          <SelectValue placeholder="ProvinceValue" />
+          <SelectValue placeholder="Province" />
         </SelectTrigger>
         <SelectContent>
           {fillterProvinceValue.map((items) => (
