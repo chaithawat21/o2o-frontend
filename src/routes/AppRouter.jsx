@@ -38,14 +38,6 @@ const main = createBrowserRouter([
   },
 ]);
 
-// const loanDataByid = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <SelectPage />,
-//     children:[{path : '/:id' ,element: <LoanDetailPage />}]
-//   }
-// ])
-
 const activated = createBrowserRouter([
   {
     path: '/',

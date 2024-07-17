@@ -75,7 +75,7 @@ export default function CardLoanProfile() {
 
   return (
     <>
-      <div className="flex flex-wrap gap-11 justify-center p-32 pb-7">
+      <div className="flex flex-wrap gap-11 justify-center pt-32 py-30 pb-7">
         {loanData.length > 0 ? (
           <>
             {loanData.slice(0, visibleItems).map((items) => (
@@ -90,7 +90,7 @@ export default function CardLoanProfile() {
                   ease: [0, 0.71, 0.2, 1.01],
                 }}
               >
-                <Card className="w-[318px]">
+                <Card className="w-[318px] hover:shadow-xl">
                   <Link
                     to={`/loanDetail?loan=${encodeURIComponent(
                       JSON.stringify(items)
@@ -99,7 +99,7 @@ export default function CardLoanProfile() {
                     <CardHeader className="p-0">
                       <img
                         // src={Avata[`avatar${items?.borrower?.id}`]}
-                        className="bg-green-200 rounded-t-lg h-[250px] bg-no-repeat bg-bottom"
+                        className="bg-green-200 rounded-t-lg h-[250px] object-contain"
                         // style={{
                         //   backgroundImage: `url(${
                         //     Avata[`avatar${items?.borrower?.id}`]
@@ -109,22 +109,23 @@ export default function CardLoanProfile() {
                       />
                     </CardHeader>
                   </Link>
-                  <CardContent>
-                    <div className="flex py-2">
-                      <h1 className="text-xl">
+                  <CardContent className='pb-1'>
+                    <div className="flex pt-2">
+                      <h1 className="text-xl font-medium">
                         {items?.borrower?.firstname} {items?.borrower?.lastname}
                       </h1>
                     </div>
-                    <CardDescription className="pb-2">
-                      {items?.purpose}
+                    <CardDescription className="h-14 text-lg">
+                      {items?.purpose} 
                     </CardDescription>
+                    <div className="flex flex-col">
                     <div className="flex gap-2">
                       <Badge>{items?.categories?.categorie_name}</Badge>
                       <Badge variant="secondary">
                         {items?.businessAddress?.province_name}
                       </Badge>
                     </div>
-                    <div className="py-2 ">
+                    <div className="py-3">
                     {amountAllId.some((el) => el.loan_id === items.id) ? (
                       amountAllId.map((el) =>
                         el.loan_id === items.id ? (
@@ -145,6 +146,7 @@ export default function CardLoanProfile() {
                         <Progress value={0} />
                       </>
                     )}
+                    </div>
                     </div>
                   </CardContent>
                   <CardFooter className="flex gap-1 justify-end">
@@ -177,7 +179,7 @@ export default function CardLoanProfile() {
           </>
         ) : (
           <Card className="w-[318px] h-[500px] text-2xl border-none flex justify-center items-center shadow-none mb-7">
-            ไม่พบการค้นหา
+            Search not found
           </Card>
         )}
       </div>
