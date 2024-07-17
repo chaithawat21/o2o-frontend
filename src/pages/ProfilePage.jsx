@@ -4,6 +4,8 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import profileHeader from "../assets/images/header/header02.png";
 import avatarTest from "../assets/images/icon/user-icon.svg";
+import ShinyButton from "@/components/magicui/shiny-button";
+import { Link } from "react-router-dom";
 
 function ProfilePage() {
   const [file, setFile] = useState(null); // State to hold the selected file
@@ -173,7 +175,8 @@ function ProfilePage() {
   }, []);
 
   return (
-    <div className="bg-texture flex gap-8 flex-col justify-center items-center pb-52">
+    <div className="bg-texture bg-gray-100">
+    <div className=" flex gap-8 flex-col justify-center items-center pb-52">
       <div className="relative flex flex-col items-center w-full mb-[5rem]">
         <img
           className="object-cover object-center  w-full h-[20rem] relative "
@@ -200,7 +203,7 @@ function ProfilePage() {
         
       </div>
 
-      <div className="border-[2px] border-GreenFooter rounded-[20px] w-[500px] p-[2rem]">
+      <div className="border-[2px] bg-white border-GreenFooter rounded-[20px] w-[500px] p-[2rem]">
         <h2 className="text-xl mb-4 text-center pb-5 text-GreenButton">
           Your Personal Information
         </h2>
@@ -321,9 +324,21 @@ function ProfilePage() {
             </button>
           )}
         </form>
+        
       </div>
-      <ToastContainer style={{marginTop: "50px"}}/>
+      <Link to="/borrowRegister">
+      <ShinyButton text="APPLY FOR LOAN" />
+      </Link>
+      
+      
+      
+            
     </div>
+    <div className='bg-GreenFooter h-[10rem] flex flex-col justify-center items-center'>
+    <p className='text-[2rem] text-white'>EVERYTHING IS POSSIBLE</p>
+</div>
+<ToastContainer style={{marginTop: "50px"}}/>
+</div>
   );
 }
 

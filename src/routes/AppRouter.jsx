@@ -15,6 +15,9 @@ import Checkout from '../pages/Checkout';
 import AdminPage from '../pages/AdminPage';
 import ActivatedLayout from '../layouts/ActivatedLayout';
 import UserActivation from '../pages/UserActivation';
+import BorrowDetailPage from '../pages/BorrowDetailPage';
+import BorrowRegisterForm from '../pages/BorrowRegisterForm';
+import Repayment from '../pages/Repayment';
 
 const main = createBrowserRouter([
   {
@@ -34,6 +37,9 @@ const main = createBrowserRouter([
       { path: 'admin', element: <AdminPage /> },
       { path: 'success', element: <Checkout /> },
       { path: 'activation', element: <UserActivation /> },
+      { path: 'borrowDetail', element: <BorrowDetailPage />},
+      { path: 'borrowRegister', element: <BorrowRegisterForm />},
+      { path: 'repayment', element: <Repayment />},
     ],
   },
 ]);

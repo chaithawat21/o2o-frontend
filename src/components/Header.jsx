@@ -69,7 +69,7 @@ function Header() {
         <ul className="flex flex-row items-center gap-[2rem]  md:hidden">
           <Link to="" onClick={handleMenuItemClick}>
             <li
-              className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${isActive("/") ? "text-GreenLogin  border-GreenLogin  " : ""
+              className={`py-[1.5rem]  hover:text-GreenLogin   ${isActive("/") ? "text-GreenLogin   " : ""
                 }`}
             >
               Home
@@ -79,17 +79,17 @@ function Header() {
           {!getUser && (
             <Link to="/Register" onClick={handleMenuItemClick}>
               <li
-                className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${isActive("/Register") ? "text-GreenLogin border-GreenLogin" : ""
+                className={`py-[1.5rem] hover:text-GreenLogin   ${isActive("/Register") ? "text-GreenLogin " : ""
                   }`}
               >
                 Register
               </li>
             </Link>
           )}
-              <Link to="" onClick={handleMenuItemClick}>
+              <Link to="/borrowDetail" onClick={handleMenuItemClick}>
             <li
-              className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${
-                isActive("/borrow") ? "text-GreenLogin border-GreenLogin" : ""
+              className={`py-[1.5rem]  hover:text-GreenLogin   ${
+                isActive("/borrowDetail") ? "text-GreenLogin " : ""
               }`}
             >
               Borrow
@@ -101,7 +101,7 @@ function Header() {
             !isAdmin ? (
               <Link to="/profile" onClick={handleMenuItemClick}>
                 <li
-                  className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${isActive("/profile") ? "text-GreenLogin border-GreenLogin" : ""
+                  className={`py-[1.5rem] hover:text-GreenLogin   ${isActive("/profile") ? "text-GreenLogin ": ""
                     }`}
                 >
                   Profile
@@ -110,7 +110,7 @@ function Header() {
             ) : (
               <Link to="/admin" onClick={handleMenuItemClick}>
                 <li
-                  className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${isActive("/admin") ? "text-GreenLogin border-GreenLogin" : ""
+                  className={`py-[1.5rem] hover:text-GreenLogin  ${isActive("/admin") ? "text-GreenLogin" : ""
                     }`}
                 >
                   Administration
@@ -124,7 +124,7 @@ function Header() {
 
           <Link to="/select" onClick={handleMenuItemClick}>
             <li
-              className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${isActive("/select") ? "text-GreenLogin border-GreenLogin" : ""
+              className={`py-[1.5rem]  hover:GreenLogin  ${isActive("/select") ? "text-GreenLogin" : ""
                 }`}
             >
               Select
@@ -132,7 +132,7 @@ function Header() {
           </Link>
           <Link to="/about" onClick={handleMenuItemClick}>
             <li
-              className={`py-[1.5rem] border-b-[3px] border-white hover:text-GreenLogin ${isActive("/about") ? "text-GreenLogin border-GreenLogin" : ""
+              className={`py-[1.5rem]  hover:text-GreenLogin  ${isActive("/about") ? "text-GreenLogin" : ""
                 }`}
             >
               About

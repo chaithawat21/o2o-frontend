@@ -163,14 +163,14 @@ function ChatBot() {
       ) : (
         <>
           <div
-            className={`chat-circle fixed bottom-10 right-10 bg-GreenButton w-[4rem] h-[4rem] p-[1rem] rounded-[50%] cursor-pointer hover:bg-green-200 hover:outline-green-200 outline outline-[2px] outline-offset-[.25rem] outline-GreenButton drop-shadow-2xl brightness-110 ${isOpen ? "inline-block" : "hidden"
+            className={`chat-circle fixed bottom-20 right-10 bg-GreenButton w-[4rem] h-[4rem] p-[1rem] rounded-[50%] cursor-pointer hover:bg-green-200 hover:outline-green-200 outline outline-[2px] outline-offset-[.25rem] outline-GreenButton drop-shadow-2xl brightness-110 ${isOpen ? "inline-block" : "hidden"
               } `}
             onClick={hdlEnter}
           >
             <img src={chatIcon} alt="chat" />
           </div>
           <motion.div
-            className={`chat-box fixed bottom-10 right-10 drop-shadow-2xl ${isOpen ? "hidden" : "inline-block"
+            className={`chat-box fixed bottom-20 right-10 drop-shadow-2xl ${isOpen ? "hidden" : "inline-block"
               } `}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: isOpen ? 0 : 1, y: isOpen ? 50 : 0 }}
