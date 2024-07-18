@@ -12,9 +12,8 @@ function Footer() {
       <img className='w-[2rem] h-[2rem]' src={logoIcon} alt="logo" />
       <nav className="flex flex-row gap-[1rem] items-center text-[.8rem] text-GreenFooter">
         <Link to="">Home</Link>
-        <Link to="/Register">Register</Link>
-        <Link to="/profile">Profile</Link>
-        <Link to="/select">Select</Link>
+        <Link to="/borrowDetail">Borrow</Link>
+        <Link to="/select">Lend</Link>
         <Link to="/about">About</Link>
       </nav>
       </div>

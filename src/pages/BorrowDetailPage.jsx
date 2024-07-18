@@ -3,9 +3,12 @@ import header from '../assets/images/header/header02.png'
 import farming from '../assets/images/loandetailImg/framing.jpg'
 import avatar01 from '../assets/images/avatar/avatar01.png'
 import { Link } from 'react-router-dom'
+import borrowImg from '../assets/images/illustration/illustration09-borrow.jpg'
+import SparklesDiv from "@/components/magicui/sparkles-div";
 
 
 function BorrowDetailPage() {
+    const getUser = localStorage.getItem("token");
     const [isEditing, setIsEditing] = useState(false);
     const [content, setContent] = useState('Buy seeds and fertilizers');
     const [story, setStory] = useState("Starting a small agricultural business to uplift the lives of our local community. Our farm aims to provide fresh, organic produce to nearby markets, creating a sustainable food source and boosting local economy. With your help, we can buy high-quality seeds and fertilizers that will significantly increase our crop yield. This will not only improve our livelihood but also support the education of our children and the health of our families. Our commitment to sustainable farming practices ensures that we preserve the environment for future generations. By supporting our loan, you're investing in a community's growth, health, and future. We believe in hard work, dedication, and the power of community support to overcome challenges and create a better tomorrow. Your contribution will make a tangible difference, allowing us to improve our farming techniques, increase productivity, and achieve greater financial stability. Thank you for believing in our vision and helping us achieve our dreams.");
@@ -24,7 +27,13 @@ function BorrowDetailPage() {
 
     return (
         <div className='bg-texture bg-gray-100'>
+            {!getUser ? <div className='relative flex flex-col justify-center items-center'>
+                <img className='relative z-0' src={borrowImg} alt="borrow" />
 
+                    <h1 className='header-text  absolute z-10  text-center text-[3.5rem] font-[700] leading-none'>CROWDFUND YOUR DREAM<br/>CHANGE YOUR LIFE</h1>
+
+            </div> :
+            <>
             <div className="relative flex flex-col items-center">
                 <img className='object-cover object-center w-full h-[20rem]' src={header} alt="header" />
                 {/* <p className="header-text absolute top-[5rem]  text-black text-center text-[4rem] font-[700]">BORROWER</p> */}
@@ -35,15 +44,16 @@ function BorrowDetailPage() {
                     <div className='conatainer-top-left bg-white w-[30rem] h-[37.5rem] rounded-[20px] relative flex flex-col items-center p-[2rem]'>
                         <div className='rounded-[50%] border-[5px] border-white absolute top-[-5rem] shadow-xl'>
                             <img className='rounded-[50%] bg-white w-[10rem]' src={avatar01} alt="avatar" />
+                            <p className='absolute text-[1.5] bottom-[-2rem] left-2'>Status : <span className='text-GreenLogin font-semibold '>APPROVE</span></p>
                         </div>
-
+                            
                         <p className='text-gray-700 self-start mt-[5rem]'><span className='text-GreenLogin text-[2rem]'>0 of 10</span> leaders</p>
 
 
                         <div className='scorebar bg-gray-300  w-full h-[.75rem] rounded-[15px] relative '>
                             <div className='bg-GreenLogin w-2 h-[.75rem] rounded-[15px_0_0_15px] absolute'></div>
                         </div>
-                        <p className='text-gray-500 self-start mt-[.25rem] text-[.8rem]'>30 days left to reach 10 leaders</p>
+                        <p className='text-gray-500 self-start mt-[.25rem] text-[.8rem]'>30 days left to reach 10 lenders</p>
                         <p className='text-gray-700 self-start mt-[2rem]'><span className='text-GreenLogin text-[2rem]'>THB 0 of THB 10k</span> raised so far</p>
                         <div className='scorebar bg-gray-300  w-full h-[.5rem] rounded-[15px] '>
                             <div className='bg-GreenLogin w-1.5 h-[.5rem] rounded-[15px_0_0_15px] absolute'></div>
@@ -125,9 +135,15 @@ function BorrowDetailPage() {
 
 
             </div>
-            <div className='bg-GreenFooter h-[10rem] flex flex-col justify-center items-center'>
-                <p className='text-[2rem] text-white'>EVERYTHING IS POSSIBLE</p>
+            </>
+            }
+            <SparklesDiv >
+            <Link to="/register">
+            <div className='bg-GreenFooter h-[10rem] flex flex-col justify-center items-center hover:opacity-50'>
+                <p className='text-[2rem] text-white '>GET START</p>
             </div>
+            </Link>
+            </SparklesDiv>
         </div>
     )
 }
