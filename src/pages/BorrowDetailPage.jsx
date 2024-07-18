@@ -137,6 +137,7 @@ function BorrowDetailPage() {
             </div>
             </>
             }
+            {!getUser ? 
             <SparklesDiv >
             <Link to="/register">
             <div className='bg-GreenFooter h-[10rem] flex flex-col justify-center items-center hover:opacity-50'>
@@ -144,6 +145,10 @@ function BorrowDetailPage() {
             </div>
             </Link>
             </SparklesDiv>
+            :  <div className='bg-GreenFooter h-[10rem] flex flex-col justify-center items-center'>
+            <p className='text-[2rem] text-white'>EVERYTHING IS POSSIBLE</p>
+          </div>
+}
         </div>
     )
 }
