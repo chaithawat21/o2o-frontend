@@ -154,7 +154,7 @@ function BorrowRegisterForm() {
               />
             </div>
             <div>
-            <Link to="/profile">
+            <Link to="/borrowDetail">
               <button
                 type="submit"
                 className="w-full bg-GreenFooter text-white py-2 px-4 rounded-md hover:opacity-50 focus:outline-none focus:ring-green-200 focus:ring-2 focus:ring-offset-2 "
