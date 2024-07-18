@@ -16,7 +16,8 @@ export default function CartList({
   // console.log(img)
   const [loader, setLoader] = useState(null);
   const hdlChange = (e) => {
-    const newAmount = parseInt(e.target.value, 10);
+    const newAmount = parseInt(e.target.value);
+    console.log(newAmount)
     setAmount(newAmount);
   };
 
@@ -26,14 +27,14 @@ export default function CartList({
       setLoader(false);
       setTimeout(() => {
         handleDelete(id);
-      }, 10);
-    }, 20);
+      }, 50);
+    }, 300);
   };
   // console.log("1", loader, title);
 
   return (
     <motion.div
-      initial={{ marginTop: 100, opacity: 0 }}
+      initial={{ marginTop: 10, opacity:0}}
       animate={loader ? "closed" : "open"}
       variants={{
         open: {
@@ -41,12 +42,11 @@ export default function CartList({
           opacity: 1,
           transition: {
             type: "spring",
-            stiffness: 400,
-            damping: 20,
-            delay: 0.3,
+            stiffness: 60,
+            damping: 10,
           },
         },
-        closed: { marginTop: -100, opacity: 0, transition: { duration: 0.05 } },
+        closed: { marginTop: -150,opacity:0, transition: { duration: 0.3 } },
       }}
       className="flex gap-1 w-[800px] min-w-[400px] border-b rounded-xl shadow-sm p-5"
     >

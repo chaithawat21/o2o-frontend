@@ -4,9 +4,9 @@ import React from 'react'
 export default function CartOrderConfirm({title,amount,story,borrower,img}) {
   return (
     <motion.div 
-    initial={{marginTop: 100 ,opacity:0}}
+    initial={{marginTop: 10 ,opacity:0}}
     animate={{marginTop: 0 , opacity:1}}
-    transition={{ type: "spring", stiffness: 400, damping: 20, duration:0.5, delay: 0.2}}
+    transition={{ type: "spring", stiffness: 60, damping: 10, duration:0.5, delay: 0.2}}
     className="flex w-[800px] min-w-[400px]  p-1">
       <div className="avatar">
         <div className="w-24 rounded-full">

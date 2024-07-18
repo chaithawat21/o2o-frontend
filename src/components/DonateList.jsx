@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-export default function DonateList({amount}) {
+export default function DonateList({id,amount,setAmount,handleDelete}) {
+  const [loader, setLoader] = useState(null);
+  const part = window.location.pathname
+  const changeAmount = (e) => {
+    const newAmount = parseInt(e.target.value);
+    setAmount(newAmount)
+  }
+  const hdlDelete = (id) => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+      setTimeout(() => {
+        handleDelete(id);
+      }, 50);
+    }, 300);
+  }
   return (
     <motion.div 
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{
-      duration: 3,
-      delay: 1.5,
-      ease: [0, 0.71, 0.2, 1.01],
-    }}
-    className="flex justify-between gap-5 mt-16 w-[800px] min-w-[400px] ">
+    initial={{opacity:0}}
+      animate={loader ? "closed" : "open"}
+      variants={{
+        open: {
+          marginTop: 100,
+          opacity: 1,
+          transition: {
+            type: "spring",
+            stiffness: 60,
+            damping: 10,
+            delay:1
+          },
+        },
+        closed: {opacity:0, transition: { duration: 0.3 } },
+      }}
+    className="flex justify-between gap-5 w-[800px] min-w-[400px] ">
         <div className="w-[130px]">
           <img src="src/public/leaf_heart.565342d.svg.svg" />
         </div>
@@ -26,6 +49,7 @@ export default function DonateList({amount}) {
       <div className=" flex justify-end items-center w-[200px] h-[100px] ">
         <select
           value={amount ? amount : 0}
+          onChange={changeAmount}
           name="amount"
           className="  rounded-sm p-1 max-w-xs text-xs"
           readOnly
@@ -42,6 +66,12 @@ export default function DonateList({amount}) {
           <option value={1000}>THB 1000</option>
         </select>
       </div>
+      {part === "/orderconfirm" ? 
+      <></>
+      :
+      <button 
+      onClick={() => hdlDelete(id)}
+      className="flex h-10 m-auto items-center px-2">X</button>}
     </motion.div>
   );
 }

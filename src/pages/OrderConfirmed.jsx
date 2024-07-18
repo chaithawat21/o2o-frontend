@@ -7,7 +7,6 @@ import { useUser } from "../utils/serviceAPI/backendService-zustend";
 import { motion } from "framer-motion";
 
 export default function OrderConfirmed() {
-  // const navigate = new Navigate()
   const [message, setMessage] = useState("");
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);

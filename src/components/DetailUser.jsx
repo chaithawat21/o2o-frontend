@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import {
   Card,
   CardContent,
@@ -31,7 +31,9 @@ export default function DetailUser({ loanItem }) {
   const fectLendById = useUser((stete) => stete.fectLendById);
   const handleAddLend = useUser((stete) => stete.handleAddLend);
   const amountAllId = useSearchData((state) => state.amountAllId);
+  const setLoader = useUser((stete) => stete.setLoader);
 
+  const [amount, setAmount] = useState(500)
   useEffect(() => {
     fectLendById();
   }, [loader]);
@@ -39,7 +41,12 @@ export default function DetailUser({ loanItem }) {
   if (loanItem === 0) {
     return <div>Loading...</div>;
   }
-
+  const hdlClick = (items,loader) => {
+    // console.log(items,+amount)
+  
+    handleAddLend(items,+amount)
+    setLoader(!loader)
+   }
   return (
     <div className="flex flex-row justify-center gap-10">
       {loanItem.length === 0 ? (
@@ -182,7 +189,7 @@ export default function DetailUser({ loanItem }) {
             <div className="pb-5">
               <h1>Help fund this loan</h1>
               <div className="flex flex-row py-3">
-                <Select>
+                <Select onValueChange={setAmount}>
                   <SelectTrigger className="w-1/2">
                     <SelectValue placeholder="500 THB" />
                   </SelectTrigger>
@@ -199,7 +206,7 @@ export default function DetailUser({ loanItem }) {
                 ) : (
                   <Button
                     className="w-1/3 bg-green-500 "
-                    onClick={() => handleAddLend(items, loader)}
+                    onClick={() => hdlClick(loanItem, loader)}
                   >
                     Lend
                   </Button>
