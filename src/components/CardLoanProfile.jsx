@@ -34,33 +34,16 @@ export default function CardLoanProfile() {
 
   const [visibleItems, setVisibleItems] = useState(5);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-
-  // console.log(loanData);
-  const images = [
-    "src/public/lend/img5.svg",
-    "src/public/lend/img6.svg",
-    "src/public/lend/img7.svg",
-    "src/public/lend/img8.svg",
-    "src/public/lend/img9.svg",
-    "src/public/lend/img10.svg",
-  ];
-
-  function getRandom(Array) {
-    const randomIndex = Math.floor(Math.random() * Array.length);
-    return Array[randomIndex];
-  }
-
-  const randomImage = getRandom(images);
-
+  const [amount, setAmount] = useState(500)
     useEffect(() => {
       fectLendById();
     }, [loader]);
 
 
  const hdlClick = (items,loader) => {
-  // console.log(items)
+  // console.log(items,+amount)
 
-  handleAddLend(items)
+  handleAddLend(items,+amount)
   setLoader(!loader)
  }
  
@@ -150,7 +133,7 @@ export default function CardLoanProfile() {
                     </div>
                   </CardContent>
                   <CardFooter className="flex gap-1 justify-end">
-                    <Select>
+                    <Select onValueChange={setAmount}>
                       <SelectTrigger className="w-2/3">
                         <SelectValue defaultValue="500" placeholder="500 THB" />
                       </SelectTrigger>
