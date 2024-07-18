@@ -47,7 +47,7 @@ function BorrowDetailPage() {
                             <p className='absolute text-[1.5] bottom-[-2rem] left-2'>Status : <span className='text-GreenLogin font-semibold '>APPROVE</span></p>
                         </div>
                             
-                        <p className='text-gray-700 self-start mt-[5rem]'><span className='text-GreenLogin text-[2rem]'>0 of 10</span> leaders</p>
+                        <p className='text-gray-700 self-start mt-[5rem]'><span className='text-GreenLogin text-[2rem]'>0 of 10</span> lenders</p>
 
 
                         <div className='scorebar bg-gray-300  w-full h-[.75rem] rounded-[15px] relative '>
