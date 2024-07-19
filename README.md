@@ -1,7 +1,6 @@
 # O2O Project  
 
-peer-to-peer lending platform  
-Still working on  
+peer-to-peer lending platform  to small business
 
 ![Screenshot](./src/assets/images/screenshot/Screenshot03.png)
 
