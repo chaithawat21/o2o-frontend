@@ -1,5 +1,4 @@
 # O2O Project
-frontend
 
 peer-to-peer or opportunity to opportunity lending platform  to small business
 
