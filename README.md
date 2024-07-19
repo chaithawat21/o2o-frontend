@@ -1,6 +1,8 @@
-# O2O Project  
+# O2O Project(frontend)
 
-peer-to-peer lending platform  to small business
+peer-to-peer or opportunity to opportunity lending platform  to small business
+
+--
 
 ![Screenshot](./src/assets/images/screenshot/Screenshot03.png)
 
