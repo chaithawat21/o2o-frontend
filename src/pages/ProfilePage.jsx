@@ -149,7 +149,7 @@ function ProfilePage() {
 
       try {
         const response = await axios.put(
-          'http://localhost:8888/user/updateProfile',
+          `${backendUrl}/user/updateProfile`,
           formData,
           {
             headers: {
@@ -160,7 +160,7 @@ function ProfilePage() {
         );
   
         if (response.data && response.data.result && response.data.result.ImgUrl) {
-          setImageUrl(`https://o2o-backend.onrender.com${response.data.result.ImgUrl}`); // Set full URL to image
+          setImageUrl(`${backendUrl}${response.data.result.ImgUrl}`); // Set full URL to image
         }
         notify("File uploaded successfully!");
       } catch (error) {
