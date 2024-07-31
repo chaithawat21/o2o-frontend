@@ -5,7 +5,9 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 function RegisterForm() {
+
   const navigate = useNavigate();
   const [formSubmitted, setFormSubmitted] = useState(false);
   
@@ -127,7 +129,7 @@ function RegisterForm() {
     }
 
     try {
-      const response = await axios.post("http://localhost:8888/auth/register", {
+      const response = await axios.post(`${backendUrl}/auth/register`, {
         firstname: input.firstname,
         lastname: input.lastname,
         username: input.username,

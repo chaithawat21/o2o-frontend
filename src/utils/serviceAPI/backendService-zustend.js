@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { create } from "zustand";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 const dataUser = (set, get) => ({
     loading: false,
     loader: false,
@@ -12,7 +13,8 @@ const dataUser = (set, get) => ({
     setLoaing: (value) => set({ loading: value }),
     fectDataUser: async () => {
         try {
-            const rs = await axios.get("http://localhost:8888/auth/me", {
+
+            const rs = await axios.get(`${backendUrl}/auth/me`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             set(state => ({ ...state, user: rs.data.user }))
@@ -24,7 +26,8 @@ const dataUser = (set, get) => ({
 
     fectLendById: async () => {
         try {
-            const rs = await axios.get("http://localhost:8888/lend", {
+
+            const rs = await axios.get(`${backendUrl}/lend`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             // console.log(rs.data)
@@ -36,7 +39,8 @@ const dataUser = (set, get) => ({
     handleAddLend: async (items,amount) => {
         // console.log(loader)
         const body = { id: items.id, amount };
-        await axios.post("http://localhost:8888/lend", body, {
+
+        await axios.post(`${backendUrl}/lend`, body, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         })
     },
@@ -44,7 +48,8 @@ const dataUser = (set, get) => ({
     handleAmountChange: async (id, newAmount, loader) => {
         const body = { id, newAmount }
         // console.log(body)
-        const rs = await axios.put("http://localhost:8888/lend", body, {
+
+        const rs = await axios.put(`${backendUrl}/lend`, body, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
         // console.log(rs.data)
@@ -54,7 +59,7 @@ const dataUser = (set, get) => ({
     handleDelete: async (id, loader) => {
         // console.log(id,loader)
 
-        const rs = await axios.delete(`http://localhost:8888/lend/${id}`, {
+        const rs = await axios.delete(`${backendUrl}/lend/${id}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         // console.log(rs)
@@ -64,7 +69,8 @@ const dataUser = (set, get) => ({
     checkout: async (success) => {
         const body = { success }
         try {
-            const rs = await axios.put("http://localhost:8888/lend/checkout", body, {
+
+            const rs = await axios.put(`${backendUrl}/lend/checkout`, body, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
             //   console.log(rs)
@@ -78,7 +84,8 @@ const dataUser = (set, get) => ({
         // console.log(body)
 
         try {
-            await axios.put("http://localhost:8888/lend/updatetotalamount", body, {
+
+            await axios.put(`${backendUrl}/lend/updatetotalamount`, body, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
         } catch (err) {
@@ -92,7 +99,8 @@ const Donate = (set, get) => ({
     donate: [],
     loaders: false,
     getDonateById: async () => {
-        const rs = await axios.get("http://localhost:8888/donate", {
+
+        const rs = await axios.get(`${backendUrl}/donate`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
         // console.log(rs)
@@ -101,7 +109,8 @@ const Donate = (set, get) => ({
     handleAmountChange: async (id, newAmount, loaders) => {
         const body = { id, newAmount }
         console.log(loaders)
-        const rs = await axios.put("http://localhost:8888/donate", body, {
+
+        const rs = await axios.put(`${backendUrl}/donate`, body, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
         // console.log(rs.data)
@@ -109,7 +118,8 @@ const Donate = (set, get) => ({
     },
     handleDelAmountDonate: async (id, loaders) => {
         console.log(id)
-        const rs = await axios.delete(`http://localhost:8888/donate/${id}`, {
+
+        const rs = await axios.delete(`${backendUrl}/donate/${id}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         // console.log(rs)

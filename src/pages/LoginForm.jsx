@@ -7,7 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 function LoginForm() {
+
   const navigate = useNavigate();
   const { user, setUser } = useAuth();
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -43,7 +45,7 @@ function LoginForm() {
     try {
       const body = { email: input.email, password: input.password };
       const response = await axios.post(
-        "http://localhost:8888/auth/login",
+        `${backendUrl}/auth/login`,
         body
       );
       if (response.data.msg) {
@@ -51,7 +53,7 @@ function LoginForm() {
       }
       localStorage.setItem("token", response.data);
 
-      const response2 = await axios.get("http://localhost:8888/auth/me", {
+      const response2 = await axios.get(`${backendUrl}/auth/me`, {
         headers: { Authorization: `Bearer ${response.data}` },
       });
       setUser(response2.data.user);

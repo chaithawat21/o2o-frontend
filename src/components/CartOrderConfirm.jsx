@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
 import React from 'react'
-
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export default function CartOrderConfirm({title,amount,story,borrower,img}) {
+
   return (
     <motion.div 
     initial={{marginTop: 10 ,opacity:0}}
@@ -10,7 +11,7 @@ export default function CartOrderConfirm({title,amount,story,borrower,img}) {
     className="flex w-[800px] min-w-[400px]  p-1">
       <div className="avatar">
         <div className="w-24 rounded-full">
-          <img src={img ? `http://localhost:8888${img}` : `${Avata[`avatar${borrower}`]}`} />
+          <img src={img ? `${backendUrl}${img}` : `${Avata[`avatar${borrower}`]}`} />
         </div>
       </div>
       <div className=" w-[100%] max-h-[100px] overflow-hidden p-2">

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { create } from "zustand";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 const SearchData = (set, get) => ({
   loading: false,
   searchInfo: [],
@@ -14,8 +15,9 @@ const SearchData = (set, get) => ({
 
   fetchSearchData: async () => {
     try {
+
       set((state) => ({ ...state, loading: true }));
-      const getSearch = await axios.get("http://localhost:8888/search/type");
+      const getSearch = await axios.get(`${backendUrl}/search/type`);
       set((state) => ({ ...state, searchInfo: getSearch.data }));
     } catch (err) {
       console.log(err.message);
@@ -25,6 +27,7 @@ const SearchData = (set, get) => ({
   },
 
   FillterProvince: (value, province) => {
+
     const rs = province.filter((province) => province.region_id === value);
     set((state) => ({ ...state, fillterProvinceValue: rs }));
   },
@@ -37,10 +40,11 @@ const SearchData = (set, get) => ({
   fetchLoanData: async () => {
     try {
       set((state) => ({ ...state, loading: true }));
-      const getLoanData = await axios.get("http://localhost:8888/loan/getloan");
+
+      const getLoanData = await axios.get(`${backendUrl}/loan/getloan`);
       set((state) => ({ ...state, loanData: getLoanData.data }));
 
-      const amountAllId = await axios.get("http://localhost:8888/search/getAmountAllId");
+      const amountAllId = await axios.get(`${backendUrl}/search/getAmountAllId`);
       set((state)=>({...state, amountAllId: amountAllId.data}))
 
     } catch (err) {
@@ -53,12 +57,13 @@ const SearchData = (set, get) => ({
   fetchLoanDataById: async (id) => {
     try {
       set((state) => ({ ...state, loading: true }));
+ ;
       const getLoanDataById = await axios.get(
-        `http://localhost:8888/loan/getLoanById/${id}`
+        `${backendUrl}/loan/getLoanById/${id}`
       );
       set((state) => ({ ...state, LoanDataById: getLoanDataById.data }));
 
-      const amountAllId = await axios.get("http://localhost:8888/search/getAmountAllId");
+      const amountAllId = await axios.get(`${backendUrl}/search/getAmountAllId`);
       set((state)=>({...state, amountAllId: amountAllId.data}))
 
 
@@ -73,12 +78,13 @@ const SearchData = (set, get) => ({
     if (selectType === "region") {
       try {
         set((state) => ({ ...state, regionData: data }));
+
         const getByRegion = await axios.get(
-          `http://localhost:8888/search/region/${data}`
+          `${backendUrl}/search/region/${data}`
         );
         set((state) => ({ ...state, loanData: getByRegion.data }));
 
-        const amountAllId = await axios.get("http://localhost:8888/search/getAmountAllId");
+        const amountAllId = await axios.get(`${backendUrl}/search/getAmountAllId`);
         set((state)=>({...state, amountAllId: amountAllId.data}))
 
       } catch (err) {
@@ -87,12 +93,13 @@ const SearchData = (set, get) => ({
     }
     if (selectType === "province") {
       try {
+
         const getByProvince = await axios.get(
-          `http://localhost:8888/search/province/${data}`
+          `${backendUrl}/search/province/${data}`
         );
         set((state) => ({ ...state, loanData: getByProvince.data }));
 
-        const amountAllId = await axios.get("http://localhost:8888/search/getAmountAllId");
+        const amountAllId = await axios.get(`${backendUrl}/search/getAmountAllId`);
         set((state)=>({...state, amountAllId: amountAllId.data}))
       } catch (err) {
         console.log(err.message);
@@ -101,12 +108,13 @@ const SearchData = (set, get) => ({
 
     if (selectType === "categorie") {
       try {
+
         const getCategorie = await axios.get(
-          `http://localhost:8888/search/categorie/${data}`
+          `${backendUrl}/search/categorie/${data}`
         );
         set((state) => ({ ...state, loanData: getCategorie.data }));
 
-        const amountAllId = await axios.get("http://localhost:8888/search/getAmountAllId");
+        const amountAllId = await axios.get(`${backendUrl}/search/getAmountAllId`);
         set((state)=>({...state, amountAllId: amountAllId.data}))
       } catch (err) {
         console.log(err.message);
@@ -115,12 +123,13 @@ const SearchData = (set, get) => ({
     if (selectType === "loan") {
       try {
         console.log('test');
+        
         const getloan = await axios.get(
-          `http://localhost:8888/search/loan/${data}`
+          `${backendUrl}/search/loan/${data}`
         );
         set((state) => ({ ...state, loanData: getloan.data }));
 
-        const amountAllId = await axios.get("http://localhost:8888/search/getAmountAllId");
+        const amountAllId = await axios.get(`${backendUrl}/search/getAmountAllId`);
         set((state)=>({...state, amountAllId: amountAllId.data}))
       } catch (err) {
         console.log(err.message);

@@ -5,7 +5,9 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import imageSuccess from "../assets/images/illustration/illustration01-register.png"
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export default function UserActivation() {
+
 
   const location = useLocation();
   useEffect(() => {
@@ -13,7 +15,7 @@ export default function UserActivation() {
       try {
         const urlParams = new URLSearchParams(location.search);
         const hashValue = urlParams.get("hash");
-        await axios.put("http://localhost:8888/auth/activation",{hashValue:hashValue,verified:true})
+        await axios.put(`${backendUrl}/auth/activation`,{hashValue:hashValue,verified:true})
       } catch (err) {
         console.log(err);
       }

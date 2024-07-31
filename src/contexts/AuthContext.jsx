@@ -3,6 +3,7 @@ import { createContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -15,7 +16,7 @@ function AuthContextProvider({ children }) {
         if (!token) {
           return setLoading(false);
         }
-        const result = await axios.get("http://localhost:8888/auth/me", {
+        const result = await axios.get(`${backendUrl}/auth/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
