@@ -7,7 +7,9 @@ import FooterHome from "../components/FooterHome";
 import WordPullUp from "@/components/magicui/word-pull-up";
 import NumberTicker from "@/components/magicui/number-ticker";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 function AboutPage() {
+
   const notifyError = () => {
     toast.error("Failed to send email", {
       position: "top-center",
@@ -48,7 +50,7 @@ function AboutPage() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8888/contact",
+        `${backendUrl}/contact`,
         formData
       );
       console.log(response.data);

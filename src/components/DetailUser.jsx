@@ -25,7 +25,9 @@ import * as Avata from "../assets/images/avatar/imgAva";
 import { motion } from "framer-motion";
 
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export default function DetailUser({ loanItem }) {
+
   const lend = useUser((state) => state.lendUser);
   const loader = useUser((state) => state.loader);
   const fectLendById = useUser((stete) => stete.fectLendById);
@@ -74,7 +76,7 @@ export default function DetailUser({ loanItem }) {
                     <AvatarImage
                       src={
                         loanItem?.borrower?.ImgUrl
-                          ? `http://localhost:8888${loanItem?.borrower?.ImgUrl}`
+                          ? `${backendUrl}${loanItem?.borrower?.ImgUrl}`
                           : `${Avata[`avatar${loanItem?.borrower?.id}`]}`
                       }
                       className="w-full object-contain"

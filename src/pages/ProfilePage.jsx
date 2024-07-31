@@ -7,7 +7,9 @@ import avatarTest from "../assets/images/icon/user-icon.svg";
 import ShinyButton from "@/components/magicui/shiny-button";
 import { Link } from "react-router-dom";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 function ProfilePage() {
+
   const [file, setFile] = useState(null); // State to hold the selected file
   const [imageUrl, setImageUrl] = useState(avatarTest); // Initial profile image URL
   const fileInputRef = useRef(null);
@@ -56,7 +58,7 @@ function ProfilePage() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:8888/auth/me", {
+      const response = await axios.get(`${backendUrl}auth/me`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       const userData = response.data?.user[0];
@@ -73,7 +75,7 @@ function ProfilePage() {
         // ImgUrl: userData.ImgUrl || "",
       });
       if (userData.ImgUrl) {
-        setImageUrl(`http://localhost:8888${userData.ImgUrl} `); // Set full URL to image
+        setImageUrl(`${backendUrl}${userData.ImgUrl} `); // Set full URL to image
       }
       // setImageUrl(userData.ImgUrl || avatarTest);
     } catch (error) {
@@ -85,7 +87,7 @@ function ProfilePage() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8888/auth/updateMe",
+        `${backendUrl}/auth/updateMe`,
         formData,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -147,7 +149,7 @@ function ProfilePage() {
 
       try {
         const response = await axios.put(
-          'http://localhost:8888/user/updateProfile',
+          `${backendUrl}/user/updateProfile`,
           formData,
           {
             headers: {
@@ -158,7 +160,7 @@ function ProfilePage() {
         );
   
         if (response.data && response.data.result && response.data.result.ImgUrl) {
-          setImageUrl(`http://localhost:8888${response.data.result.ImgUrl}`); // Set full URL to image
+          setImageUrl(`${backendUrl}${response.data.result.ImgUrl}`); // Set full URL to image
         }
         notify("File uploaded successfully!");
       } catch (error) {

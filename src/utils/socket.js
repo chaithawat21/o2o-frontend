@@ -1,8 +1,10 @@
 import {io} from 'socket.io-client'
 
-const URL = 'http://localhost:8888/'
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-export const socket = io(URL, {
+
+
+export const socket = io(backendUrl, {
   autoConnect : false,
   reconnection : false
 })

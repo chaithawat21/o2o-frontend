@@ -6,7 +6,9 @@ import DonateList from "../components/DonateList";
 import { useUser } from "../utils/serviceAPI/backendService-zustend";
 import { motion } from "framer-motion";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export default function OrderConfirmed() {
+
   const [message, setMessage] = useState("");
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -40,7 +42,7 @@ export default function OrderConfirmed() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8888/create-checkout-session",
+        `${backendUrl}/create-checkout-session`,
         {
           Sum,
         }

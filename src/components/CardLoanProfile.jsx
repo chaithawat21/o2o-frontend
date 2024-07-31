@@ -21,8 +21,9 @@ import { useSearchData } from "../utils/serviceAPI/searchServices";
 import { useUser } from "../utils/serviceAPI/backendService-zustend";
 import * as Avata from "../assets/images/avatar/imgAva";
 import { motion } from "framer-motion";
-
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export default function CardLoanProfile() {
+
   const loanData = useSearchData((state) => state.loanData);
   const lend = useUser((state) => state.lendUser);
   const loader = useUser((state) => state.loader);
@@ -88,7 +89,7 @@ export default function CardLoanProfile() {
                         //     Avata[`avatar${items?.borrower?.id}`]
                         //   })`,
                         // }}
-                        src={items?.borrower?.ImgUrl ? `http://localhost:8888${items?.borrower?.ImgUrl}` : `${Avata[`avatar${items?.borrower?.id}`]}`}
+                        src={items?.borrower?.ImgUrl ? `${backendUrl}${items?.borrower?.ImgUrl}` : `${Avata[`avatar${items?.borrower?.id}`]}`}
                       />
                     </CardHeader>
                   </Link>

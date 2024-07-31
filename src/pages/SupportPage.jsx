@@ -6,7 +6,9 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import WordPullUp from "@/components/magicui/word-pull-up";
 import SparklesDiv from "@/components/magicui/sparkles-div";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 function SupportPage() {
+
   const [value, setValue] = useState(25);
   // console.log(value)
   const incrementValue = (e) => {
@@ -42,7 +44,7 @@ function SupportPage() {
     try {
       // console.log(value)
       const body = { value };
-      await axios.post("http://localhost:8888/donate", body, {
+      await axios.post(`${backendUrl}/donate`, body, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
     } catch (err) {
