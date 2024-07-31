@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import helpImg from "../public/leaf_heart.565342d.svg'"
+import helpImg from '../public/leaf_heart.565342d.svg'
 
 export default function DonateList({id,amount,setAmount,handleDelete}) {
   const [loader, setLoader] = useState(null);
@@ -37,7 +37,7 @@ export default function DonateList({id,amount,setAmount,handleDelete}) {
       }}
     className="flex justify-between gap-5 w-[800px] min-w-[400px] ">
         <div className="w-[130px]">
-          <img src={helpImg} alt="help donate" />
+          <img src={helpImg} alt="helpDonate" />
         </div>
       <div className="flex flex-col w-[100%] p-2">
         <h1>Help cover the cost of your loan</h1>
