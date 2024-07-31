@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, spring, useSpring } from "framer-motion";
 import { Link } from "react-router-dom";
 import * as Avata from "../assets/images/avatar/imgAva";
-
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export default function CartList({
   id,
   title,
@@ -55,7 +55,7 @@ export default function CartList({
           <img
             src={
               img
-                ? `http://localhost:8888${img}`
+                ? `${backendUrl}${img}`
                 : `${Avata[`avatar${borrower}`]}`
             }
           />
